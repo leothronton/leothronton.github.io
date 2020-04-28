@@ -65,81 +65,6 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://peterz.xyz/2009/07/30/%E8%BD%AC%E8%B4%B4-ubuntu%E4%B8%8Bvpn%E7%BF%BB%E5%A2%99/" title="[转贴] Ubuntu下VPN翻墙">[转贴] Ubuntu下VPN翻墙</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2009年7月30日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            &lt;div&gt;2009-7-20 08:55&lt;/div&gt; ……
-        </div>
-        <p class="readmore"><a href="http://peterz.xyz/2009/07/30/%E8%BD%AC%E8%B4%B4-ubuntu%E4%B8%8Bvpn%E7%BF%BB%E5%A2%99/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://peterz.xyz/2009/07/29/ubuntu-9-04%E4%B8%8B%E9%85%8D%E7%BD%AEdvbt/" title="Ubuntu 9.04下配置DVB－T">Ubuntu 9.04下配置DVB－T</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2009年7月29日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            &lt;p&gt;1。找驱动。&lt;br /&gt; 1）如果你接上电视卡，系统能够自动识别并配置好，那么这步可以跳过。如果没有识别，首先要找出你电视棒的型号。可以看看你电视棒的标签，上面应该有，例如我的是T328B4。&lt;br /&gt; 2）到&lt;a href=&quot;http://www.linuxtv.org/wiki/index.php/DVB-T_USB_Devices&quot;&gt;http://www.linuxtv.org/wiki/index.php/DVB-T_USB_Devices&lt;/a&gt;找&lt;br /&gt; 对应你电视棒的信息，看应该下载哪种驱动。例如对应T328B的驱动是Afatech AF9015。下载之后将Afatech&lt;br /&gt; AF9015拷贝到/lib/firmwares下。重启一下Gnome。这下系统就能识别电视棒了。可以用$ dmesg 查看相关信息。&lt;/p&gt;&lt;p&gt;2。搜台&lt;/p&gt;&lt;p&gt;1）安装 dvb-utils&lt;br /&gt; $ sudo apt-get install dvb-utils&lt;/p&gt;&lt;p&gt;＃dvb-utils详细使用方法见 &lt;a href=&quot;http://www.linuxtv.org/wiki/index.php/Testing_your_DVB_device&quot;&gt;http://www.linuxtv.org/wiki/index.php/Testing_your_DVB_device&lt;/a&gt;&lt;br /&gt; 我这里只管搜台。&lt;/p&gt;&lt;p&gt;2）建立搜索频率表，这一步是关键！！&lt;/p&gt;&lt;p&gt;先建个文件夹&lt;br /&gt; mkdir ~/.tzap&lt;/p&gt;&lt;p&gt;搜台命令是&lt;br /&gt; scan /path_to_the_initial_scan_file &gt; ~/.tzap/channels.conf&lt;/p&gt;&lt;p&gt;命令中path_to_the_initial_scan_file是指dvb-utils预制电视频道频率的列表。文件在/usr/share/dvb/dvb-t文件夹下。是按国家地区分的。可惜中国大陆一个都没有。没有我们就新建一个，内容例如：&lt;br /&gt; T 618000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE&lt;br /&gt; 其中第2项618000000表示信号所在频率。618000000就是618MHz。其他参数不清楚什么意思。不过其中倒数第2。4两个参数有可能是QAM64和1/4。这要看你当地信号的参数是什么了。&lt;br /&gt; 如果这个文件中只有这一条数据的话，搜索时，电视棒只会搜索这一个频率。如果你能得知你当地或附近城市DVBT电视信号的频率，那可以节省一些时间。如果&lt;br /&gt; 不知道，那只能用笨办法，一个一个频率搜索。（这里频率后的参数暂取8MHz 2/3 AUTO QAM16 8k 1/8&lt;br /&gt; NONE，如果你搜索不成功，可以改成8MHz 2/3 NONE QAM16 8k 1/4 NONE试试）&lt;/p&gt;&lt;p&gt;DVBT电视信号一般的工作范围是从440MHz到700MHz，这里我就在新建文件里中加入如下信息：&lt;br /&gt; T 440000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE&lt;br /&gt; T 441000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE&lt;br /&gt; T 442000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE&lt;br /&gt; T 443000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE&lt;br /&gt; T 444000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE&lt;/p&gt;&lt;p&gt;一直到&lt;/p&gt;&lt;p&gt;T 700000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE&lt;/p&gt;&lt;p&gt;之后将文件保存在/usr/share/dvb/dvb-t文件夹下。例如文件名为AAAAAAA（注意没有后缀名）&lt;/p&gt;&lt;p&gt;3）搜台&lt;br /&gt; scan /usr/share/dvb/dvb-t/AAAAAAA &gt; ~/.……
-        </div>
-        <p class="readmore"><a href="http://peterz.xyz/2009/07/29/ubuntu-9-04%E4%B8%8B%E9%85%8D%E7%BD%AEdvbt/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://peterz.xyz/2009/07/28/j10%E7%A9%BA%E4%B8%AD%E5%8A%A0%E6%B2%B9/" title="J10空中加油">J10空中加油</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2009年7月28日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            &lt;p&gt;&lt;img src=&quot;http://farm4.static.flickr.com/3448/3764658625_e6c548326c.jpg&quot; border=&quot;0&quot; /&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;http://farm4.static.flickr.com/3566/3764659101_ce5febdc35.jpg&quot; border=&quot;0&quot; /&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;http://farm3.static.flickr.com/2580/3764659381_94590fb86c.jpg&quot; border=&quot;0&quot; /&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;http://farm4.static.flickr.com/3595/3765454532_aaa898e6cb.jpg&quot; border=&quot;0&quot; /&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;http://farm3.static.flickr.com/2448/3765456644_0d367742b9.jpg&quot; border=&quot;0&quot; /&gt;&lt;/p&gt; ……
-        </div>
-        <p class="readmore"><a href="http://peterz.xyz/2009/07/28/j10%E7%A9%BA%E4%B8%AD%E5%8A%A0%E6%B2%B9/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
                 <a href="http://peterz.xyz/2009/07/22/%E8%BD%ACcookies-sqlite%E9%80%A0%E6%88%90firefox%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81%E4%B8%8D%E8%83%BD%E4%BF%9D%E5%AD%98%E7%9A%84%E9%97%AE%E9%A2%98/" title="[转]cookies.sqlite造成FireFox登录状态不能保存的问题">[转]cookies.sqlite造成FireFox登录状态不能保存的问题</a>
             </h1>
         </header>
@@ -308,6 +233,81 @@
             ……
         </div>
         <p class="readmore"><a href="http://peterz.xyz/2009/07/09/%E9%83%8E%E5%92%B8%E5%B9%B3%E5%90%89%E6%9E%97%E5%A4%A7%E5%AD%A6%E6%BC%94%E8%AE%B2/">阅读全文</a></p>
+    </article>
+    
+    
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://peterz.xyz/2009/07/09/ubuntu%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E6%89%80%E6%9C%89ntfs%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%9A%84%E6%96%B9%E6%B3%95/" title="Ubuntu开机自动挂载所有ntfs硬盘分区的方法">Ubuntu开机自动挂载所有ntfs硬盘分区的方法</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2009年7月9日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            ……
+        </div>
+        <p class="readmore"><a href="http://peterz.xyz/2009/07/09/ubuntu%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD%E6%89%80%E6%9C%89ntfs%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E7%9A%84%E6%96%B9%E6%B3%95/">阅读全文</a></p>
+    </article>
+    
+    
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://peterz.xyz/2009/07/09/ubuntu%E4%B8%8B%E6%B7%BB%E5%8A%A0%E5%BE%B7%E8%AF%AD%E8%BE%93%E5%85%A5%E6%B3%95/" title="Ubuntu下添加德语输入法。">Ubuntu下添加德语输入法。</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2009年7月9日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            ……
+        </div>
+        <p class="readmore"><a href="http://peterz.xyz/2009/07/09/ubuntu%E4%B8%8B%E6%B7%BB%E5%8A%A0%E5%BE%B7%E8%AF%AD%E8%BE%93%E5%85%A5%E6%B3%95/">阅读全文</a></p>
+    </article>
+    
+    
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://peterz.xyz/2009/07/04/ubuntu%E4%B8%8B%E9%85%8D%E7%BD%AEevolution%E6%94%B6%E5%8F%91gmail%E9%82%AE%E4%BB%B6/" title="Ubuntu下配置Evolution收发Gmail邮件">Ubuntu下配置Evolution收发Gmail邮件</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2009年7月4日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://peterz.xyz/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-internet'>计算机与 Internet</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            ……
+        </div>
+        <p class="readmore"><a href="http://peterz.xyz/2009/07/04/ubuntu%E4%B8%8B%E9%85%8D%E7%BD%AEevolution%E6%94%B6%E5%8F%91gmail%E9%82%AE%E4%BB%B6/">阅读全文</a></p>
     </article>
     
     
@@ -482,7 +482,7 @@
     
     <li><a href="http://peterz.xyz/categories/%E6%94%B6%E9%9B%86/">收集 (3)</a></li>
     
-    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (125)</a></li>
+    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (122)</a></li>
     
     <li><a href="http://peterz.xyz/categories/%E7%88%AC%E8%99%AB/">爬虫 (4)</a></li>
     

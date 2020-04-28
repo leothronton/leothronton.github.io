@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Ubuntu 9.04下配置DVB－T | 槑烎</title>
-    <meta property="og:title" content="Ubuntu 9.04下配置DVB－T - 槑烎">
+    <title>【转】中国早期计算机研制中的小故事 我不看北京人在纽约——萨苏 | 槑烎</title>
+    <meta property="og:title" content="【转】中国早期计算机研制中的小故事 我不看北京人在纽约——萨苏 - 槑烎">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content='2009-07-29T05:25:28&#43;08:00'>
+    <meta property="article:published_time" content='2010-07-13T16:07:48&#43;08:00'>
         
         
-    <meta property="article:modified_time" content='2009-07-29T05:25:28&#43;08:00'>
+    <meta property="article:modified_time" content='2010-07-13T16:07:48&#43;08:00'>
         
     <meta name="Keywords" content="">
-    <meta name="description" content="Ubuntu 9.04下配置DVB－T">
+    <meta name="description" content="【转】中国早期计算机研制中的小故事 我不看北京人在纽约——萨苏">
         <meta name="author" content="leo_thronton">
         
-    <meta property="og:url" content="http://peterz.xyz/2009/07/29/ubuntu-9-04%E4%B8%8B%E9%85%8D%E7%BD%AEdvbt/">
+    <meta property="og:url" content="http://peterz.xyz/2010/07/13/%E8%BD%AC%E4%B8%AD%E5%9B%BD%E6%97%A9%E6%9C%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A0%94%E5%88%B6%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B-%E6%88%91%E4%B8%8D%E7%9C%8B%E5%8C%97%E4%BA%AC%E4%BA%BA%E5%9C%A8%E7%BA%BD%E7%BA%A6/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href='/css/normalize.css'>
@@ -66,10 +66,10 @@
     
     <article class="post">
         <header>
-            <h1 class="post-title">Ubuntu 9.04下配置DVB－T</h1>
+            <h1 class="post-title">【转】中国早期计算机研制中的小故事 我不看北京人在纽约——萨苏</h1>
         </header>
         <date class="post-meta meta-date">
-            2009年7月29日
+            2010年7月13日
         </date>
         
         <div class="post-meta">
@@ -82,88 +82,37 @@
         
         
         <div class="post-content">
-            <!-- raw HTML omitted -->
-<pre><code>&lt;p&gt;
-  1。找驱动。&lt;br /&gt; 1）如果你接上电视卡，系统能够自动识别并配置好，那么这步可以跳过。如果没有识别，首先要找出你电视棒的型号。可以看看你电视棒的标签，上面应该有，例如我的是T328B4。&lt;br /&gt; 2）到&lt;a href=&quot;http://www.linuxtv.org/wiki/index.php/DVB-T_USB_Devices&quot;&gt;http://www.linuxtv.org/wiki/index.php/DVB-T_USB_Devices&lt;/a&gt;找&lt;br /&gt; 对应你电视棒的信息，看应该下载哪种驱动。例如对应T328B的驱动是Afatech AF9015。下载之后将Afatech&lt;br /&gt; AF9015拷贝到/lib/firmwares下。重启一下Gnome。这下系统就能识别电视棒了。可以用$ dmesg 查看相关信息。
-&lt;/p&gt;
-
-&lt;p&gt;
-  2。搜台
-&lt;/p&gt;
-
-&lt;p&gt;
-  1）安装 dvb-utils&lt;br /&gt; $ sudo apt-get install dvb-utils
-&lt;/p&gt;
-
-&lt;p&gt;
-  ＃dvb-utils详细使用方法见 &lt;a href=&quot;http://www.linuxtv.org/wiki/index.php/Testing_your_DVB_device&quot;&gt;http://www.linuxtv.org/wiki/index.php/Testing_your_DVB_device&lt;/a&gt;&lt;br /&gt; 我这里只管搜台。
-&lt;/p&gt;
-
-&lt;p&gt;
-  2）建立搜索频率表，这一步是关键！！
-&lt;/p&gt;
-
-&lt;p&gt;
-  先建个文件夹&lt;br /&gt; mkdir ~/.tzap
-&lt;/p&gt;
-
-&lt;p&gt;
-  搜台命令是&lt;br /&gt; scan /path_to_the_initial_scan_file &gt; ~/.tzap/channels.conf
-&lt;/p&gt;
-
-&lt;p&gt;
-  命令中path_to_the_initial_scan_file是指dvb-utils预制电视频道频率的列表。文件在/usr/share/dvb/dvb-t文件夹下。是按国家地区分的。可惜中国大陆一个都没有。没有我们就新建一个，内容例如：&lt;br /&gt; T 618000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE&lt;br /&gt; 其中第2项618000000表示信号所在频率。618000000就是618MHz。其他参数不清楚什么意思。不过其中倒数第2。4两个参数有可能是QAM64和1/4。这要看你当地信号的参数是什么了。&lt;br /&gt; 如果这个文件中只有这一条数据的话，搜索时，电视棒只会搜索这一个频率。如果你能得知你当地或附近城市DVBT电视信号的频率，那可以节省一些时间。如果&lt;br /&gt; 不知道，那只能用笨办法，一个一个频率搜索。（这里频率后的参数暂取8MHz 2/3 AUTO QAM16 8k 1/8&lt;br /&gt; NONE，如果你搜索不成功，可以改成8MHz 2/3 NONE QAM16 8k 1/4 NONE试试）
-&lt;/p&gt;
-
-&lt;p&gt;
-  DVBT电视信号一般的工作范围是从440MHz到700MHz，这里我就在新建文件里中加入如下信息：&lt;br /&gt; T 440000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE&lt;br /&gt; T 441000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE&lt;br /&gt; T 442000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE&lt;br /&gt; T 443000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE&lt;br /&gt; T 444000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE
-&lt;/p&gt;
-
-&lt;p&gt;
-  一直到
-&lt;/p&gt;
-
-&lt;p&gt;
-  T 700000000 8MHz 2/3 AUTO QAM16 8k 1/8 NONE
-&lt;/p&gt;
-
-&lt;p&gt;
-  之后将文件保存在/usr/share/dvb/dvb-t文件夹下。例如文件名为AAAAAAA（注意没有后缀名）
-&lt;/p&gt;
-
-&lt;p&gt;
-  3）搜台&lt;br /&gt; scan /usr/share/dvb/dvb-t/AAAAAAA &gt; ~/.tzap/channels.conf
-&lt;/p&gt;
-
-&lt;p&gt;
-  这样就会从440M一直搜到700M。这很花时间，你可以根据实际情况适当缩小范围。
-&lt;/p&gt;
-
-&lt;p&gt;
-  如果搜到了台，电视台的数据就保存在你的主目录.tzap下，名为channels.conf
-&lt;/p&gt;
-
-&lt;p&gt;
-  3。看电视&lt;br /&gt; 把这个文件拷贝到.mplayer下，用mplayer看电视&lt;br /&gt; $ cp channels.conf .mplayer&lt;br /&gt; 输入下面的命令就可以看数字电视了，用 h 和 l 换频道&lt;br /&gt; $ mplayer dvb://
-&lt;/p&gt;
-
-&lt;p&gt;
-  用过之后我感觉用mplayer看电视不是很方便，启动是必须用命令行，且没有节目单。这里我推荐Xine，使用方便。只要把channels.conf文件拷贝到.Xine文件夹下，点击DVB按钮就能看电视了，并且可以将电视节目录制下来，录制的格式为ts。
-&lt;/p&gt;
-
-&lt;p&gt;
-  下面是截图。
-&lt;/p&gt;
-
-&lt;p&gt;
-  &lt;img src=&quot;http://farm4.static.flickr.com/3521/3768256240_12ccb0fe8a.jpg&quot; border=&quot;0&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-  另外试了一下电视棒带的遥控器。在用Xine观看时，按了一下遥控器系统直接崩了。所以我放弃了。如果有朋友继续研究遥控器的话欢迎补充阿。
-&lt;/p&gt;
-</code></pre>
-<!-- raw HTML omitted -->
+            <p>分析ROM指令能让人癫掉看来不是科学院的特殊现象，我写完夏启胜先生带队分析奥里窝地机的一段后，有位朋友发出了如下的感叹 
+当年我也干过类似的事情，要比较一段x86的汇编翻译+运行时间优化以后变成的另外一种机器的汇编。每天盯着模拟器反汇编出来16进制数字。
+后来有天下班的时候坐在车里，从车窗望出去，看到旁边一辆车的牌号，脑子里就直接把那个号当成16进制数据了，先给扩展成二进制的，然后开始想：这是哪个指令呢？
+这段描述外人看了会笑，了解内情的人看了会想哭。
+反正，攻关长城201（奥里窝地机的仿制品）的时候，中关村的大街上如果看到一些两眼发直的人在游荡，有的人还拿着饭盆或者书这类的东西却浑然不觉，那很可能就是父亲他们那个研究室的。</p>
+<p>奇怪的是父亲每天要骑车从东四到中关村，还要从中关村回到东四，那段时间居然安然无恙，只能说当时北京的交通管理得太好了。</p>
+<p>不过这样的脑力劳动一直进行下去，的确是让人吃不消的。有位长辈提到工作中有一次王G权先生（上一张照片中最右面的那一位）忽然晕倒了，把大家吓了一跳。知识分子对这种事情没有什么经验，好几个同事赶紧过来把他扶到一边躺下，有人大声叫他的名字，有人去准备冷毛巾，当然也有人去叫王太太项X燕女士。</p>
+<p>冷水和呼唤似乎没有起到作用，这时候，王太太来了。</p>
+<p>王太太皮肤白皙戴一副无边眼镜，文质彬彬的也是科学院的，不过她在生产部门，所以做事雷厉风行，与这些搞研究的完全两个风格。看到老公晕倒，一副奄奄一息的样子，王太太走上前去对着王先生脸上一阵拍打。这个治法让在场的研究员副研究员们脑袋集体宕机。</p>
+<p>嗯，好像效果不错，王先生慢慢睁开眼睛，但眼神似乎有点儿没焦距（可能还在某个语句和某个电子管的插脚之间挣扎呢）。</p>
+<p>王太太指指自己，问他 – “我是谁？”</p>
+<p>王先生定睛看看，吃力地回答道：“你不是小项么？”</p>
+<p>王太太点点头，拍拍老公的头笑道：“行，还认得我就好办。”于是把王先生扶出来，坐到自行车后座上，自己镇定自若地骑上车，告诉王先生一声 – “抓牢我阿！”蹬起来就飞快地朝医院去了。</p>
+<p>看着王太太一骑绝尘，王先生的众位同事们或咿呀，或咋舌，若当时有韩剧的话估计王太太“野蛮女友”的招牌是跑不了的 — 当然没人敢当面说。</p>
+<p>唏嘘完毕之后大家回去，接着跟计算机较劲。</p>
+<p>其实，王先生在同事中是身体很好的，他冬天依然冷水浴，每年都参加北京市马拉松长跑比赛，是前几名的有力竞争者，直到2008年奥运会还是代表科学院的火炬手呢！长城201的研制把他都折腾成这个样子，其他的人可想而知。</p>
+<p>写下了“外人看了会笑，了解内情的人看了会想哭”这句话，忽然想到一个无关的话题。</p>
+<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/4790007401_4c67a91256.jpg" alt="">
+偶然在网上看到的中关村老照片（14楼前），很容易让人想起童年的日子
+我一直不看《北京人在纽约》，哪怕它最红火的时候也没有看过。
+在数学所平房住的时候，正和我家对门的，也是一家有两个孩子的人家（原来是于树祥先生住，81年于先生搬走了），那家的父亲姓王，个子不高，戴一副黑色眼镜，从来不曾高声说话，他的孩子们也是同样温文尔雅的性格。在院子里的人们中间，因为这种文气，这一家人几乎被大家忽略了。
+他家的条件比我家稍好，有一间半房（因为有一间实在太小，只好叫做半间），红砖砌成，顶上是水泥瓦的那种，门口有自家垒的一个小煤棚，放冬天烧的蜂窝煤。今天看来仿佛民工的简易房，八十年代科学院知识分子们住的就是这样的房子，大家有这样的房子住，已经很感激。他家左邻，是数学所所长龙瑞麟先生，右舍，是密码专家章照旨先生，大家的房子，都是一样。
+每一天大家过的日子都很相似，包括厨房里飘出的炒白菜的香味都是一样的。有时候院里遇到王叔叔，他不管你是大人小孩儿，一样温和地一笑，就算打了招呼。
+再后来，王先生被邀请去美国讲学。这可是好事情，那时候哪怕你是“国际知名学者”也罢，作为中国的知识分子，出去吃些天方便面，攒几个大件回来让妻子能够不用搓板洗衣服，孩子们有彩色电视看，或许是他们心底对生活最深切的一点愿望。
+可是王先生这一去，再也没有回来。
+在纽约的一次学术会议之后，朋友开车送大家回去，不料途中出了事故，王先生坐在后排中间的位置，那里正好没有安全带。也是这辆车唯一没有安全带的座位。。。
+几个同车的都比他年轻，我几乎可以想象王先生那时一贯的温和，让每一个人先上，自己上车的时候，就只剩了最后一个座位。
+他自然是不会有什么怨言的。
+王先生，大名王启明，正研究员，中国科学院数学所负责研究生工作的副所长。</p>
+<p>我一直不看《北京人在纽约》，理由很简单，只因为它的男主角叫做王启明。</p>
+<p>[待续]</p>
 
         </div>
 

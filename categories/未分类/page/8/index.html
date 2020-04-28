@@ -72,75 +72,6 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://peterz.xyz/2009/08/14/%E5%AE%89%E8%A3%85ibus%E8%BE%93%E5%85%A5%E6%B3%95/">安装ibus输入法</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2009年8月14日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a>
-            
-        </div>
-        
-        <div class="post-content">
-            &lt;p&gt;安装方法：&lt;/p&gt;&lt;p&gt;1.添加源 deb &lt;a href=&quot;http://ppa.launchpad.net/ibus-dev/ibus-1.2-jaunty/ubuntu&quot;&gt;http://ppa.launchpad.net/ibus-dev/ibus-1.2-jaunty/ubuntu&lt;/a&gt; jaunty main&lt;/p&gt;&lt;p&gt;2.删除 scim&lt;/p&gt;&lt;p&gt;sudo apt-get remove scim &amp;&amp; sudo apt-get autoremove&lt;/p&gt;&lt;p&gt;3.安装ibus&lt;/p&gt;&lt;p&gt;sudo apt-get install ibus ibus-pinyin&lt;/p&gt;&lt;p&gt;4.改用户配置文件&lt;/p&gt;&lt;p&gt;打开用户配置文件.bashrc&lt;/p&gt;&lt;p&gt;sudo gedit /home/XXXX/.bashrc&lt;/p&gt;&lt;p&gt;在末尾添加&lt;/p&gt;&lt;p&gt;export GTK_IM_MODULE=ibus&lt;br /&gt; export &lt;a href=&quot;mailto:XMODIFIERS=@im=ibus&quot;&gt;XMODIFIERS=@im=ibus&lt;/a&gt;&lt;br /&gt; export QT_IM_MODULE=ibus&lt;/p&gt;&lt;p&gt;5.运行im-switch&lt;/p&gt;&lt;p&gt;sudo im-switch -c&lt;/p&gt;&lt;p&gt;选择ibus&lt;/p&gt;&lt;p&gt;这样在xwindow启动的时候就自动运行ibus了&lt;/p&gt;&lt;p&gt;6.……
-            <p class="readmore"><a href="http://peterz.xyz/2009/08/14/%E5%AE%89%E8%A3%85ibus%E8%BE%93%E5%85%A5%E6%B3%95/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://peterz.xyz/2009/08/07/%E5%A5%94%E8%B7%91-%E4%B8%80%E5%88%99%E9%9D%9E%E6%B4%B2%E5%AF%93%E8%A8%80/">奔跑…… 一则非洲寓言</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2009年8月7日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a>
-            
-        </div>
-        
-        <div class="post-content">
-            &lt;p&gt;每天早上当狮子醒来，它知道自己必须要跑赢最慢的羚羊，否则它会饥饿至死。&lt;/p&gt;&lt;p&gt;无论你是羚羊还是狮子，这都不重要。&lt;/p&gt;&lt;p&gt;当草原的太阳升起，你最好开始奔跑。&lt;/p&gt; ……
-            <p class="readmore"><a href="http://peterz.xyz/2009/08/07/%E5%A5%94%E8%B7%91-%E4%B8%80%E5%88%99%E9%9D%9E%E6%B4%B2%E5%AF%93%E8%A8%80/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://peterz.xyz/2009/08/05/%E6%97%A5%E9%A3%9F/">日食</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2009年8月5日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a>
-            
-        </div>
-        
-        <div class="post-content">
-            ……
-            <p class="readmore"><a href="http://peterz.xyz/2009/08/05/%E6%97%A5%E9%A3%9F/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
                 <a href="http://peterz.xyz/2009/08/01/%E8%BD%AC%E5%B8%96%E8%B6%85%E7%BA%A7%E7%BF%BB%E5%A2%99%E7%BB%84%E5%90%88autoproxygappproxy/">[转帖]超级翻墙组合Autoproxy＋GAppProxy</a>
             </h1>
         </header>
@@ -296,6 +227,75 @@
         <div class="post-content">
             &lt;p&gt;安装好的virtualbox默认也不支持usb设备的，需要手工修改一些设置。&lt;/p&gt;&lt;p&gt;1.修改为usb设备增加普通用户权限&lt;br /&gt; 1.1 增加一个名为usbfs的用户组&lt;br /&gt; 代码:&lt;br /&gt; &lt;a href=&quot;mailto:YOURNAME@YOURNAME-laptop:~$&quot;&gt;YOURNAME@YOURNAME-laptop:~$&lt;/a&gt; sudo groupadd usbfs&lt;br /&gt; &lt;/p&gt;&lt;p&gt;1.2 增加当前用户到工作组&lt;br /&gt; 代码:&lt;br /&gt; &lt;a href=&quot;mailto:YOURNAME@YOURNAME-laptop:~$&quot;&gt;YOURNAME@YOURNAME-laptop:~$&lt;/a&gt; sudo adduser YOURNAME usbfs //其中YOURNAME是本人系统的登录名字&lt;br /&gt; &lt;/p&gt;&lt;p&gt;1.3 得到usbfs组的id&lt;br /&gt; 执行如下命令&lt;br /&gt; 代码:&lt;br /&gt; &lt;a href=&quot;mailto:YOURNAME@YOURNAME-laptop:~$&quot;&gt;YOURNAME@YOURNAME-laptop:~$&lt;/a&gt; cat /etc/group | grep usbfs&lt;br /&gt; usbfs:x:1002:YOURNAME,root&lt;/p&gt;&lt;p&gt;其中1002就是usbfs组的id了。&lt;/p&gt;&lt;p&gt;1.4 修改 /etc/fstab 文件&lt;br /&gt; 代码:&lt;br /&gt; &lt;a href=&quot;mailto:YOURNAME@YOURNAME-laptop:~$&quot;&gt;YOURNAME@YOURNAME-laptop:~$&lt;/a&gt; sudo gedit /etc/fstab&lt;/p&gt;&lt;p&gt;在文件的末尾增加一行&lt;br /&gt; 代码:&lt;br /&gt; none /proc/bus/usb usbfs devgid=1002,devmode=664 0 0&lt;/p&gt;&lt;p&gt;其中 devgid=1002，其中的1002就是刚才的usbfs的组id&lt;/p&gt;&lt;p&gt;1.……
             <p class="readmore"><a href="http://peterz.xyz/2009/07/21/ubuntu%E4%B8%8B%E5%BC%80%E5%90%AFvirtualbox%E7%9A%84usb%E8%AE%BE%E5%A4%87%E6%94%AF%E6%8C%81/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://peterz.xyz/2009/07/21/ubuntu%E4%B8%8B%E9%85%8D%E7%BD%AEtor/">Ubuntu下配置Tor</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2009年7月21日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a>
+            
+        </div>
+        
+        <div class="post-content">
+            &lt;p&gt;1。安装 privoxy：&lt;/p&gt;&lt;p&gt;sudo apt-get install tor privoxy&lt;/p&gt;&lt;p&gt;2。安装Tor：&lt;/p&gt;&lt;p&gt;由于9.04官方源中没有tor了，所以只能自行添加源&lt;/p&gt;&lt;p&gt;deb &lt;a href=&quot;http://mirror.noreply.org/pub/tor&quot;&gt;http://mirror.noreply.org/pub/tor&lt;/a&gt; etch main&lt;br /&gt; deb-src &lt;a href=&quot;http://mirror.noreply.org/pub/tor&quot;&gt;http://mirror.noreply.org/pub/tor&lt;/a&gt; etch main&lt;/p&gt;&lt;p&gt;更新：如果是9.04，可能还需要添加密钥：&lt;/p&gt;&lt;p&gt;gpg &amp;#8211;keyserver keys.gnupg.net &amp;#8211;recv 94C09C7F&lt;br /&gt; gpg &amp;#8211;export 94C09C7F | sudo apt-key add &amp;#8211;&lt;/p&gt;&lt;p&gt;然后在终端执行&lt;/p&gt;&lt;p&gt;sudo apt-get update&lt;br /&gt; sudo apt-get install tor&lt;/p&gt;&lt;p&gt;即可完成tor安装&lt;/p&gt;&lt;p&gt;3。配置Tor：&lt;/p&gt;&lt;p&gt;在终端执行&lt;/p&gt;&lt;p&gt;sudo gedit /etc/privoxy/config&lt;/p&gt;&lt;p&gt;在最前面加上下面这一行（别漏了那个不起眼的“.……
+            <p class="readmore"><a href="http://peterz.xyz/2009/07/21/ubuntu%E4%B8%8B%E9%85%8D%E7%BD%AEtor/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://peterz.xyz/2009/07/20/%E8%A7%A3%E5%86%B3ubuntu%E4%B8%8Bflash%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">解决ubuntu下flash中文乱码</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2009年7月20日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a>
+            
+        </div>
+        
+        <div class="post-content">
+            &lt;p&gt;完工。&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;/div&gt; ……
+            <p class="readmore"><a href="http://peterz.xyz/2009/07/20/%E8%A7%A3%E5%86%B3ubuntu%E4%B8%8Bflash%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://peterz.xyz/2009/07/18/ubuntu-%E4%B8%8B%E5%90%8C%E6%AD%A5evolution%E5%92%8Cgoogle%E6%97%A5%E5%8E%86/">Ubuntu 下同步Evolution和Google日历</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2009年7月18日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a>
+            
+        </div>
+        
+        <div class="post-content">
+            &lt;p&gt;2.在终端中输入：&lt;font face=&quot;NSimsun&quot;&gt;/usr/lib/evolution-webcal/evolution-webcal YOUR_PRIVATE_ICAL_URL&lt;/font&gt;&lt;br /&gt; 3.设置同步时间&lt;/p&gt;&lt;p&gt;完工。&lt;/p&gt;&lt;p&gt;&lt;/p&gt; ……
+            <p class="readmore"><a href="http://peterz.xyz/2009/07/18/ubuntu-%E4%B8%8B%E5%90%8C%E6%AD%A5evolution%E5%92%8Cgoogle%E6%97%A5%E5%8E%86/">阅读全文</a></p>
         </div>
     </article>
     
@@ -471,7 +471,7 @@
     
     <li><a href="http://peterz.xyz/categories/%E6%94%B6%E9%9B%86/">收集 (3)</a></li>
     
-    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (125)</a></li>
+    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (122)</a></li>
     
     <li><a href="http://peterz.xyz/categories/%E7%88%AC%E8%99%AB/">爬虫 (4)</a></li>
     

@@ -17,7 +17,7 @@
       <pubDate>Wed, 16 Nov 2011 20:40:28 +0000</pubDate>
       
       <guid>http://peterz.xyz/2011/11/16/ansys-v12%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%981invalid-license-filethe-flexlm-id-in-the-file-does-not-mat/</guid>
-      <description> &amp;lt;p&amp;gt; &amp;lt;/p&amp;gt; &amp;lt;p&amp;gt; 你可以‘运行’——cmd——ipconfig/all 看能不能找到网卡ID，也就是常说的MAC地址，如果找不到，就肯定是这个原因了。 &amp;lt;/p&amp;gt; &amp;lt;p&amp;gt; 解决方法： &amp;lt;/p&amp;gt; &amp;lt;p&amp;gt; 右击“我的电脑”——选择“属性”——选择“硬件”——“设备管理器”——查看网卡是否有问题（打叉或者问号）——右击启用网卡，即可。 &amp;lt;/p&amp;gt; &amp;lt;p&amp;gt; 再重新生成license文件，放在指定文件夹下，重新安装加载license，问题就解决了。 &amp;lt;/p&amp;gt; &amp;lt;p&amp;gt; &amp;lt;span&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;/p&amp;gt; &amp;lt;p&amp;gt; &amp;lt;span&amp;gt;PS：如果上述方法不能解决的话，也可能是&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;在安装时没有关闭&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;笔记本的无线网卡导致。&amp;lt;/span&amp;gt; &amp;lt;/p&amp;gt;&amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt;  </description>
+      <description> &amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;你可以‘运行’——cmd——ipconfig/all 看能不能找到网卡ID，也就是常说的MAC地址，如果找不到，就肯定是这个原因了。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;解决方法：&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;右击“我的电脑”——选择“属性”——选择“硬件”——“设备管理器”——查看网卡是否有问题（打叉或者问号）——右击启用网卡，即可。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;再重新生成license文件，放在指定文件夹下，重新安装加载license，问题就解决了。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;&amp;lt;br /&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span&amp;gt;PS：如果上述方法不能解决的话，也可能是&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;在安装时没有关闭&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;笔记本的无线网卡导致。&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt; </description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Wed, 16 Nov 2011 20:39:55 +0000</pubDate>
       
       <guid>http://peterz.xyz/2011/11/16/64%E4%BD%8Dmatlab-mex64%E4%BD%8D%E7%BC%96%E8%AF%91%E5%99%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
-      <description>&amp;lt;p&amp;gt; The support for Microsoft Visual Studio 2008 Express Edition to create MEX files has been added in MATLAB 7.7 (R2008b). On 64-bit Windows, Visual Studio 2008 Express Edition support requires you to install some optional components as detailed below. Note that in some cases, the configuration steps described below are known to work with MATLAB 7.8 (R2009a), MATLAB 7.9 (R2009b) and MATLAB 7.10 (R2010a) as well. &amp;lt;/p&amp;gt; &amp;lt;p&amp;gt; When using 64-bit MATLAB on 64-bit Windows, you must use a 64-bit compiler to build MEX-files, MATLAB Compiler &amp;amp; Builder components, Simulink S-functions, RTW models, etc.</description>
+      <description>&amp;lt;p&amp;gt;The support for Microsoft Visual Studio 2008 Express Edition to create MEX files has been added in MATLAB 7.7 (R2008b). On 64-bit Windows, Visual Studio 2008 Express Edition support requires you to install some optional components as detailed below. Note that in some cases, the configuration steps described below are known to work with MATLAB 7.8 (R2009a), MATLAB 7.9 (R2009b) and MATLAB 7.10 (R2010a) as well.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;When using 64-bit MATLAB on 64-bit Windows, you must use a 64-bit compiler to build MEX-files, MATLAB Compiler &amp;amp; Builder components, Simulink S-functions, RTW models, etc.</description>
     </item>
     
   </channel>

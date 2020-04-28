@@ -83,80 +83,62 @@
         
         <div class="post-content">
             <h2 id="目标：穿透内网，使用远程桌面控制内网计算机">目标：穿透内网，使用远程桌面控制内网计算机</h2>
-<h2 id="所需设备：">所需设备：</h2>
+<h2 id="heading">所需设备：</h2>
 <ol>
 <li>被控电脑</li>
 <li>公网IP</li>
 <li>服务器</li>
 </ol>
-<h2 id="安装frps">安装FRPS</h2>
-<h3 id="下载安装docker版frps">下载安装Docker版FRPS</h3>
+<h2 id="frps">安装FRPS</h2>
+<h3 id="dockerfrps">下载安装Docker版FRPS</h3>
 <p>公司网络有公网ip，我的群晖NAS放在公司里。在NAS上安装docker版的frps。具体步骤如下：</p>
 <ol>
 <li>点击docker注册表</li>
 <li>搜索frp</li>
-<li>下载oldiy/frps<!-- raw HTML omitted --></li>
+<li>下载oldiy/frps</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/20200121094104.png" alt=""><!-- raw HTML omitted --></p>
-<h3 id="配置frps">配置FRPS</h3>
+<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/20200121094104.png" alt=""></p>
+<h3 id="frps-1">配置FRPS</h3>
 <!-- raw HTML omitted -->
-<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/20200121094149.png" alt=""><!-- raw HTML omitted --></p>
+<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/20200121094149.png" alt=""></p>
 <!-- raw HTML omitted -->
-<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/20200121094209.png" alt=""><!-- raw HTML omitted --></p>
+<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/20200121094209.png" alt=""></p>
 <!-- raw HTML omitted -->
-<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/20200121094516.png" alt=""><!-- raw HTML omitted --></p>
+<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/20200121094516.png" alt=""></p>
 <!-- raw HTML omitted -->
-<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/20200121094521.png" alt=""><!-- raw HTML omitted --></p>
+<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/20200121094521.png" alt=""></p>
 <!-- raw HTML omitted -->
-<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/20200121094525.png" alt=""><!-- raw HTML omitted --></p>
+<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/20200121094525.png" alt=""></p>
 <h3 id="路由器端口转发">路由器端口转发</h3>
 <p>配置路由器端口转发，将路由器的端口映射到对应的NAS端口上。</p>
 <p>需要将路由器端口映射到NAS上，例如将路由器的8000端口转发到NAS的7000端口上。</p>
 <p>整个映射关系如下表所示：</p>
-<!-- raw HTML omitted -->
-<pre><code>&lt;th style=&quot;text-align:center;&quot;&gt;
-  路由器
-&lt;/th&gt;
-
-&lt;th style=&quot;text-align:center;&quot;&gt;
-  NAS
-&lt;/th&gt;
-
-&lt;th style=&quot;text-align:center;&quot;&gt;
-  容器
-&lt;/th&gt;
-</code></pre>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<pre><code>&lt;td style=&quot;text-align:center;&quot;&gt;
-  8000
-&lt;/td&gt;
-
-&lt;td style=&quot;text-align:center;&quot;&gt;
-  7000
-&lt;/td&gt;
-
-&lt;td style=&quot;text-align:center;&quot;&gt;
-  7000
-&lt;/td&gt;
-</code></pre>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<pre><code>&lt;td style=&quot;text-align:center;&quot;&gt;
-  8000
-&lt;/td&gt;
-
-&lt;td style=&quot;text-align:center;&quot;&gt;
-  7000
-&lt;/td&gt;
-
-&lt;td style=&quot;text-align:center;&quot;&gt;
-  7000
-&lt;/td&gt;
-</code></pre>
-<!-- raw HTML omitted -->
+<table>
+<thead>
+<tr>
+<th></th>
+<th>路由器</th>
+<th>NAS</th>
+<th>容器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCP</td>
+<td>8000</td>
+<td>7000</td>
+<td>7000</td>
+</tr>
+<tr>
+<td>UDP</td>
+<td>8000</td>
+<td>7000</td>
+<td>7000</td>
+</tr>
+</tbody>
+</table>
 <p>如果需要用到其他端口，也需要建立从路由器→NAS→容器的映射关系。</p>
-<h2 id="frps配置文件">FRPS配置文件</h2>
+<h2 id="frps-2">FRPS配置文件</h2>
 <p>在群晖NAS上安装frps服务端。配置文件如下：</p>
 <pre><code>[common]
 bind_port = 7000
@@ -167,7 +149,7 @@ dashboard_pwd = ******
 token = *****
 </code></pre>
 <p>将文件保存到frps.ini后，将其放到docker/frps文件夹下。</p>
-<h2 id="frpc配置文件">FRPC配置文件</h2>
+<h2 id="frpc">FRPC配置文件</h2>
 <pre><code>[common]
 server_addr = abc.efg.hij
 server_port = 8000
@@ -180,7 +162,7 @@ local_port = 3389  #远程桌面使用此端口
 remote_port = 4321  #确保此端口会由NAS转发给docker
 </code></pre>
 <p>将文件保存到frpc.ini后，将其放到frpc.exe相同的文件夹下。</p>
-<h2 id="frpc自动启动">FRPC自动启动</h2>
+<h2 id="frpc-1">FRPC自动启动</h2>
 <h3 id="windows">Windows</h3>
 <p>在本地frp文件夹中新建一个批处理文件，并添加一下内容：</p>
 <pre><code>@echo off
@@ -196,15 +178,14 @@ goto home
 server_addr = abc.efg.hij
 server_port = 8000
 token = *******
-
-
-[RDP2]  #任意名称,必须唯一
-type = tcp
-local_ip = 0.0.0.0
-local_port = 3389  #远程桌面使用此端口
-remote_port = 4322  #确保此端口会由NAS转发给docke
 </code></pre>
-<h3 id="使用supervisor来守护frp进程">使用supervisor来守护frp进程</h3>
+<p>​ <br>
+​    [RDP2]  #任意名称,必须唯一
+​    type = tcp
+​    local_ip = 0.0.0.0
+​    local_port = 3389  #远程桌面使用此端口
+​    remote_port = 4322  #确保此端口会由NAS转发给docke</p>
+<h3 id="supervisorfrp">使用supervisor来守护frp进程</h3>
 <p>树莓派上可以使用supervisor来保证frpc程序开机启动并守护进程。</p>
 <ol>
 <li>安装supervisor</li>
@@ -234,13 +215,12 @@ sudo systemctl restart supervisor
 # 查看supervisor运行状态
 sudo supervisorctl status
 </code></pre>
-<h2 id="多个frpc客户端注意事项">多个FRPC客户端注意事项</h2>
+<h2 id="frpc-2">多个FRPC客户端注意事项</h2>
 <ol>
 <li>frp服务器端需配置不同的端口用于连接。</li>
 <li>frpc的配置文件中，配置名称必须不同。</li>
 <li>连接时，使用不同的端口就能连接到不同的设备上。</li>
 </ol>
-<p> </p>
 
         </div>
 

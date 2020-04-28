@@ -32,9 +32,10 @@ As a new WordPress user, you should go to your dashboard to delete this page and
  点击docker注册表 搜索frp 下载oldiy/frps  配置FRPS 路由器端口转发 配置路由器端口转发，将路由器的端口映射到对应的NAS端口上。
 需要将路由器端口映射到NAS上，例如将路由器的8000端口转发到NAS的7000端口上。
 整个映射关系如下表所示：
-&amp;lt;th style=&amp;quot;text-align:center;&amp;quot;&amp;gt;路由器&amp;lt;/th&amp;gt;&amp;lt;th style=&amp;quot;text-align:center;&amp;quot;&amp;gt;NAS&amp;lt;/th&amp;gt;&amp;lt;th style=&amp;quot;text-align:center;&amp;quot;&amp;gt;容器&amp;lt;/th&amp;gt; &amp;lt;td style=&amp;quot;text-align:center;&amp;quot;&amp;gt;8000&amp;lt;/td&amp;gt;&amp;lt;td style=&amp;quot;text-align:center;&amp;quot;&amp;gt;7000&amp;lt;/td&amp;gt;&amp;lt;td style=&amp;quot;text-align:center;&amp;quot;&amp;gt;7000&amp;lt;/td&amp;gt; &amp;lt;td style=&amp;quot;text-align:center;&amp;quot;&amp;gt;8000&amp;lt;/td&amp;gt;&amp;lt;td style=&amp;quot;text-align:center;&amp;quot;&amp;gt;7000&amp;lt;/td&amp;gt;&amp;lt;td style=&amp;quot;text-align:center;&amp;quot;&amp;gt;7000&amp;lt;/td&amp;gt; 如果需要用到其他端口，也需要建立从路由器→NAS→容器的映射关系。
+    路由器 NAS 容器     TCP 8000 7000 7000   UDP 8000 7000 7000    如果需要用到其他端口，也需要建立从路由器→NAS→容器的映射关系。
 FRPS配置文件 在群晖NAS上安装frps服务端。配置文件如下：
-[common]bind_port = 7000bind_udp_port = 7001dashboard_port = 7500dashboard_user = ******dashboard_pwd = ******token = ***** 将文件保存到frps.</description>
+[common]bind_port = 7000bind_udp_port = 7001dashboard_port = 7500dashboard_user = ******dashboard_pwd = ******token = ***** 将文件保存到frps.ini后，将其放到docker/frps文件夹下。
+FRPC配置文件 [common]server_addr = abc.</description>
     </item>
     
     <item>
@@ -44,7 +45,7 @@ FRPS配置文件 在群晖NAS上安装frps服务端。配置文件如下：
       
       <guid>http://peterz.xyz/2019/05/06/typora%E4%B8%AD%E6%96%87%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
       <description>在Typora默认的主题中，中文都是以宋体显示的。比较丑。在官方的在线主题中有Han和Catfish两个主题对中文的支持较好。
-安装主题  点击File→Preference→Get Themes 下载Han和Catfish两个主题。Han下载后只有一个css文件。Catfish是一个压缩包。 点击File→Preference→Open Theme Folder 将han.css和Catfish-master下的所有文件拷贝到themes文件夹中。打开catfish文件夹，选中所有ttc和otf结尾的字体文件后右键安装。 重启Typora完成。   </description>
+安装主题  点击File→Preference→Get Themes 下载Han和Catfish两个主题。Han下载后只有一个css文件。Catfish是一个压缩包。 点击File→Preference→Open Theme Folder 将han.css和Catfish-master下的所有文件拷贝到themes文件夹中。打开catfish文件夹，选中所有ttc和otf结尾的字体文件后右键安装。 重启Typora完成。  </description>
     </item>
     
     <item>
@@ -55,16 +56,8 @@ FRPS配置文件 在群晖NAS上安装frps服务端。配置文件如下：
       <guid>http://peterz.xyz/2019/05/05/vs-code-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
       <description>VScode项目结构简介 VScode使用的是文件夹命名项目，需要新建一个文件夹作为你的项目，这个文件夹下放你的源文件，如果需要运行，还需要在这个文件夹下新建.vscode文件夹，在.vscode文件夹下配置这个项目如何运行。
 下面是一个典型的项目结构：
-├─项目名
-│ │ 源文件1
-│ │ 源文件2
-│ │ ……
-│ │ 源文件n
-│ │
-│ └─.vscode
-│ tasks.json
-│ settings.json
-安装Python插件  首先在本机上安装python。 打开vs code，在扩展商店中搜索python并安装。 选择python解释器：Ctrl+Shit+P打开命令行，输入Python: Select Interpreter，选择需要使用的python解释器。  关闭右侧导航栏  设置里面搜索 “editor.minimap.enabled”: 设置为false即可   </description>
+├─项目名 │ │ 源文件1 │ │ 源文件2 │ │ …… │ │ 源文件n │ │ │ └─.vscode │ tasks.json │ settings.json
+安装Python插件  首先在本机上安装python。 打开vs code，在扩展商店中搜索python并安装。 选择python解释器：Ctrl+Shit+P打开命令行，输入Python: Select Interpreter，选择需要使用的python解释器。  关闭右侧导航栏  设置里面搜索 “editor.minimap.enabled”: 设置为false即可  </description>
     </item>
     
     <item>

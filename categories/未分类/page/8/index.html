@@ -110,7 +110,9 @@
         </div>
         
         <div class="post-content">
-            &lt;div&gt;2009-7-20 08:55&lt;/div&gt; ……
+            一直一来及埃夫达不溜真是让人头疼，把偶经常光顾的网站都封的差不多了，试了不少“梯子”，都没有成功，无奈之下一直用代理网站，不过今天终于找到了一较完美的解决方法，拿出来分享一下
+在众多的梯子中，VPN和SSH无疑是效率最高的。Linkideo提供的VPN不再免费后，UltraVPN无疑是一个很好的替代品。 UltraVPN提供的VPN服务基于开源的OpenVPN，网站为Windows和Mac编译好了安装包，我们只需在UltraVPN的网站上注册一个帐号，安装好下载来的程序，无需设置，马上可以享受穿墙而过的快感。但是ultravpn并没有为linux用户提供这样的方便，linux需要自己下载OpenVPN的源码编译安装。不过Ubuntu的用户不用那么麻烦，搞掂UltraVPN只需如下几步：
+ 注册帐号。 到这里输入帐号、密码，帐号立马到手。邮箱是可选项，用于找回密码。 获取ca证书和帐号配置文件。这一步有二个渠道完成。 2.1 借助Windows或Mac的机器安装好UltraVPN之后，复制软件安装路径中config目录下的ca.crt、client.ovpn和stealthy connect.ovpn三个文件。 2.2 下载偶为大家准备的ca.crt、client.ovpn、stealthy connect.ovpn. 安装OpenVPN。 $ sudo apt-get install network-manager-openvpn4. 建立VPN连接。这一步也有两种方式完成。 4.1 导入式。右键点击网络连 接图标，选择“Edit Connections…”，切换标签到“VPN”，点“Import“，选择第2步获取的client.ovpn文件（也可以选择stealthy connect.ovpn文件，用于创建安全连接），在弹出的编辑界面中填好第1 步注册的用户名、密码，”CA Certificate”选择第2步获取的”ca.crt”文件，点”Apply”完成。 4.2 输入式。右键点击网络连接图标，选择“Edit Connections…”，切换标签到“VPN”，点“Add“创建连接。在弹出的“Chose a VPN Connection Type”界面中选择“OpenVPN”， 点“Create“，进入连接编辑页面。“Gateway“填“servers443.ultravpn.net”，“Type”选“Password “，接下来填用户名、密码、选“ca.crt“，点”Apply”完成。 连接VPN。左键点击网络连接图标，在“VPN Connections“中选择第3步创建的连接，就可直通巴黎了。如果在第五步时遇到“no valid vpn secrets“的提示，那意味着你安装的network-manager-openvpn版本有Bug，解决方法如下： $ sudo gedit /etc/apt/sources.list在文件后面加入以下两行： deb http://ppa.launchpad.net/network-manager/ppa/ubuntu &lt;你的系统版本代号&gt; main deb-src http://ppa.launchpad.net/network-manager/ppa/ubuntu &lt;你的系统版本代号&gt; main然后接着执行命令： $ sudo apt-get update $ sudo apt-get dist-upgrade如果提示没有秘钥,执行命令： $ gpg –keyserver keyserver.ubuntu.com –recv-keys 248DD1EEBC8EBFE8 $ gpg –export -a 248DD1EEBC8EBFE8|sudo apt-key add –  ……
             <p class="readmore"><a href="http://peterz.xyz/2009/07/30/%E8%BD%AC%E8%B4%B4-ubuntu%E4%B8%8Bvpn%E7%BF%BB%E5%A2%99/">阅读全文</a></p>
         </div>
     </article>
@@ -202,7 +204,9 @@
         </div>
         
         <div class="post-content">
-            &lt;p&gt;2.进入虚拟机XP系统，右击我的电脑－》映射网络驱动器。选择vitualbox shared folders.&lt;/p&gt;&lt;p&gt;3.添加完成之后，“共享数据空间”就成了一个网络驱动器。&lt;/p&gt; ……
+            1.点击设备菜单下面的分配数据空间，添加你需要共享的文件夹路径
+2.进入虚拟机XP系统，右击我的电脑－》映射网络驱动器。选择vitualbox shared folders.
+3.添加完成之后，“共享数据空间”就成了一个网络驱动器。……
             <p class="readmore"><a href="http://peterz.xyz/2009/07/21/virtualbox%E7%9A%84%E6%95%B0%E6%8D%AE%E7%A9%BA%E9%97%B4%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">阅读全文</a></p>
         </div>
     </article>
@@ -294,7 +298,9 @@
         </div>
         
         <div class="post-content">
-            &lt;p&gt;2.在终端中输入：&lt;font face=&quot;NSimsun&quot;&gt;/usr/lib/evolution-webcal/evolution-webcal YOUR_PRIVATE_ICAL_URL&lt;/font&gt;&lt;br /&gt; 3.设置同步时间&lt;/p&gt;&lt;p&gt;完工。&lt;/p&gt;&lt;p&gt;&lt;/p&gt; ……
+            1.首先在你的Google日历设置中找到你的私人 ICAL 地址：点击“我的日历”下的“设置”——》再点击你的邮件名，进入“详细信息”——》在“私人网址”一栏中点击“ICAL”。弹出的就是你的ICAL地址。
+2.在终端中输入：/usr/lib/evolution-webcal/evolution-webcal YOUR_PRIVATE_ICAL_URL3.设置同步时间
+完工。……
             <p class="readmore"><a href="http://peterz.xyz/2009/07/18/ubuntu-%E4%B8%8B%E5%90%8C%E6%AD%A5evolution%E5%92%8Cgoogle%E6%97%A5%E5%8E%86/">阅读全文</a></p>
         </div>
     </article>
@@ -471,7 +477,7 @@
     
     <li><a href="http://peterz.xyz/categories/%E6%94%B6%E9%9B%86/">收集 (3)</a></li>
     
-    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (122)</a></li>
+    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (121)</a></li>
     
     <li><a href="http://peterz.xyz/categories/%E7%88%AC%E8%99%AB/">爬虫 (4)</a></li>
     

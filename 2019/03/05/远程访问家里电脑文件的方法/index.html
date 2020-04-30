@@ -82,17 +82,26 @@
         
         
         <div class="post-content">
-            <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p> </p>
+            <p>远程访问家中电脑需要面临2个问题，1.电脑远程唤醒 2. 内网穿透。网络上有很多解决方案。远程唤醒（WoL）需要相应的路由器支持；内网穿透可以利用frp等，但是需要利用到公网vps。我的方案相对简单，稳定，文件传输速度较慢，但可以接受。</p>
+<h3 id="heading">需要用到：</h3>
+<ul>
+<li>小米智能插座</li>
+<li>支持通电启动的主板</li>
+<li>Teamviewer</li>
+</ul>
+<h3 id="heading-1">配置：</h3>
+<ol>
+<li>首先将家里台式机的bios设置成通电启动系统。以我的电脑为例：在bios的power项中，将 ac back设置成always on。即通电立即启动。（默认是always off）</li>
+<li>在台式机中安装Teamviewer，注意安装时在高级选项中选择安装VPN组件。</li>
+</ol>
+<h3 id="heading-2">使用：</h3>
+<ol>
+<li>在手机上打开小米智能插座，电源启动后台式机开机。</li>
+<li>在Teamviewer上等待家中台式机上线。</li>
+<li>台式及上线后，在本地TeamViewer中可以选择远程控制，文件传输或VPN连接远程计算机。</li>
+</ol>
+<h3 id="heading-3">小结：</h3>
+<p>这个方案利用小米智能插座和通电启动解决远程唤醒的问题；使用Teamviewer解决内网穿透和文件传输的问题。可以满足我日常使用的需求，简单稳定少折腾而且免费。</p>
 
         </div>
 
@@ -190,7 +199,7 @@
     
     <li><a href="http://peterz.xyz/categories/%E6%94%B6%E9%9B%86/">收集 (3)</a></li>
     
-    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (122)</a></li>
+    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (121)</a></li>
     
     <li><a href="http://peterz.xyz/categories/%E7%88%AC%E8%99%AB/">爬虫 (4)</a></li>
     

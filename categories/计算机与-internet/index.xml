@@ -18,13 +18,9 @@
       
       <guid>http://peterz.xyz/2020/01/21/frp%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
       <description>目标：穿透内网，使用远程桌面控制内网计算机 所需设备：  被控电脑 公网IP 服务器  安装FRPS 下载安装Docker版FRPS 公司网络有公网ip，我的群晖NAS放在公司里。在NAS上安装docker版的frps。具体步骤如下：
- 点击docker注册表 搜索frp 下载oldiy/frps  配置FRPS 路由器端口转发 配置路由器端口转发，将路由器的端口映射到对应的NAS端口上。
-需要将路由器端口映射到NAS上，例如将路由器的8000端口转发到NAS的7000端口上。
-整个映射关系如下表所示：
-    路由器 NAS 容器     TCP 8000 7000 7000   UDP 8000 7000 7000    如果需要用到其他端口，也需要建立从路由器→NAS→容器的映射关系。
+ 点击docker注册表 搜索frp 下载oldiy/frps  配置FRPS  点击映象 选中frps 点击启动   选中“使用最高权限执行容器” 点击“高级设置”   在高级设置中选中“启动自动重新启动”，保证容器在异常关闭后能自动重启   在卷中添加配置文件路径：配置文件实际所在文件夹为&amp;quot;docker/frps&amp;rdquo;，装载路径为&amp;rdquo;/frp&amp;rdquo;   在端口设置中添加从NAS到容器的映射，其中7000端口的TCP和UDP是必须的，其他端口按需添加  路由器端口转发  配置路由器端口转发，将路由器的端口映射到对应的NAS端口上。 需要将路由器端口映射到NAS上，例如将路由器的8000端口转发到NAS的7000端口上。 整个映射关系如下表所示：      路由器 NAS 容器     TCP 8000 7000 7000   UDP 8000 7000 7000    如果需要用到其他端口，也需要建立从路由器→NAS→容器的映射关系。
 FRPS配置文件 在群晖NAS上安装frps服务端。配置文件如下：
-[common]bind_port = 7000bind_udp_port = 7001dashboard_port = 7500dashboard_user = ******dashboard_pwd = ******token = ***** 将文件保存到frps.ini后，将其放到docker/frps文件夹下。
-FRPC配置文件 [common]server_addr = abc.</description>
+[common]bind_port = 7000bind_udp_port = 7001dashboard_port = 7500dashboard_user = ******dashboard_pwd = ******token = *****将文件保存到frps.</description>
     </item>
     
     <item>
@@ -57,15 +53,21 @@ FRPC配置文件 [common]server_addr = abc.</description>
       <guid>http://peterz.xyz/2019/04/09/%E5%9F%BA%E4%BA%8Eubuntu%E6%90%AD%E5%BB%BAftp%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
       <description>安装并启动 FTP 服务 安装 VSFTPD
 使用 apt-get 安装 [vsftpd]：
-sudo apt-get install vsftpd -y vsftpd 是在 Linux 上被广泛使用的 FTP 服务器，根据其官网介绍，它可能是 UNIX-like 系统下最安全和快速的 FTP 服务器软件。
+sudo apt-get install vsftpd -y
+vsftpd 是在 Linux 上被广泛使用的 FTP 服务器，根据其官网介绍，它可能是 UNIX-like 系统下最安全和快速的 FTP 服务器软件。
 启动 VSFTPD
 安装完成后 VSFTPD 会自动启动，通过 netstat 命令可以看到系统已经[监听了 21 端口]：
-sudo netstat -nltp | grep 21 如果没有启动，可以手动开启 VSFTPD 服务：
-sudo systemctl start vsftpd.service FTP 协议默认使用 21 端口作为服务端口
+sudo netstat -nltp | grep 21
+如果没有启动，可以手动开启 VSFTPD 服务：
+sudo systemctl start vsftpd.service
+FTP 协议默认使用 21 端口作为服务端口
 配置用户访问目录 新建用户主目录
-sudo mkdir /home/uftp 执行完后，在这里 /home/uftp [?] 就能看到新建的文件夹 uftp 了。
+sudo mkdir /home/uftp
+执行完后，在这里 /home/uftp [?] 就能看到新建的文件夹 uftp 了。
 创建登录欢迎文件 [?]：
-sudo touch /home/uftp/welcome.</description>
+sudo touch /home/uftp/welcome.txt
+方便用户登录后可以看到欢迎信息，并且确定用户确实登录到了主目录上。
+用户的主目录是用户通过 FTP 登录后看到的根目录</description>
     </item>
     
     <item>
@@ -74,7 +76,8 @@ sudo touch /home/uftp/welcome.</description>
       <pubDate>Tue, 05 Mar 2019 01:35:02 +0000</pubDate>
       
       <guid>http://peterz.xyz/2019/03/05/%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E5%AE%B6%E9%87%8C%E7%94%B5%E8%84%91%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
-      <description> </description>
+      <description>远程访问家中电脑需要面临2个问题，1.电脑远程唤醒 2. 内网穿透。网络上有很多解决方案。远程唤醒（WoL）需要相应的路由器支持；内网穿透可以利用frp等，但是需要利用到公网vps。我的方案相对简单，稳定，文件传输速度较慢，但可以接受。
+需要用到：  小米智能插座 支持通电启动的主板 Teamviewer  配置：  首先将家里台式机的bios设置成通电启动系统。以我的电脑为例：在bios的power项中，将 ac back设置成always on。即通电立即启动。（默认是always off） 在台式机中安装Teamviewer，注意安装时在高级选项中选择安装VPN组件。  使用：  在手机上打开小米智能插座，电源启动后台式机开机。 在Teamviewer上等待家中台式机上线。 台式及上线后，在本地TeamViewer中可以选择远程控制，文件传输或VPN连接远程计算机。  小结： 这个方案利用小米智能插座和通电启动解决远程唤醒的问题；使用Teamviewer解决内网穿透和文件传输的问题。可以满足我日常使用的需求，简单稳定少折腾而且免费。</description>
     </item>
     
     <item>
@@ -101,7 +104,9 @@ sudo touch /home/uftp/welcome.</description>
       <pubDate>Tue, 19 May 2009 15:13:52 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/05/19/%E4%BB%80%E4%B9%88%E6%98%AFseo/</guid>
-      <description>&amp;lt;p&amp;gt;为什么要进行搜索引擎优化：&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;一个企业网站代表一个企业的形象，是对企业或企业产品的推广，是实际业务的延伸。在搜索结果中排名越靠前被点击进入的比例越高，排名越靠后就越低，目标客户就越难找到你，这就是为什么要提高网站的排名、为什么要进行搜索引擎优化的原因。&amp;lt;br /&amp;gt; SEO功能首先要了解以下5点:&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;1.了解搜索引擎如何抓取网页和如何索引网页&amp;lt;br /&amp;gt; 你需要知道一些搜索引擎的基本工作原理，各个搜索引擎之间的区别，搜索机器人（SE robot或叫web crawler）如何进行工作，搜索引擎如何对搜索结果进行排序等等。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;2.Meta标签优化&amp;lt;br /&amp;gt; 主要包括主题（Title)，网站描述(Description)，和关键字（Keywords）。还有一些其它的隐藏文字比如Author（作者），Category（目录），Language（编码语种）等。我们系统的SEO设置就为您提供了网站描述和关键字的输入，其他信息系统会根据您的内容自动给出。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;3.如何选取关键词并在网页中放置关键词&amp;lt;br /&amp;gt; 搜索就得用关键词。关键词分析和选择是SEO最重要的工作之一。首先要给网站确定主关键词（一般在5个上下），然后针对这些关键词进行优化，包括关键词密度（Density），相关度（Relavancy），突出性（Prominency）等等。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;4.了解主要的搜索引擎&amp;lt;br /&amp;gt; 虽然搜索引擎有成千上万，但是对网站流量起决定作用的就那么几个。比如英文的主要有Google，Inktomi，Altavista等；中文的有百度，搜狐等。不同的搜索引擎对页面的抓取和索引、排序的规则都不一样。还要了解各搜索门户和搜索引擎之间的关系，比如Yahoo和AOL网页搜索用的是Google的搜索技术，MSN用的是Looksmart和Open Directory的技术。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;5.主要的互联网目录&amp;lt;br /&amp;gt; Yahoo自身不是搜索引擎，而是一个大型的网站目录，Open Directory也不是，他们和搜索引擎的主要区别是网站内容的收集方式不同。目录是人工编辑的，主要收录网站主页；搜索引擎是自动收集的，除了主页外还抓取大量的内容页面。&amp;lt;/p&amp;gt; </description>
+      <description>SEO即搜索引擎优化。
+为什么要进行搜索引擎优化：
+一个企业网站代表一个企业的形象，是对企业或企业产品的推广，是实际业务的延伸。在搜索结果中排名越靠前被点击进入的比例越高，排名越靠后就越低，目标客户就越难找到你，这就是为什么要提高网站的排名、为什么要进行搜索引擎优化的原因。 SEO功能首先要了解以下5点: 1.了解搜索引擎如何抓取网页和如何索引网页 你需要知道一些搜索引擎的基本工作原理，各个搜索引擎之间的区别，搜索机器人（SE robot或叫web crawler）如何进行工作，搜索引擎如何对搜索结果进行排序等等。 2.Meta标签优化 主要包括主题（Title)，网站描述(Description)，和关键字（Keywords）。还有一些其它的隐藏文字比如Author（作者），Category（目录），Language（编码语种）等。我们系统的SEO设置就为您提供了网站描述和关键字的输入，其他信息系统会根据您的内容自动给出。 3.如何选取关键词并在网页中放置关键词 搜索就得用关键词。关键词分析和选择是SEO最重要的工作之一。首先要给网站确定主关键词（一般在5个上下），然后针对这些关键词进行优化，包括关键词密度（Density），相关度（Relavancy），突出性（Prominency）等等。 4.了解主要的搜索引擎 虽然搜索引擎有成千上万，但是对网站流量起决定作用的就那么几个。比如英文的主要有Google，Inktomi，Altavista等；中文的有百度，搜狐等。不同的搜索引擎对页面的抓取和索引、排序的规则都不一样。还要了解各搜索门户和搜索引擎之间的关系，比如Yahoo和AOL网页搜索用的是Google的搜索技术，MSN用的是Looksmart和Open Directory的技术。 5.主要的互联网目录 Yahoo自身不是搜索引擎，而是一个大型的网站目录，Open Directory也不是，他们和搜索引擎的主要区别是网站内容的收集方式不同。目录是人工编辑的，主要收录网站主页；搜索引擎是自动收集的，除了主页外还抓取大量的内容页面。</description>
     </item>
     
     <item>

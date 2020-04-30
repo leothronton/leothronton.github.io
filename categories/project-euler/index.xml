@@ -19,8 +19,7 @@
       <guid>http://peterz.xyz/2013/02/02/euler%E7%AC%AC%E4%B8%89%E9%A2%98/</guid>
       <description>寻找一个最大的为两个3位数乘积的回文。
 回文就是正着念，反着念相同的数或单词，如 9009 = 91×99。
-______________________________
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24  from time import clockstart=clock()z=999a=[0,0,0]flag=Falsefor i in range(100000):a[0]=int(z/100)a[1]=int((z-100*a[0])/10)a[2]=int(z-100\*a[0]-10\*a[1])palindrome=100000\*a[0]+10000\*a[1]+1000\*a[2]+100\*a[2]+10*a[1]+a[0]#print(palindrome) product=999for j in range(999):if palindrome/product&amp;lt;1000 and palindrome%product==0:print(&amp;#34;the answer is {0}={1}&amp;#34;.format(palindrome,product,int(palindrome/product)))flag=Truebreakproduct=product-1z=z-1if flag==True or palindrome&amp;lt;0: breakprint(&amp;#34;{0:5f}s&amp;#34;.</description>
+ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24  from time import clockstart=clock()z=999a=[0,0,0]flag=Falsefor i in range(100000):a[0]=int(z/100)a[1]=int((z-100*a[0])/10)a[2]=int(z-100\*a[0]-10\*a[1])palindrome=100000\*a[0]+10000\*a[1]+1000\*a[2]+100\*a[2]+10*a[1]+a[0]#print(palindrome) product=999for j in range(999):if palindrome/product&amp;lt;1000 and palindrome%product==0:print(&amp;#34;the answer is {0}={1}&amp;#34;.format(palindrome,product,int(palindrome/product)))flag=Truebreakproduct=product-1z=z-1if flag==True or palindrome&amp;lt;0: breakprint(&amp;#34;{0:5f}s&amp;#34;.</description>
     </item>
     
     <item>

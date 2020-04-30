@@ -18,13 +18,9 @@
       
       <guid>http://peterz.xyz/2020/01/21/frp%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</guid>
       <description>目标：穿透内网，使用远程桌面控制内网计算机 所需设备：  被控电脑 公网IP 服务器  安装FRPS 下载安装Docker版FRPS 公司网络有公网ip，我的群晖NAS放在公司里。在NAS上安装docker版的frps。具体步骤如下：
- 点击docker注册表 搜索frp 下载oldiy/frps  配置FRPS 路由器端口转发 配置路由器端口转发，将路由器的端口映射到对应的NAS端口上。
-需要将路由器端口映射到NAS上，例如将路由器的8000端口转发到NAS的7000端口上。
-整个映射关系如下表所示：
-    路由器 NAS 容器     TCP 8000 7000 7000   UDP 8000 7000 7000    如果需要用到其他端口，也需要建立从路由器→NAS→容器的映射关系。
+ 点击docker注册表 搜索frp 下载oldiy/frps  配置FRPS  点击映象 选中frps 点击启动   选中“使用最高权限执行容器” 点击“高级设置”   在高级设置中选中“启动自动重新启动”，保证容器在异常关闭后能自动重启   在卷中添加配置文件路径：配置文件实际所在文件夹为&amp;quot;docker/frps&amp;rdquo;，装载路径为&amp;rdquo;/frp&amp;rdquo;   在端口设置中添加从NAS到容器的映射，其中7000端口的TCP和UDP是必须的，其他端口按需添加  路由器端口转发  配置路由器端口转发，将路由器的端口映射到对应的NAS端口上。 需要将路由器端口映射到NAS上，例如将路由器的8000端口转发到NAS的7000端口上。 整个映射关系如下表所示：      路由器 NAS 容器     TCP 8000 7000 7000   UDP 8000 7000 7000    如果需要用到其他端口，也需要建立从路由器→NAS→容器的映射关系。
 FRPS配置文件 在群晖NAS上安装frps服务端。配置文件如下：
-[common]bind_port = 7000bind_udp_port = 7001dashboard_port = 7500dashboard_user = ******dashboard_pwd = ******token = ***** 将文件保存到frps.ini后，将其放到docker/frps文件夹下。
-FRPC配置文件 [common]server_addr = abc.</description>
+[common]bind_port = 7000bind_udp_port = 7001dashboard_port = 7500dashboard_user = ******dashboard_pwd = ******token = *****将文件保存到frps.</description>
     </item>
     
     <item>
@@ -57,15 +53,21 @@ FRPC配置文件 [common]server_addr = abc.</description>
       <guid>http://peterz.xyz/2019/04/09/%E5%9F%BA%E4%BA%8Eubuntu%E6%90%AD%E5%BB%BAftp%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
       <description>安装并启动 FTP 服务 安装 VSFTPD
 使用 apt-get 安装 [vsftpd]：
-sudo apt-get install vsftpd -y vsftpd 是在 Linux 上被广泛使用的 FTP 服务器，根据其官网介绍，它可能是 UNIX-like 系统下最安全和快速的 FTP 服务器软件。
+sudo apt-get install vsftpd -y
+vsftpd 是在 Linux 上被广泛使用的 FTP 服务器，根据其官网介绍，它可能是 UNIX-like 系统下最安全和快速的 FTP 服务器软件。
 启动 VSFTPD
 安装完成后 VSFTPD 会自动启动，通过 netstat 命令可以看到系统已经[监听了 21 端口]：
-sudo netstat -nltp | grep 21 如果没有启动，可以手动开启 VSFTPD 服务：
-sudo systemctl start vsftpd.service FTP 协议默认使用 21 端口作为服务端口
+sudo netstat -nltp | grep 21
+如果没有启动，可以手动开启 VSFTPD 服务：
+sudo systemctl start vsftpd.service
+FTP 协议默认使用 21 端口作为服务端口
 配置用户访问目录 新建用户主目录
-sudo mkdir /home/uftp 执行完后，在这里 /home/uftp [?] 就能看到新建的文件夹 uftp 了。
+sudo mkdir /home/uftp
+执行完后，在这里 /home/uftp [?] 就能看到新建的文件夹 uftp 了。
 创建登录欢迎文件 [?]：
-sudo touch /home/uftp/welcome.</description>
+sudo touch /home/uftp/welcome.txt
+方便用户登录后可以看到欢迎信息，并且确定用户确实登录到了主目录上。
+用户的主目录是用户通过 FTP 登录后看到的根目录</description>
     </item>
     
     <item>
@@ -74,7 +76,8 @@ sudo touch /home/uftp/welcome.</description>
       <pubDate>Tue, 05 Mar 2019 01:35:02 +0000</pubDate>
       
       <guid>http://peterz.xyz/2019/03/05/%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E5%AE%B6%E9%87%8C%E7%94%B5%E8%84%91%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
-      <description> </description>
+      <description>远程访问家中电脑需要面临2个问题，1.电脑远程唤醒 2. 内网穿透。网络上有很多解决方案。远程唤醒（WoL）需要相应的路由器支持；内网穿透可以利用frp等，但是需要利用到公网vps。我的方案相对简单，稳定，文件传输速度较慢，但可以接受。
+需要用到：  小米智能插座 支持通电启动的主板 Teamviewer  配置：  首先将家里台式机的bios设置成通电启动系统。以我的电脑为例：在bios的power项中，将 ac back设置成always on。即通电立即启动。（默认是always off） 在台式机中安装Teamviewer，注意安装时在高级选项中选择安装VPN组件。  使用：  在手机上打开小米智能插座，电源启动后台式机开机。 在Teamviewer上等待家中台式机上线。 台式及上线后，在本地TeamViewer中可以选择远程控制，文件传输或VPN连接远程计算机。  小结： 这个方案利用小米智能插座和通电启动解决远程唤醒的问题；使用Teamviewer解决内网穿透和文件传输的问题。可以满足我日常使用的需求，简单稳定少折腾而且免费。</description>
     </item>
     
     <item>
@@ -83,11 +86,7 @@ sudo touch /home/uftp/welcome.</description>
       <pubDate>Tue, 20 Nov 2018 07:28:28 +0000</pubDate>
       
       <guid>http://peterz.xyz/2018/11/20/scrapy-shell%E5%90%AF%E5%8A%A8ipython/</guid>
-      <description>在python-3.6.6.amd64Libsite-packagesscrapytemplatesproject文件夹下
-打开scrapy.cfg
-在[settings]中添加
-shell = ipython
-done!</description>
+      <description> 在python-3.6.6.amd64Libsite-packagesscrapytemplatesproject文件夹下 打开scrapy.cfg 在[settings]中添加 shell = ipython done!  </description>
     </item>
     
     <item>
@@ -104,7 +103,9 @@ done!</description>
 启动后出现错误，卡在了Finalize这一步……
 打开安装目录下start.sh文件，将84行的clear注释掉（clear-&amp;gt;#clear)。再次启动Docker QuickStart。
 安装Splash 执行命令：
-$ docker pull scrapinghub/splash 启动Splash $ sudo docker run -p 8050:8050 -p 5023:5023 scrapinghub/splash 验证 在浏览器输入：192.168.100:8050
+$ docker pull scrapinghub/splash
+启动Splash $ sudo docker run -p 8050:8050 -p 5023:5023 scrapinghub/splash
+验证 在浏览器输入：192.168.100:8050
 显示splash页面</description>
     </item>
     
@@ -115,11 +116,11 @@ $ docker pull scrapinghub/splash 启动Splash $ sudo docker run -p 8050:8050 -p
       
       <guid>http://peterz.xyz/2018/10/24/%E5%9C%A8scrapy%E4%BD%BF%E7%94%A8splash%E7%88%AC%E5%8F%96%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2-3/</guid>
       <description>在windwos中启动Docker Quickstart Terminal后运行splash：
-docker run -p 8050:8050 -p 8051:8051 scrapinghub/splash 表示:Splash现在在端口8050（http）和5023（telnet）上的192.168.99.100处可用。
+docker run -p 8050:8050 -p 8051:8051 scrapinghub/splash表示:Splash现在在端口8050（http）和5023（telnet）上的192.168.99.100处可用。
 启动后在浏览器中输入192.168.99.100：8050 验证是否启动成功。
  在scrapy项目文件settings.py中添加：
-SPLASH_URL = &#39;http://192.168.99.100:8050/&#39;# 开启Splash的两个下载中间件并调整HttpCompressionMiddleware的次序DOWNLOADER_MIDDLEWARES = {&#39;scrapy_splash.SplashCookiesMiddleware&#39;: 723,&#39;scrapy_splash.SplashMiddleware&#39;: 725,&#39;scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware&#39;: 810,}# 设置去重过滤器DUPEFILTER_CLASS = &#39;scrapy_splash.SplashAwareDupeFilter&#39;# 用来支持cache_args（可选）SPIDER_MIDDLEWARES = {&#39;scrapy_splash.SplashDeduplicateArgsMiddleware&#39;: 100,} 在爬虫文件pider.py中添加
-def start_requests(self):script = &#39;&#39;&#39;function main(splash)splash:set_viewport_size(1028, 10000)splash:go(splash.args.url)local scroll_to = splash:jsfunc(&amp;quot;window.scrollTo&amp;quot;)scroll_to(0, 2000)splash:wait(5)return {png=splash:png()}end&#39;&#39;&#39;for url in self.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  SPLASH_URL = &amp;#39;http://192.168.99.100:8050/&amp;#39;# 开启Splash的两个下载中间件并调整HttpCompressionMiddleware的次序 DOWNLOADER_MIDDLEWARES = {&amp;#39;scrapy_splash.SplashCookiesMiddleware&amp;#39;: 723,&amp;#39;scrapy_splash.SplashMiddleware&amp;#39;: 725,&amp;#39;scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware&amp;#39;: 810,}# 设置去重过滤器 DUPEFILTER_CLASS = &amp;#39;scrapy_splash.SplashAwareDupeFilter&amp;#39;# 用来支持cache_args（可选） SPIDER_MIDDLEWARES = {&amp;#39;scrapy_splash.SplashDeduplicateArgsMiddleware&amp;#39;: 100,}  在爬虫文件pider.py中添加
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25  def start_requests(self):script = &amp;#39;&amp;#39;&amp;#39;function main(splash)splash:set_viewport_size(1028, 10000)splash:go(splash.</description>
     </item>
     
     <item>
@@ -128,10 +129,13 @@ def start_requests(self):script = &#39;&#39;&#39;function main(splash)splash:
       <pubDate>Wed, 24 Oct 2018 02:56:31 +0000</pubDate>
       
       <guid>http://peterz.xyz/2018/10/24/%E5%AE%89%E8%A3%85scrapy/</guid>
-      <description>环境 winpython3.6 pip install scrapy 发现在安装依赖twisted时出错，需要vc++14.0. 网上搜索发现需要下载安装visual studio等，太麻烦了。于是乎google到了Twisted-18.7.0-cp36-cp36m-win_amd64.whl。
-pip install Twisted-18.7.0-cp36-cp36m-win_amd64 完成后继续
-pip install scrapy 安装成功后，验证：
-In[1]:import scrapyIn[2]:scrapy.version_infoOut[2]: (1, 5, 1)  </description>
+      <description>环境 winpython3.6 pip install scrapy
+发现在安装依赖twisted时出错，需要vc++14.0. 网上搜索发现需要下载安装visual studio等，太麻烦了。于是乎google到了Twisted-18.7.0-cp36-cp36m-win_amd64.whl。
+pip install Twisted-18.7.0-cp36-cp36m-win_amd64
+完成后继续
+pip install scrapy
+安装成功后，验证：
+In[1]:import scrapyIn[2]:scrapy.version_infoOut[2]: (1, 5, 1)</description>
     </item>
     
     <item>
@@ -142,8 +146,8 @@ In[1]:import scrapyIn[2]:scrapy.version_infoOut[2]: (1, 5, 1)  </description
       <guid>http://peterz.xyz/2018/10/22/%E5%B0%86scrapy%E7%88%AC%E5%88%B0%E7%9A%84%E5%86%85%E5%AE%B9%E5%AD%98%E5%85%A5sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
       <description>这个方法需要手动创建数据库文件并将表建立好，否则程序运行会出错。
 settings.py
-# sqlite 配置SQLITE_DB_NAME = &#39;Data.db&#39; #数据库名称SQLITE_TABLE_NAME = &#39;table&#39; #表名称ITEM_PIPELINES={&#39;dirName.pipelines.Sqlite3Pipeline&#39;: 400,} pipelines.py
-import sqlite3class Sqlite3Pipeline(object):def __init__(self, sqlite_file, sqlite_table):self.sqlite_file = sqlite_fileself.sqlite_table = sqlite_table@classmethoddef from_crawler(cls, crawler):return cls(sqlite_file = crawler.settings.get(&#39;SQLITE_DB_NAME&#39;), # 从 settings.py 提取sqlite_table = crawler.settings.get(&#39;SQLITE_TABLE_NAME&#39;, &#39;items&#39;))def open_spider(self, spider):self.conn = sqlite3.connect(self.sqlite_file)self.cur = self.conn.cursor()def close_spider(self, spider):self.conn.close()def process_item(self, item, spider):values = (item[&#39;A&#39;],item[&#39;B&#39;],item[&#39;C&#39;],item[&#39;D&#39;],item[&#39;E&#39;])sql = &#39;INSERT INTO proxy VALUES (?</description>
+1 2 3 4 5 6  # sqlite 配置 SQLITE_DB_NAME = &amp;#39;Data.db&amp;#39; #数据库名称 SQLITE_TABLE_NAME = &amp;#39;table&amp;#39; #表名称 ITEM_PIPELINES={&amp;#39;dirName.pipelines.Sqlite3Pipeline&amp;#39;: 400,}  pipelines.py
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  import sqlite3class Sqlite3Pipeline(object):def __init__(self, sqlite_file, sqlite_table):self.sqlite_file = sqlite_fileself.</description>
     </item>
     
     <item>
@@ -153,11 +157,13 @@ import sqlite3class Sqlite3Pipeline(object):def __init__(self, sqlite_file, sq
       
       <guid>http://peterz.xyz/2018/08/21/%E6%9C%BA%E6%A2%B0%E7%A1%AC%E7%9B%98%E8%B0%83%E7%A0%94%E7%AE%80%E7%95%A5%E6%B1%87%E6%8A%A5/</guid>
       <description>硬盘的种类 目前商用电脑硬盘主要分为三类：
- 传统机械硬盘（hard disk drive ,HDD) 混合硬盘（hybrid harddrive，HHD) 固态硬盘（solid state drive, SSD)  机械硬盘的种类：  台式机硬盘 笔记本电脑硬盘 企业级硬盘 消费电子产品内置硬盘  机械主要生产商  希捷（Seagate） 西部数据（WD） 东芝（Toshiba）  机械硬盘的前景 世界范围内机械硬盘行业收入每年下降4%，从2012年380亿美元的峰值逐步下降到2016年的270亿美元。机械硬盘的产量每年增长约16%，从2011年的335艾字节 1增长到2016年的693艾字节。希捷和西部数据各占约40~45%，东芝约占13~17%。
+ 传统机械硬盘（hard disk drive ,HDD) 混合硬盘（hybrid harddrive，HHD) 固态硬盘（solid state drive, SSD)  机械硬盘的种类：  台式机硬盘 笔记本电脑硬盘 企业级硬盘 消费电子产品内置硬盘  机械主要生产商:  希捷（Seagate） 西部数据（WD） 东芝（Toshiba）  机械硬盘的前景 : 世界范围内机械硬盘行业收入每年下降4%，从2012年380亿美元的峰值逐步下降到2016年的270亿美元。机械硬盘的产量每年增长约16%，从2011年的335艾字节 [1]增长到2016年的693艾字节。希捷和西部数据各占约40~45%，东芝约占13~17%。
 随着SSD的兴起，传统机械硬盘的市场份额越来越小。但是机械硬盘在安防，数据存储领域还是有比较大的优势。
-机械硬盘的主要零件  碟盘 disc seperator disc clamp 电机 head stack assembly 头堆总成 永磁体 PCB板 过滤器 硬盘上壳 硬盘壳 螺钉紧固件  硬盘爆炸图机械硬盘零件生产工艺分析 在参观Unisteel和Amtek的过程中，在生产现场看到过disc seperator和disc clamp等零件。这两种零件是使用冲床生产的冲压件。其他零件，如硬盘上壳、永磁体支架等均为冲压件。
+机械硬盘的主要零件:  碟盘 disc seperator disc clamp 电机 head stack assembly 头堆总成 永磁体 PCB板 过滤器 硬盘上壳 硬盘壳 螺钉紧固件  硬盘爆炸图
+机械硬盘
+零件生产工艺分析: 在参观Unisteel和Amtek的过程中，在生产现场看到过disc seperator和disc clamp等零件。这两种零件是使用冲床生产的冲压件。其他零件，如硬盘上壳、永磁体支架等均为冲压件。
 我司可以开展业务的领域有：
- 机床上下料自动化改造 零件电镀或清洗时需要的零部件上挂和下料 零部件的自动尺寸或外观检测。   </description>
+ 机床上下料自动化改造 零件电镀或清洗时需要的零部件上挂和下料 零部件的自动尺寸或外观检测。  </description>
     </item>
     
     <item>
@@ -191,7 +197,9 @@ import sqlite3class Sqlite3Pipeline(object):def __init__(self, sqlite_file, sq
       <pubDate>Tue, 12 Feb 2013 06:04:54 +0000</pubDate>
       
       <guid>http://peterz.xyz/2013/02/12/%E6%AC%A7%E6%8B%89%E7%AC%AC%E5%85%AB%E9%A2%98/</guid>
-      <description></description>
+      <description>求以下这个一千位数中连续5个数字的最大乘积。
+7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450
+ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22  def maxProduct(number):num=list(str(number))maxProduct=1for i in range(len(num)):tmp=num[i:i+5]if &amp;#34;0&amp;#34; in tmp:continueelse:product=1for ele in tmp:product=product*int(ele) if product&amp;gt;maxProduct: maxProduct=product return maxProductif __name__==&amp;#34;__main__&amp;#34;:start=clock()num=7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450print(&amp;#34;the Max Product is {0}tRun Time:{1:.9}&amp;#34;.format(maxProduct(num),clock()-start))   the Max Product is 40824 Run Time:0.</description>
     </item>
     
     <item>
@@ -261,8 +269,7 @@ for divisor in divisors:</description>
       <guid>http://peterz.xyz/2013/02/02/euler%E7%AC%AC%E4%B8%89%E9%A2%98/</guid>
       <description>寻找一个最大的为两个3位数乘积的回文。
 回文就是正着念，反着念相同的数或单词，如 9009 = 91×99。
-______________________________
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24  from time import clockstart=clock()z=999a=[0,0,0]flag=Falsefor i in range(100000):a[0]=int(z/100)a[1]=int((z-100*a[0])/10)a[2]=int(z-100\*a[0]-10\*a[1])palindrome=100000\*a[0]+10000\*a[1]+1000\*a[2]+100\*a[2]+10*a[1]+a[0]#print(palindrome) product=999for j in range(999):if palindrome/product&amp;lt;1000 and palindrome%product==0:print(&amp;#34;the answer is {0}={1}&amp;#34;.format(palindrome,product,int(palindrome/product)))flag=Truebreakproduct=product-1z=z-1if flag==True or palindrome&amp;lt;0: breakprint(&amp;#34;{0:5f}s&amp;#34;.</description>
+ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24  from time import clockstart=clock()z=999a=[0,0,0]flag=Falsefor i in range(100000):a[0]=int(z/100)a[1]=int((z-100*a[0])/10)a[2]=int(z-100\*a[0]-10\*a[1])palindrome=100000\*a[0]+10000\*a[1]+1000\*a[2]+100\*a[2]+10*a[1]+a[0]#print(palindrome) product=999for j in range(999):if palindrome/product&amp;lt;1000 and palindrome%product==0:print(&amp;#34;the answer is {0}={1}&amp;#34;.format(palindrome,product,int(palindrome/product)))flag=Truebreakproduct=product-1z=z-1if flag==True or palindrome&amp;lt;0: breakprint(&amp;#34;{0:5f}s&amp;#34;.</description>
     </item>
     
     <item>
@@ -835,7 +842,7 @@ ______________________________
       <pubDate>Tue, 02 Feb 2010 01:24:17 +0000</pubDate>
       
       <guid>http://peterz.xyz/2010/02/02/%E8%BF%85%E9%9B%B75-9-%E6%88%91%E7%9C%9F%E7%9A%84%E6%B2%A1%E6%9C%89%E8%A7%81%E8%BF%87%E8%BF%99%E4%B9%88%E5%9E%83%E5%9C%BE%E7%9A%84%E8%BD%AF%E4%BB%B6/</guid>
-      <description></description>
+      <description>迅雷5.9——我真的没有见过这么垃圾的软件！！！</description>
     </item>
     
     <item>
@@ -880,7 +887,16 @@ ______________________________
       <pubDate>Tue, 24 Nov 2009 18:46:01 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/11/24/%E8%B5%9A%E5%88%86%E8%B5%9A%E5%88%86-%E5%85%A8%E5%9B%BD%E5%90%84%E5%9C%B0%E4%BA%BA%E6%B0%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E4%B8%AD%E5%9B%BD%E5%9C%B0%E5%9B%BE/</guid>
-      <description>&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2672/4131707556_ca2c4f3396_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2733/4131707742_61a626c759_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2598/4130944723_46d5d5c88d_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2594/4130944957_b540e11a27_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2773/4131708396_47ff18756f_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2556/4131708590_f78fd6aa9a_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2654/4130945641_80261da4e4_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2743/4131708938_1e665b5497_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2733/4130946071_04d93ee898_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2505/4130946299_b1f2fdfef0_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt; </description>
+      <description>只供娱乐，不搞地域歧视！！
+​
+​
+​
+​
+​
+​
+​
+​
+​</description>
     </item>
     
     <item>
@@ -898,7 +914,11 @@ ______________________________
       <pubDate>Sat, 31 Oct 2009 00:36:52 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/10/31/%E7%BB%99ubuntu%E5%AE%89%E8%A3%85%E5%AD%97%E4%BD%93/</guid>
-      <description> &amp;lt;p&amp;gt;1、在fonts下新建一个msFonts目录，把下载得到的字体放进来:&amp;lt;br /&amp;gt; sudo mkdir -p /usr/share/fonts/msFonts&amp;lt;br /&amp;gt; sudo cp msyh.ttf /usr/share/fonts/msFonts/&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;然后，改变权限：&amp;lt;br /&amp;gt; sudo chmod 644 /usr/share/fonts/msFonts/msyh.ttf&amp;lt;br /&amp;gt;&amp;lt;/font&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span style=&amp;quot;line-height:normal;font-size:150%;&amp;quot;&amp;gt;&amp;lt;font size=&amp;quot;3&amp;quot;&amp;gt;安装字体：&amp;lt;br /&amp;gt; cd /usr/share/fonts/msFonts/&amp;lt;br /&amp;gt; sudo mkfontscale&amp;lt;br /&amp;gt; sudo mkfontdir&amp;lt;br /&amp;gt; sudo fc-cache -fv&amp;lt;/p&amp;gt; &amp;lt;p&amp;gt;完工。&amp;lt;/font&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span style=&amp;quot;line-height:normal;font-size:150%;&amp;quot;&amp;gt;&amp;lt;font size=&amp;quot;3&amp;quot;&amp;gt;大家可以用这个方法安装自己喜欢的字体，呵呵。&amp;lt;/font&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; </description>
+      <description>以微软雅黑字体为例（其他的宋体、黑体等点阵字体都一样的），到网上下载得到微软雅黑字体：msyh.ttf
+ 1、在fonts下新建一个msFonts目录，把下载得到的字体放进来: sudo mkdir -p /usr/share/fonts/msFonts sudo cp msyh.ttf /usr/share/fonts/msFonts/
+ 然后，改变权限： sudo chmod 644 /usr/share/fonts/msFonts/msyh.ttf
+ &amp;lt;span style=&amp;quot;line-height:normal;font-size:150%;&amp;quot;&amp;gt;&amp;lt;font size=&amp;quot;3&amp;quot;&amp;gt;安装字体： cd /usr/share/fonts/msFonts/ sudo mkfontscale sudo mkfontdir sudo fc-cache -fv
+完工。 大家可以用这个方法安装自己喜欢的字体，呵呵。</description>
     </item>
     
     <item>
@@ -925,7 +945,7 @@ ______________________________
       <pubDate>Tue, 27 Oct 2009 18:07:20 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/10/27/%E6%80%80%E5%BF%B5%E4%B8%80%E4%B8%8B%E5%B0%8F%E6%97%B6%E5%80%99%E7%9A%84%E6%97%B6%E5%85%89-%E6%97%B6%E5%85%89%E9%A3%9E%E9%80%9D%E5%95%8A/</guid>
-      <description>&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2579/4049958089_4c62ab6646_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2662/4050701768_9d116fb48b_o.jpg&amp;quot; /&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2741/4049958379_fe872d8748_o.jpg&amp;quot; /&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2629/4050702104_d3343449cd_o.jpg&amp;quot; /&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2566/4050702256_0461c1a0f8_o.jpg&amp;quot; /&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2695/4050702442_e32323b410_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2532/4050702560_58c34196f6_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2660/4050702800_4ac39c83e4_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2620/4050702990_1bd4b6ef67_o.jpg&amp;quot; /&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm4.static.flickr.com/3536/4049959737_0d0502d94e_o.jpg&amp;quot; /&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm4.static.flickr.com/3521/4050703446_8a28c8afab_o.jpg&amp;quot; /&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2703/4050703682_d4e11106bc_o.jpg&amp;quot; /&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2801/4049960513_130d747e32_o.jpg&amp;quot; /&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2483/4050704318_9a45cefc34_o.jpg&amp;quot; /&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2433/4050704546_201d1f3404_o.jpg&amp;quot; /&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2625/4050704760_fce78bcd2f_o.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt; </description>
+      <description></description>
     </item>
     
     <item>
@@ -934,7 +954,42 @@ ______________________________
       <pubDate>Thu, 22 Oct 2009 22:06:36 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/10/22/%E5%8E%86%E5%B1%8A%E5%9B%BD%E5%BA%86%E5%A4%A7%E9%98%85%E5%85%B5%E9%AB%98%E6%B8%85%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD/</guid>
-      <description>&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;1、&amp;lt;a href=&amp;quot;http://119.147.41.56/30/4E/3048DFAD8CE33E1E92E4EF49B817E2B86C2F404E.torrent&amp;quot; target=&amp;quot;_blank&amp;quot; rel=&amp;quot;noopener noreferrer&amp;quot;&amp;gt;2009年60周年国庆大阅兵.ts&amp;lt;/a&amp;gt;（高清收藏版）&amp;lt;/td&amp;gt;&amp;lt;td style=&amp;quot;text-align:center;&amp;quot;&amp;gt;9.62GB&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;2、&amp;lt;a&amp;gt;2009年60周年国庆大阅兵.mpg&amp;lt;/a&amp;gt;（高清录制）&amp;lt;/td&amp;gt;&amp;lt;td style=&amp;quot;text-align:center;&amp;quot;&amp;gt;5.63GB&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;3、&amp;lt;a href=&amp;quot;http://119.147.41.56/03/64/032C5E38ECCE6E02731C371E53EFA884AA875A64.torrent&amp;quot; target=&amp;quot;_blank&amp;quot; rel=&amp;quot;noopener noreferrer&amp;quot;&amp;gt;2009年60周年国庆焰火晚会.rmvb&amp;lt;/a&amp;gt;（高清录制）&amp;lt;/td&amp;gt;&amp;lt;td style=&amp;quot;text-align:center;&amp;quot;&amp;gt;740MB&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td colspan=&amp;quot;2&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td colspan=&amp;quot;2&amp;quot;&amp;gt;&amp;lt;strong&amp;gt;&amp;lt;span style=&amp;quot;color:rgb(255,0,0);&amp;quot;&amp;gt;下面是电驴下载进行链接，如果你还没有安装电驴下载，下载前请先&amp;lt;/span&amp;gt;&amp;lt;/strong&amp;gt;&amp;lt;a href=&amp;quot;http://www.mmmdg.com/hbcms/php/r.php?url=http://download.verycd.com/easyMule-Setup.exe&amp;quot;&amp;gt;&amp;lt;strong&amp;gt;&amp;lt;span style=&amp;quot;font-size:15px;&amp;quot;&amp;gt;下载电驴&amp;lt;/span&amp;gt;&amp;lt;/strong&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;strong&amp;gt;&amp;lt;span style=&amp;quot;color:rgb(255,0,0);&amp;quot;&amp;gt;并安装。&amp;lt;/span&amp;gt;&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td colspan=&amp;quot;2&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;lt;strong&amp;gt;1999年中华人民共和国国庆大阅兵&amp;lt;/strong&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;td align=&amp;quot;middle&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;1、&amp;lt;a&amp;gt;中华人民共和国成立50周年世纪大阅兵.</description>
+      <description>以下是迅雷高速下载。下载方法：鼠标右键&amp;gt;使用迅雷下载即可。 1、2009年60周年国庆大阅兵.ts
+2、2009年60周年国庆大阅兵.mpg
+3、2009年60周年国庆焰火晚会.rmvb
+下面是电驴下载进行链接，如果你还没有安装电驴下载，下载前请先下载电驴并安装。
+1999年中华人民共和国国庆大阅兵 1、中华人民共和国成立50周年世纪大阅兵.iso （完整版）
+2、国庆50周年1999阅兵_升国旗.ts（高清收藏版1）
+3、国庆50周年1999阅兵_步兵方队1.ts（高清收藏版2）
+4、国庆50周年1999阅兵_步兵方队2.ts（高清收藏版3）
+5、国庆50周年1999阅兵_群众游行1.ts（高清收藏版4）
+6、国庆50周年1999阅兵_群众游行2.ts（高清收藏版5）
+7、国庆50周年1999阅兵_群众游行3.ts（高清收藏版6）
+8、国庆50周年1999阅兵_结语.ts（高清收藏版7）
+历届中华人民共和国国庆大阅兵 1949年10月1日.开国大典大阅兵.mpeg
+1955年10月1日.建国六周年国庆阅兵.mpeg（不完整版继续寻找中.）
+1955年10月1日.建国六周年国庆阅兵（完整版清晰度一般）.avi
+1959年10月1日.建国十周年庆典阅兵.mpeg
+1984年10月1日.建国三十五周年庆典阅兵.mpeg
+1995年10月.海军舰艇部队和飞行部队阅兵.mpeg
+1999年10月1日.建国五十周年大庆阅兵.mpeg
+新中国大阅兵1.MPG
+新中国大阅兵2.MPG
+共和国十三次大阅兵全回顾.rmvb（强烈推荐）
+中国人民解放军军事演习片段01.mpg
+中国人民解放军军事演习片段02.mpg
+张召忠评点海军60年阅兵-2009042306.flv
+2009.04.27.军事纪实.直击2009海上阅兵-上集.rmvb
+2009.04.28.军事纪实.直击2009海上阅兵-下集.rmvb
+1981华北大演习.DAT
+祖国香港、澳门回归记录 [国庆纪事].A.rm
+[国庆纪事].B.rm
+世界各国阅兵实录.rmvb
+1997香港回归直播.【cctv全程记录片】1.TVRip.mkv
+1997香港回归直播.【cctv全程记录片】2.TVRip.mkv
+1997香港回归直播.【cctv全程记录片】3.TVRip.mkv
+1999澳门回归祖国纪实.rm
+1999澳门回归政权交接仪式.rm</description>
     </item>
     
     <item>
@@ -1024,7 +1079,9 @@ ______________________________
       <pubDate>Thu, 30 Jul 2009 16:30:05 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/07/30/%E8%BD%AC%E8%B4%B4-ubuntu%E4%B8%8Bvpn%E7%BF%BB%E5%A2%99/</guid>
-      <description>&amp;lt;div&amp;gt;2009-7-20 08:55&amp;lt;/div&amp;gt; </description>
+      <description>一直一来及埃夫达不溜真是让人头疼，把偶经常光顾的网站都封的差不多了，试了不少“梯子”，都没有成功，无奈之下一直用代理网站，不过今天终于找到了一较完美的解决方法，拿出来分享一下
+在众多的梯子中，VPN和SSH无疑是效率最高的。Linkideo提供的VPN不再免费后，UltraVPN无疑是一个很好的替代品。 UltraVPN提供的VPN服务基于开源的OpenVPN，网站为Windows和Mac编译好了安装包，我们只需在UltraVPN的网站上注册一个帐号，安装好下载来的程序，无需设置，马上可以享受穿墙而过的快感。但是ultravpn并没有为linux用户提供这样的方便，linux需要自己下载OpenVPN的源码编译安装。不过Ubuntu的用户不用那么麻烦，搞掂UltraVPN只需如下几步：
+ 注册帐号。 到这里输入帐号、密码，帐号立马到手。邮箱是可选项，用于找回密码。 获取ca证书和帐号配置文件。这一步有二个渠道完成。 2.1 借助Windows或Mac的机器安装好UltraVPN之后，复制软件安装路径中config目录下的ca.crt、client.ovpn和stealthy connect.ovpn三个文件。 2.2 下载偶为大家准备的ca.crt、client.ovpn、stealthy connect.ovpn. 安装OpenVPN。 $ sudo apt-get install network-manager-openvpn4. 建立VPN连接。这一步也有两种方式完成。 4.1 导入式。右键点击网络连 接图标，选择“Edit Connections…”，切换标签到“VPN”，点“Import“，选择第2步获取的client.ovpn文件（也可以选择stealthy connect.ovpn文件，用于创建安全连接），在弹出的编辑界面中填好第1 步注册的用户名、密码，”CA Certificate”选择第2步获取的”ca.crt”文件，点”Apply”完成。 4.2 输入式。右键点击网络连接图标，选择“Edit Connections…”，切换标签到“VPN”，点“Add“创建连接。在弹出的“Chose a VPN Connection Type”界面中选择“OpenVPN”， 点“Create“，进入连接编辑页面。“Gateway“填“servers443.ultravpn.net”，“Type”选“Password “，接下来填用户名、密码、选“ca.crt“，点”Apply”完成。 连接VPN。左键点击网络连接图标，在“VPN Connections“中选择第3步创建的连接，就可直通巴黎了。如果在第五步时遇到“no valid vpn secrets“的提示，那意味着你安装的network-manager-openvpn版本有Bug，解决方法如下： $ sudo gedit /etc/apt/sources.list在文件后面加入以下两行： deb http://ppa.launchpad.net/network-manager/ppa/ubuntu &amp;lt;你的系统版本代号&amp;gt; main deb-src http://ppa.launchpad.net/network-manager/ppa/ubuntu &amp;lt;你的系统版本代号&amp;gt; main然后接着执行命令： $ sudo apt-get update $ sudo apt-get dist-upgrade如果提示没有秘钥,执行命令： $ gpg –keyserver keyserver.ubuntu.com –recv-keys 248DD1EEBC8EBFE8 $ gpg –export -a 248DD1EEBC8EBFE8|sudo apt-key add –  </description>
     </item>
     
     <item>
@@ -1060,7 +1117,9 @@ ______________________________
       <pubDate>Tue, 21 Jul 2009 21:40:31 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/07/21/virtualbox%E7%9A%84%E6%95%B0%E6%8D%AE%E7%A9%BA%E9%97%B4%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</guid>
-      <description>&amp;lt;p&amp;gt;2.进入虚拟机XP系统，右击我的电脑－》映射网络驱动器。选择vitualbox shared folders.&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;3.添加完成之后，“共享数据空间”就成了一个网络驱动器。&amp;lt;/p&amp;gt; </description>
+      <description>1.点击设备菜单下面的分配数据空间，添加你需要共享的文件夹路径
+2.进入虚拟机XP系统，右击我的电脑－》映射网络驱动器。选择vitualbox shared folders.
+3.添加完成之后，“共享数据空间”就成了一个网络驱动器。</description>
     </item>
     
     <item>
@@ -1096,7 +1155,9 @@ ______________________________
       <pubDate>Sat, 18 Jul 2009 21:18:27 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/07/18/ubuntu-%E4%B8%8B%E5%90%8C%E6%AD%A5evolution%E5%92%8Cgoogle%E6%97%A5%E5%8E%86/</guid>
-      <description>&amp;lt;p&amp;gt;2.在终端中输入：&amp;lt;font face=&amp;quot;NSimsun&amp;quot;&amp;gt;/usr/lib/evolution-webcal/evolution-webcal YOUR_PRIVATE_ICAL_URL&amp;lt;/font&amp;gt;&amp;lt;br /&amp;gt; 3.设置同步时间&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;完工。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt; </description>
+      <description>1.首先在你的Google日历设置中找到你的私人 ICAL 地址：点击“我的日历”下的“设置”——》再点击你的邮件名，进入“详细信息”——》在“私人网址”一栏中点击“ICAL”。弹出的就是你的ICAL地址。
+2.在终端中输入：/usr/lib/evolution-webcal/evolution-webcal YOUR_PRIVATE_ICAL_URL3.设置同步时间
+完工。</description>
     </item>
     
     <item>
@@ -1141,7 +1202,8 @@ ______________________________
       <pubDate>Mon, 15 Jun 2009 15:37:39 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/06/15/vista%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E4%B8%8D%E8%83%BD%E5%90%AF%E5%8A%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
-      <description>&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm4.static.flickr.com/3640/3629361154_026d05e9ec.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;解决方法很简单，安装一个vista语音识别修复工具就可以了。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://files.getdropbox.com/u/1167529/Vista%E5%8F%91%E9%9F%B3%E5%BC%95%E6%93%8E%E4%BF%AE%E5%A4%8D.zip&amp;quot; target=&amp;quot;_blank&amp;quot; rel=&amp;quot;noopener noreferrer&amp;quot;&amp;gt;Vista发音引擎修复文件&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;安装过程中会出现很多提示，不用管它，点击忽略，下一步，直到安装结束就可以了。&amp;lt;/p&amp;gt; </description>
+      <description>我原装的VISTA在安装sp1更新包之后发现语音识别不能启动了。出现以下提示。 解决方法很简单，安装一个vista语音识别修复工具就可以了。 Vista发音引擎修复文件
+安装过程中会出现很多提示，不用管它，点击忽略，下一步，直到安装结束就可以了。</description>
     </item>
     
     <item>
@@ -1168,7 +1230,9 @@ ______________________________
       <pubDate>Tue, 19 May 2009 15:13:52 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/05/19/%E4%BB%80%E4%B9%88%E6%98%AFseo/</guid>
-      <description>&amp;lt;p&amp;gt;为什么要进行搜索引擎优化：&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;一个企业网站代表一个企业的形象，是对企业或企业产品的推广，是实际业务的延伸。在搜索结果中排名越靠前被点击进入的比例越高，排名越靠后就越低，目标客户就越难找到你，这就是为什么要提高网站的排名、为什么要进行搜索引擎优化的原因。&amp;lt;br /&amp;gt; SEO功能首先要了解以下5点:&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;1.了解搜索引擎如何抓取网页和如何索引网页&amp;lt;br /&amp;gt; 你需要知道一些搜索引擎的基本工作原理，各个搜索引擎之间的区别，搜索机器人（SE robot或叫web crawler）如何进行工作，搜索引擎如何对搜索结果进行排序等等。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;2.Meta标签优化&amp;lt;br /&amp;gt; 主要包括主题（Title)，网站描述(Description)，和关键字（Keywords）。还有一些其它的隐藏文字比如Author（作者），Category（目录），Language（编码语种）等。我们系统的SEO设置就为您提供了网站描述和关键字的输入，其他信息系统会根据您的内容自动给出。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;3.如何选取关键词并在网页中放置关键词&amp;lt;br /&amp;gt; 搜索就得用关键词。关键词分析和选择是SEO最重要的工作之一。首先要给网站确定主关键词（一般在5个上下），然后针对这些关键词进行优化，包括关键词密度（Density），相关度（Relavancy），突出性（Prominency）等等。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;4.了解主要的搜索引擎&amp;lt;br /&amp;gt; 虽然搜索引擎有成千上万，但是对网站流量起决定作用的就那么几个。比如英文的主要有Google，Inktomi，Altavista等；中文的有百度，搜狐等。不同的搜索引擎对页面的抓取和索引、排序的规则都不一样。还要了解各搜索门户和搜索引擎之间的关系，比如Yahoo和AOL网页搜索用的是Google的搜索技术，MSN用的是Looksmart和Open Directory的技术。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;5.主要的互联网目录&amp;lt;br /&amp;gt; Yahoo自身不是搜索引擎，而是一个大型的网站目录，Open Directory也不是，他们和搜索引擎的主要区别是网站内容的收集方式不同。目录是人工编辑的，主要收录网站主页；搜索引擎是自动收集的，除了主页外还抓取大量的内容页面。&amp;lt;/p&amp;gt; </description>
+      <description>SEO即搜索引擎优化。
+为什么要进行搜索引擎优化：
+一个企业网站代表一个企业的形象，是对企业或企业产品的推广，是实际业务的延伸。在搜索结果中排名越靠前被点击进入的比例越高，排名越靠后就越低，目标客户就越难找到你，这就是为什么要提高网站的排名、为什么要进行搜索引擎优化的原因。 SEO功能首先要了解以下5点: 1.了解搜索引擎如何抓取网页和如何索引网页 你需要知道一些搜索引擎的基本工作原理，各个搜索引擎之间的区别，搜索机器人（SE robot或叫web crawler）如何进行工作，搜索引擎如何对搜索结果进行排序等等。 2.Meta标签优化 主要包括主题（Title)，网站描述(Description)，和关键字（Keywords）。还有一些其它的隐藏文字比如Author（作者），Category（目录），Language（编码语种）等。我们系统的SEO设置就为您提供了网站描述和关键字的输入，其他信息系统会根据您的内容自动给出。 3.如何选取关键词并在网页中放置关键词 搜索就得用关键词。关键词分析和选择是SEO最重要的工作之一。首先要给网站确定主关键词（一般在5个上下），然后针对这些关键词进行优化，包括关键词密度（Density），相关度（Relavancy），突出性（Prominency）等等。 4.了解主要的搜索引擎 虽然搜索引擎有成千上万，但是对网站流量起决定作用的就那么几个。比如英文的主要有Google，Inktomi，Altavista等；中文的有百度，搜狐等。不同的搜索引擎对页面的抓取和索引、排序的规则都不一样。还要了解各搜索门户和搜索引擎之间的关系，比如Yahoo和AOL网页搜索用的是Google的搜索技术，MSN用的是Looksmart和Open Directory的技术。 5.主要的互联网目录 Yahoo自身不是搜索引擎，而是一个大型的网站目录，Open Directory也不是，他们和搜索引擎的主要区别是网站内容的收集方式不同。目录是人工编辑的，主要收录网站主页；搜索引擎是自动收集的，除了主页外还抓取大量的内容页面。</description>
     </item>
     
     <item>
@@ -1186,7 +1250,7 @@ ______________________________
       <pubDate>Tue, 19 May 2009 15:07:52 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/05/19/%E6%B5%B7%E4%B8%8A%E9%98%85%E5%85%B5%E5%A4%A7%E5%9B%BE/</guid>
-      <description>&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2421/3545393487_366a0245c4.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm4.static.flickr.com/3637/3546201252_6ba556a61b.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm4.static.flickr.com/3582/3546201470_a575317494.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm4.static.flickr.com/3544/3546201686_5c3e36fa0c.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm4.static.flickr.com/3376/3545394303_c976fd1cc2.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2464/3546202080_605346051a.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2323/3545394783_9ccf042f33.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm4.static.flickr.com/3393/3546202592_bc0862cb81.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm4.static.flickr.com/3642/3546202818_0231572a88.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2447/3546203038_45358c7ca3.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm4.static.flickr.com/3407/3545395665_c655c63178.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm3.static.flickr.com/2475/3546203452_79c93907e9.jpg&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img border=&amp;quot;0&amp;quot; src=&amp;quot;http://farm4.</description>
+      <description></description>
     </item>
     
     <item>
@@ -1195,7 +1259,17 @@ ______________________________
       <pubDate>Mon, 18 May 2009 17:45:12 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/05/18/%E8%BD%AC%E5%B8%96ppc-wm5%E7%B3%BB%E7%BB%9F%E4%B8%8Bvpn%E8%AE%BE%E7%BD%AE%E6%96%B9%E6%B3%95/</guid>
-      <description>&amp;lt;p&amp;gt;&amp;lt;font color=&amp;quot;#800000&amp;quot;&amp;gt;&amp;lt;span&amp;gt;&amp;lt;strong&amp;gt;1&amp;lt;/strong&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;strong&amp;gt;&amp;lt;span&amp;gt;. 在公司內部的工作設定網路&amp;lt;/span&amp;gt;&amp;lt;/strong&amp;gt;&amp;lt;/font&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;假如您在台北的辦公大樓上班，您的辦公桌在 8 樓，這個時候您到 5 樓會議室開會，這個時候，剛好發現您的 Pocket PC 少了一個 PowerPoint 簡報檔，除了坐電梯回到 8 樓的電腦旁重傳檔案，該怎麼辦呢？&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;一個比較方便的方法，就是用 Pocket PC 連到公司內部的基地台，因為通常公司每台電腦都是透過內部的網路互通的，不會有防火牆的限制，所以您就可以直接連線到您辦公桌上的電腦，透過網路芳鄰抓取檔案。這個連線通常是「工作設定的連線」，因為，這個 WiFi 基地台在您的公司而非飯店或車站裡。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;要設定工作連線，在開始 &amp;gt; 設定 &amp;gt; 連線 &amp;gt; 網路卡中，指定基地台的「連線到」改成「工作設定」。當然，您要開啟 WiFi 功能才會看到搜尋基地台的畫面。&amp;lt;/p&amp;gt;&amp;lt;p align=&amp;quot;center&amp;quot;&amp;gt;&amp;lt;a href=&amp;quot;http://attach1.mobile01.com/attach/200602/mobile01-771c9da59ee9aa33a3842bbf095664b9.png&amp;quot; target=&amp;quot;_blank&amp;quot; rel=&amp;quot;noopener noreferrer&amp;quot;&amp;gt;&amp;lt;img src=&amp;quot;http://farm4.static.flickr.com/3409/3543474382_a6bc9b4f91.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;br /&amp;gt; ▲ 在開始 &amp;gt; 設定 &amp;gt; 連線 &amp;gt; 網路卡中，點選公司的基地台 (Taipei)&amp;lt;/p&amp;gt;&amp;lt;p align=&amp;quot;center&amp;quot;&amp;gt;&amp;lt;a href=&amp;quot;http://attach1.mobile01.com/attach/200602/mobile01-816a505fe486af0b068efe57c02390df.png&amp;quot; target=&amp;quot;_blank&amp;quot; rel=&amp;quot;noopener noreferrer&amp;quot;&amp;gt;&amp;lt;img src=&amp;quot;http://farm4.static.flickr.com/3630/3542665759_ab258e96e7.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;br /&amp;gt; ▲ 將「連線到:」欄位改成「預設的工作設定」&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;這樣一來，您在就可以直接存取網路芳鄰的資源，或在瀏覽器中輸入 &amp;lt;a href=&amp;quot;http://taipei/&amp;quot; target=&amp;quot;_blank&amp;quot; rel=&amp;quot;noopener noreferrer&amp;quot;&amp;gt;http://taipei/&amp;lt;/a&amp;gt; 的內部網站，也不需要建立 VPN 連線 (因為您已經在公司網域中了)。假如您是直接建立工作連線，您可以直接跳過下一節 VPN 設定，直接閱讀用檔案總管存取網路芳鄰 檔案的方法。&amp;lt;/p&amp;gt;&amp;lt;p align=&amp;quot;center&amp;quot;&amp;gt;&amp;lt;a href=&amp;quot;http://attach1.</description>
+      <description>當您出差在外的時候，發現手邊的 Pocket PC 裡面沒有幾個重要的文件檔，而這個檔案放在您辦公室中的電腦中，這個時候用「網路芳鄰」來抓取檔案是最方便的了。可是，因為安全的關係，公司的防火牆設定必須在台北總部 的網域才能存取網路芳鄰內的資源，如果在外面則需要設定 VPN 來能連到公司的內部網路。在電腦上我會，可是在 Pocket PC 中怎麼設定 VPN 呢？
+在公司內部的工作設定網路
+假如您在台北的辦公大樓上班，您的辦公桌在 8 樓，這個時候您到 5 樓會議室開會，這個時候，剛好發現您的 Pocket PC 少了一個 PowerPoint 簡報檔，除了坐電梯回到 8 樓的電腦旁重傳檔案，該怎麼辦呢？
+一個比較方便的方法，就是用 Pocket PC 連到公司內部的基地台，因為通常公司每台電腦都是透過內部的網路互通的，不會有防火牆的限制，所以您就可以直接連線到您辦公桌上的電腦，透過網路芳鄰抓取檔案。這個連線通常是「工作設定的連線」，因為，這個 WiFi 基地台在您的公司而非飯店或車站裡。
+要設定工作連線，在開始 &amp;gt; 設定 &amp;gt; 連線 &amp;gt; 網路卡中，指定基地台的「連線到」改成「工作設定」。當然，您要開啟 WiFi 功能才會看到搜尋基地台的畫面。
+▲ 在開始 &amp;gt; 設定 &amp;gt; 連線 &amp;gt; 網路卡中，點選公司的基地台 (Taipei)
+▲ 將「連線到:」欄位改成「預設的工作設定」
+這樣一來，您在就可以直接存取網路芳鄰的資源，或在瀏覽器中輸入的內部網站，也不需要建立 VPN 連線 (因為您已經在公司網域中了)。假如您是直接建立工作連線，您可以直接跳過下一節 VPN 設定，直接閱讀用檔案總管存取網路芳鄰 檔案的方法。
+▲ 用內建的檔案總管，開啟網路芳鄰
+設定與建立 VPN 和網際網路連線
+某一天，您到高雄去參加一個會議。這個時候，發現 Pocket PC 中又沒有重要檔案了，可是也沒辦法透過 WiFi 連線到公司的基地台 ─ 太遠了，該怎麼辦呢？</description>
     </item>
     
     <item>
@@ -1204,7 +1278,7 @@ ______________________________
       <pubDate>Sat, 16 May 2009 09:00:34 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/05/16/%E6%96%B0%E5%BC%84%E5%BE%97%E5%8D%9A%E5%AE%A2/</guid>
-      <description></description>
+      <description>新弄里一个php博客。还不会用。要研究一下。</description>
     </item>
     
     <item>
@@ -1213,7 +1287,47 @@ ______________________________
       <pubDate>Sun, 12 Apr 2009 00:39:39 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/04/12/%E6%AF%94%E5%9B%A7%E5%AD%97%E8%BF%98%E6%9E%81%E5%93%81%E7%9A%84%E5%85%B2%E5%AD%97%E6%A8%AA%E7%A9%BA%E5%87%BA%E4%B8%96%E5%98%A6%E5%B7%AD%E6%B7%B1-%E5%85%B2%E5%AB%91%E8%B7%91/</guid>
-      <description>&amp;lt;p&amp;gt;“囧囧有神”，“兲兲向上”&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;在形象的“囧”字横扫网络的今天，“兲”字的横空出世再次被网民们津津乐道。许多网友直呼“兲啊！”，也有一部分网友觉得论形象还是“囧”字更胜一筹。在天涯社区，有关此字的帖子引来众人议论。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;“好好学习，兲兲向上。汉字真是博大精深！”网友小纳诺在回复中说到。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;当然除了“囧”字和“兲”字，还有一大堆的汉字也以其形象的外观大行其道，有网友还贴出了这样一段字：“嘦jiào巭bu深shen兲tiān嫑biáo跑pao”令人叹服。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;“兲”字与“天”同意&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;如果你是用的sogo拼音输入法，那么“兲”字就在第二页的第三个。一看到这个字，大多数人也许会直接想到“王八”二字，但是“兲”字读音“tiān”古同“天”，做“王八”解是网络用语的误用。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;虽说如此，但还是有许多网友觉得将错就错更有趣，像是“兲蛋”、“真兲”，更有胜者还戏谑到：“天是王八，那天子岂不是王八蛋？苍兲啊，以后我再也不骂人王八蛋了！”&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;还有的理解成“天”也行，理解成“王八”也行，可谓是一语双关。像是“民以食为兲”、“叫兲兲不应”、“好一个兲”、“偶的兲呀”等等，十分有趣。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;附：“兲”字的解释&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;兲（tiān）&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;古同&amp;quot;天&amp;quot;。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;注音：ㄊㄧㄢˉ&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;英语解释heaven;sky&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;郑码：COVVGBK：83CC&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;五笔86&amp;amp;98:GWU&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;四角号码:10801UniCode:CJK&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;统一汉字U+5172&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;纵横码：18&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;仓颉码：MGC(一土金)&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;笔画数：6&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;部首：八&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;笔顺编号：112134&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;基本字义&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;兲&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;tiānㄊㄧㄢˉ&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;古同“天”。&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;出处：&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;《康熙字典》&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;【子集下】【八字部】兲?</description>
+      <description>知道“囧”吗?那知道“兲”吗?不知道?落伍吧。继“囧”字在网上引起一阵“骚动”之后，最近“兲”这个生僻字又在网上大行其道，一时间“雷”倒不少网友，大批的网民直呼“兲啊！”
+“囧囧有神”，“兲兲向上”
+在形象的“囧”字横扫网络的今天，“兲”字的横空出世再次被网民们津津乐道。许多网友直呼“兲啊！”，也有一部分网友觉得论形象还是“囧”字更胜一筹。在天涯社区，有关此字的帖子引来众人议论。
+“好好学习，兲兲向上。汉字真是博大精深！”网友小纳诺在回复中说到。
+当然除了“囧”字和“兲”字，还有一大堆的汉字也以其形象的外观大行其道，有网友还贴出了这样一段字：“嘦jiào巭bu深shen兲tiān嫑biáo跑pao”令人叹服。
+“兲”字与“天”同意
+如果你是用的sogo拼音输入法，那么“兲”字就在第二页的第三个。一看到这个字，大多数人也许会直接想到“王八”二字，但是“兲”字读音“tiān”古同“天”，做“王八”解是网络用语的误用。
+虽说如此，但还是有许多网友觉得将错就错更有趣，像是“兲蛋”、“真兲”，更有胜者还戏谑到：“天是王八，那天子岂不是王八蛋？苍兲啊，以后我再也不骂人王八蛋了！”
+还有的理解成“天”也行，理解成“王八”也行，可谓是一语双关。像是“民以食为兲”、“叫兲兲不应”、“好一个兲”、“偶的兲呀”等等，十分有趣。
+附：“兲”字的解释
+兲（tiān）
+古同&amp;quot;天&amp;rdquo;。
+注音：ㄊㄧㄢˉ
+英语解释heaven;sky
+郑码：COVVGBK：83CC
+五笔86&amp;amp;98:GWU
+四角号码:10801UniCode:CJK
+统一汉字U+5172
+纵横码：18
+仓颉码：MGC(一土金)
+笔画数：6
+部首：八
+笔顺编号：112134
+基本字义
+兲
+tiānㄊㄧㄢˉ
+古同“天”。
+出处：
+《康熙字典》
+【子集下】【八字部】兲?康熙笔画：6?部外笔画：4
+【五音集韵】古文天字。注详大部一画。
+好销魂哇！囧字的最高阶“嘦巭深 兲嫑跑”太弓虽了
+最近流行囧这样的形象字，是什么都囧，哪都能见到囧
+偶刚刚也看到了一句话，太搞笑了，相信大家都没看过，而且我觉得这几个字一定能成为网络新流行词，嘿嘿，不说了，上词上词
+【嘦巭好 兲嫑跑】
+话说，偶看到这几个字的时候，竟产生出一种无以名之的悲痛感，能在有生之年看到这几个字实在是三生有幸呀，我毫不犹豫地把这几个字收藏了，我内心的那种激动才逐渐平静下来。可是我立刻想到，倘若别人看不到，那么不是浪费造字者的心血吗？经过痛苦的思想斗争，我终于下定决心，牺牲小我，奉献大我。我要贡献出这几个字奉献给世人赏阅，我还要把这个帖子一直往上顶，往上顶！顶到所有人都看到为止！
+话说，偶一定要摸清楚这几个字念什么，想当初因为搜狗输入法能打出“囧”字的时候偶毫不犹豫的换成了它，今天我也终于利用这个强大的输入法词库，轻松的打出这几个字，偶那个激动呀，灰常灰常佩服造字者的前辈，要偶们今天的生活充满了乐趣
+闲话不说，我看到这几个字的时候是哥们博客里的截图，估计他也不会打，就截图来了。偶先用搜狗拼音的U笔画吗模式打出了这几个字，然后一个一个的在网络字典里查找，得出了读音和意义，读音是为了打起来方便，实际意义就是想了解下，反正我们只要看字面就好了，o(∩_∩)o…哈哈，偶就不写出来~~~
+嘦jiào巭bu好hao兲tiān嫑biáo跑pao
+搜狗拼音里这几个字都能打出来，第一次要翻页找下，打过一次后基本显示在第一页了，以后就好打多了，但是偶还是有点不习惯，先设置到了自定义短语里。
+这个伟大的发现，这个伟大的字符，我相信一定会火起来的，到时候大家一定不要忘记偶，同意的就顶吧。</description>
     </item>
     
     <item>
@@ -1222,7 +1336,12 @@ ______________________________
       <pubDate>Thu, 19 Feb 2009 21:01:02 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/02/19/%E7%83%9F%E8%8A%B1%E5%BC%95%E7%87%83%E5%A4%AE%E8%A7%86%E6%96%B0%E5%9D%80%E5%A4%A7%E7%81%AB%E5%85%A8%E8%BF%87%E7%A8%8B%E5%9B%BE%E7%89%87%E8%AF%A6%E8%A7%A3/</guid>
-      <description>&amp;lt;p&amp;gt;1.这么重要的大楼附近怎么能燃放烟花，到底是谁在放，谁允许放的?&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;2.新建的大楼为什么一点就着？大楼上到底有什么可燃物？&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;3.当事人为什么可以不听民警的劝阻？民警为什么没有权利阻拦烟花的燃放？&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;4.央视是国家的重要单位，全国主要媒体，现在却带头无视法律规章，造成国家财产重大损失，消防员牺牲。现代社会所倡导的舆论监督又从何谈起？&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;以下是烟火引燃大楼的全过程：&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041004886f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/200902200410070B3f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041009640f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041011577f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/200902200410145CDf.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041016B47f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/200902200410190AEf.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041021D3Ef.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/200902200410245EDf.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;lt;img src=&amp;quot;http://www.</description>
+      <description>2009年2月9日晚8点半左右，央视新大楼北配楼发生火灾，造成了重大损失，消防员牺牲，人不不禁要问：
+1.这么重要的大楼附近怎么能燃放烟花，到底是谁在放，谁允许放的?
+2.新建的大楼为什么一点就着？大楼上到底有什么可燃物？
+3.当事人为什么可以不听民警的劝阻？民警为什么没有权利阻拦烟花的燃放？
+4.央视是国家的重要单位，全国主要媒体，现在却带头无视法律规章，造成国家财产重大损失，消防员牺牲。现代社会所倡导的舆论监督又从何谈起？
+ 以下是烟火引燃大楼的全过程：&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041004886f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/200902200410070B3f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041009640f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041011577f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/200902200410145CDf.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041016B47f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/200902200410190AEf.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041021D3Ef.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/200902200410245EDf.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/200902200410260A7f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041029B53f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041031D21f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041033C56f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041036496f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/200902200410383E7f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.my2cool.com/albums/2009/02/20/20090220041040601f.jpg&amp;quot; border=&amp;quot;0&amp;quot; /&amp;gt;&amp;lt;img src=&amp;quot;http://www.</description>
     </item>
     
     <item>
@@ -1231,7 +1350,7 @@ ______________________________
       <pubDate>Fri, 02 Jan 2009 14:03:14 +0000</pubDate>
       
       <guid>http://peterz.xyz/2009/01/02/%E8%85%BE%E8%AE%AF%E4%B8%BA%E5%95%A5%E4%B8%8D%E8%AE%A9%E6%88%91%E8%AF%84%E8%AE%BA/</guid>
-      <description></description>
+      <description>喜欢腾讯的每日话题，里面的文章相当有水平，看了就忍不住想评论。可是问题来了，我发的评论从来不会被发表出来，难道就是因为我在国外？难道腾讯审查评论还过滤ip地址？真是可恶啊！！</description>
     </item>
     
     <item>
@@ -1240,7 +1359,7 @@ ______________________________
       <pubDate>Mon, 18 Feb 2008 18:18:56 +0000</pubDate>
       
       <guid>http://peterz.xyz/2008/02/18/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F/</guid>
-      <description></description>
+      <description>水至清则无鱼,人至贱则无敌!武功再高,也怕菜刀,智力再好,一砖潦倒.走自己的路,让别人打车去吧.穿别人的鞋,让他们找去吧.打台湾我捐一个月生活费,打美国我捐一年的生活费,打日本我捐TMD一条命!我不是随便的人,我随便起来不是人.骑白马的不一定是王子,可能是唐僧;带翅膀的不一定是天使,有时候是鸟人.俺的最低奋斗目标:农夫,山泉,有点田;俺的最高拼搏路线非诺贝尔不得,非福布斯不上.再过几十年我们来相会,送到火葬场,全部烧成灰,你一堆,我一堆,谁也不认识谁,全部送到农村做化肥!</description>
     </item>
     
     <item>
@@ -1258,7 +1377,11 @@ ______________________________
       <pubDate>Wed, 16 Jan 2008 22:44:02 +0000</pubDate>
       
       <guid>http://peterz.xyz/2008/01/16/%E8%BD%AC%E7%94%9F%E6%97%A5%E5%BF%AB%E4%B9%90/</guid>
-      <description></description>
+      <description>我认识的许多人，他们十分讨厌过生日，为什么？原因各异。 有些人不喜欢提起自己的年龄。因为他们受社会的潮流所影响；认为“老”就等于1.不中用、2.蠢、3.钝、4.不受尊重、5.丑。有趣的是，1-5 这五个形容词是没有客观标准的偏见。我甚至还要问，多大年龄算是老呢？
+另有一些人，禁不起过生日，可能他们在人生的某些岁月里，犯下了很大的错误，我守望很深的伤害，他们的人身被卡住在哪个污点、那道伤痕中，他们有不能原谅的人，甚至那个人就是自己，他们非常痛苦，无法挣脱，甚至诅咒自己的生日，任何的回忆都是一段揭伤疤的催泪经历。其实，他不单是生日不快乐，生活也不快乐。 许多人在他们过往的日子里，都能快快乐乐的过生日，但今年就不行——今年他可能刚来德国，语言、文化、生活、天气、食物、人，没有一样对他 “友善 ”，让他迷茫、沮丧、不知所措、甚至失去斗志；他这尖子模范生第一次考试失败、团长等不来，性格又开朗，却第一次失恋；他第一次独自一人在异乡受疾病的煎熬；他在家一向不愁衣食，来德国没几个月已经尝到经济拮据的滋味；他的婚姻关系一直不错，可是今年，他第一次面临配偶提出离婚，他在国内工作单位停受重视，事后下海又特顺利，到了德国，却第一次在工作中诸事不顺，运来的货检验不合格，严重迟到，数目错误，付出大笔的罚款，还赔上了名誉和面子。
+我也认识许多人每年都高高兴兴地庆祝自己的生日，也不介意数自己的岁数，为什么？因为当他们中国人生的每一步时，该学习的他们学习了，该吃的苦他们也尝过了、人生的许多阶段，他们不一定比别人顺利，然而他们在成长的过程中努力，以致他们没有被任何一个困难卡住而停步；人生的许多机会和选择，他们都认真地思考、学习，并行做谨慎决定，以致他们能快乐的享受自己开拓的新境界，也甘心的承担选择的后果。当他们庆祝生日时，只要数算在他们人生中出现过多少可爱的人、美丽的事，它们就满怀感恩。
+怎样庆祝生日？有人喜欢吃生日蛋糕，吹蜡烛；有人爱收一份等待了一年的贵重礼物，有人感谢父母的养育之恩；有人生日当天邀请三五知己，促膝畅谈、有人到办公室跟 “朝夕相对”的同事吃喝一顿，接受别人的祝福；有人势必在生日当天不上班，把一整天留给自己；有人乐于请所有亲朋好友同事邻居同喜乐庆祝，有人只跟爱人过，也有人安静独处，细想过去的得失。
+我衷心地祝愿你们在今年过一段快乐的、有益的、能鼓励你积极走过每一步人生路的生日。</description>
     </item>
     
     <item>
@@ -1267,7 +1390,25 @@ ______________________________
       <pubDate>Wed, 05 Dec 2007 17:46:15 +0000</pubDate>
       
       <guid>http://peterz.xyz/2007/12/05/%E4%B8%AD%E5%9B%BD%E5%BD%93%E4%BB%A3%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%9A%84%E4%B9%9D%E5%AE%97%E7%BD%AA/</guid>
-      <description>&amp;lt;div&amp;gt;中国当代大学生的九宗罪&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;罪名一：生活腐化&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;追求档次，崇尚名牌；经常光顾高消费文体娱乐场所；配备高档通讯设备；外出上街，常坐出租车；聚会交友，大讲排场等。其所占比例虽然不大，但其绝对数不小，而对他人的负面影响非常大。在一些学生中，盲目消费、攀比消费、赶潮消费、媚俗性消费、“面子”消费、超前消费等高消费甚至浪费现象非常普遍。&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;罪名二：堕落傍款&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;“傍大款”在今天的中国女大学生嘴里，说起来不再那么时髦了。时下全国高校的美女群就是绑款族，越是名牌大学越是公开，越是校花美女越有可能。“傍大款”也不再是社会女青年的特许，随着商品狂潮的冲击，女大学生也毫不逊色的投入这一新兴的“第三产业”，她们以自己年轻的肉体作为资本，参与绑大款的行业。&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;罪名三：玩物丧志&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;“一起床就开始玩《传奇》、半夜了宿舍楼还在激烈地打CS……”日前，以“cs”（“反恐精英”的简称）、“传奇”为代表的网络游戏在大学校园中十分盛行，一些大学生甚至沉溺于网络游戏中，荒废了学业。&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;罪名四：寄生依赖&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;大学生基本上没有自己的收入，维持高消费无疑要依赖父母，有钱就花，花完就要，花得心安理得，全不顾父母的窘迫。在糟蹋父母的辛苦钱、加重父母的经济负担时，从未想过脱离寄生后的日子只能靠自己。&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;罪名五：理性的侏儒&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;当今中国大学生缺乏基本的三大能力：辨别真假、是非的判断能力，辨别善恶、好坏的道德能力，以及辨别美丑的审美能力。大学生不敢怀疑现实、尤其是权威，无条件相信报纸、电视、教科书，用所谓的“唯物辩证法”来对待现实中的经济混乱、政治腐败，以及一切污浊的社会现象。&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;罪名六：政治的冷漠与投机&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;一方面，大学生们表示自己厌恶现行政治，但同时，他们又不可避免、不顾廉耻地投靠现行政治。他们既不理解又不相信共产主义，但同时，为了各种实际利益，他们又踊跃参加党课学习，主动申请入党。面对中国的腐败潮流，大学生们并不痛心疾首，而一旦他们有机会，则决不放弃腐败的机会。&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;罪名七：学术精神的失落&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;他们睡懒觉、逃课、上网、打工、谈恋爱……但就是不肯认真读书。临到考试，他们便毫无羞耻地作弊，其作弊手段完全可以上吉尼斯世界纪录。至于学术论文，他们便四处剽窃、任意拼凑。他们根本没有、也不可能有学术意识，一切为了混一个烫金毕业证，为了找一个出力不多、但报酬丰厚的工作，满足自己的高级物质生活享受。&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;罪名八：道德素质低下&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;当今中国大学生中鲜有雅皮士，而更多的是嬉皮、泼皮。他们行为放荡，毫无基本的道德感。不尊重老师，不尊重同学，不尊重自身。教师上课，他们自顾聊天、吃巧克力、听随身听、化妆、呼呼大睡、半搂半抱着谈情说爱、打手机，旁若无人。&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;罪名九：生理与心理缺憾&amp;lt;/p&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;&amp;lt;p style=&amp;quot;text-indent:2em;&amp;quot;&amp;gt;现在，大学里经常活动着的只有两种人：迷恋足球的男生，以及练健美操的女生。某校一位女生刚爬上八楼，就犯了心脏病，死在楼梯边，另一男生则死在运动会800米跑道上。大学生的心理素质也差，他们缺乏信仰，缺乏毅力，缺乏进取精神和承受力。稍有成绩，他们便趾高气扬，得意忘形；遭遇挫折，他们便斗志全无，灰心丧气。即便是失恋这类生活小事，他们也无法承受，或凶残报复，或痛不欲生。颓唐、堕落、自杀的事件，时有发生。&amp;lt;/div&amp;gt; &amp;lt;p&amp;gt;&amp;lt;/font&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; </description>
+      <description>中国当代大学生的九宗罪
+罪名一：生活腐化
+追求档次，崇尚名牌；经常光顾高消费文体娱乐场所；配备高档通讯设备；外出上街，常坐出租车；聚会交友，大讲排场等。其所占比例虽然不大，但其绝对数不小，而对他人的负面影响非常大。在一些学生中，盲目消费、攀比消费、赶潮消费、媚俗性消费、“面子”消费、超前消费等高消费甚至浪费现象非常普遍。
+罪名二：堕落傍款
+“傍大款”在今天的中国女大学生嘴里，说起来不再那么时髦了。时下全国高校的美女群就是绑款族，越是名牌大学越是公开，越是校花美女越有可能。“傍大款”也不再是社会女青年的特许，随着商品狂潮的冲击，女大学生也毫不逊色的投入这一新兴的“第三产业”，她们以自己年轻的肉体作为资本，参与绑大款的行业。
+罪名三：玩物丧志
+“一起床就开始玩《传奇》、半夜了宿舍楼还在激烈地打CS……”日前，以“cs”（“反恐精英”的简称）、“传奇”为代表的网络游戏在大学校园中十分盛行，一些大学生甚至沉溺于网络游戏中，荒废了学业。
+罪名四：寄生依赖
+大学生基本上没有自己的收入，维持高消费无疑要依赖父母，有钱就花，花完就要，花得心安理得，全不顾父母的窘迫。在糟蹋父母的辛苦钱、加重父母的经济负担时，从未想过脱离寄生后的日子只能靠自己。
+罪名五：理性的侏儒
+当今中国大学生缺乏基本的三大能力：辨别真假、是非的判断能力，辨别善恶、好坏的道德能力，以及辨别美丑的审美能力。大学生不敢怀疑现实、尤其是权威，无条件相信报纸、电视、教科书，用所谓的“唯物辩证法”来对待现实中的经济混乱、政治腐败，以及一切污浊的社会现象。
+罪名六：政治的冷漠与投机
+一方面，大学生们表示自己厌恶现行政治，但同时，他们又不可避免、不顾廉耻地投靠现行政治。他们既不理解又不相信共产主义，但同时，为了各种实际利益，他们又踊跃参加党课学习，主动申请入党。面对中国的腐败潮流，大学生们并不痛心疾首，而一旦他们有机会，则决不放弃腐败的机会。
+罪名七：学术精神的失落
+他们睡懒觉、逃课、上网、打工、谈恋爱……但就是不肯认真读书。临到考试，他们便毫无羞耻地作弊，其作弊手段完全可以上吉尼斯世界纪录。至于学术论文，他们便四处剽窃、任意拼凑。他们根本没有、也不可能有学术意识，一切为了混一个烫金毕业证，为了找一个出力不多、但报酬丰厚的工作，满足自己的高级物质生活享受。
+罪名八：道德素质低下
+当今中国大学生中鲜有雅皮士，而更多的是嬉皮、泼皮。他们行为放荡，毫无基本的道德感。不尊重老师，不尊重同学，不尊重自身。教师上课，他们自顾聊天、吃巧克力、听随身听、化妆、呼呼大睡、半搂半抱着谈情说爱、打手机，旁若无人。
+罪名九：生理与心理缺憾
+现在，大学里经常活动着的只有两种人：迷恋足球的男生，以及练健美操的女生。某校一位女生刚爬上八楼，就犯了心脏病，死在楼梯边，另一男生则死在运动会800米跑道上。大学生的心理素质也差，他们缺乏信仰，缺乏毅力，缺乏进取精神和承受力。稍有成绩，他们便趾高气扬，得意忘形；遭遇挫折，他们便斗志全无，灰心丧气。即便是失恋这类生活小事，他们也无法承受，或凶残报复，或痛不欲生。颓唐、堕落、自杀的事件，时有发生。</description>
     </item>
     
     <item>
@@ -1276,7 +1417,8 @@ ______________________________
       <pubDate>Sun, 28 Jan 2007 16:40:51 +0000</pubDate>
       
       <guid>http://peterz.xyz/2007/01/28/%E5%A4%A7%E5%AD%A6%E6%97%B6%E4%BB%A3%E7%9A%84%E7%85%A7%E7%89%87/</guid>
-      <description></description>
+      <description>今天用Picasa浏览照片时无意中看到了当年用手机拍下很多照片，大学时代生活的瞬间。看着一张张熟悉的面孔，可爱的校园，感慨…… 现在和大家分享一下，同学们可以来看一下。说不定里面就有你的照片真实的瞬间
+在我163相册里：http://leo_thronton.photo.163.com</description>
     </item>
     
     <item>
@@ -1285,7 +1427,7 @@ ______________________________
       <pubDate>Sun, 28 Jan 2007 09:11:46 +0000</pubDate>
       
       <guid>http://peterz.xyz/2007/01/28/%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99-%E7%94%B7%E5%A5%B3%E8%B0%81%E6%9B%B4%E7%88%B1/</guid>
-      <description></description>
+      <description>我们有了个人主页之后，可以通过后台看到有多少人访问了我们的主页，流量是多少。但是你能统计出来访者男性多还是女性多吗？ 微软可以办到！ 打开&amp;quot;http://adlab.microsoft.com/DPUI/DPUI.aspx 输入你的网站或者Blog的地址。（注意是完整地址，如&amp;quot;http://www.xxx.com&amp;rdquo;) 点击“go”，就可以看到结果了。 结果中不仅有男女比例，还后来访者各个年龄段的统计。 快去看看吧~~</description>
     </item>
     
     <item>
@@ -1303,7 +1445,7 @@ ______________________________
       <pubDate>Tue, 05 Dec 2006 08:32:01 +0000</pubDate>
       
       <guid>http://peterz.xyz/2006/12/05/12%E6%9C%884%E6%97%A5%E6%9C%89%E6%84%9F/</guid>
-      <description></description>
+      <description>刚才突然想到大一大二的时候在江宁校区&amp;quot;师生缘&amp;quot;面馆吃面时的情景.那时也是向现在一样的冬天，只不过南京的冬天要比上海冷许多。那时一到晚上真是冷的不行了，从头到脚浑身冰凉，整个人瑟瑟发抖。顶着寒风走到&amp;quot;师生缘&amp;quot;面馆，要一碗雪菜肉丝面。在面馆找一个座位坐下，耐心等待。这是的面馆生意总是很好。人多虽然会让等待显得有些漫长，但人多也会让整个屋子面的暖和，再加上面条的热气。面馆真是温暖无比！ 一会儿面条上来后，一边吃着热腾腾的面条，一边透过因为屋里的热气而布满水珠的窗户欣赏校园的夜景。暖意油然而生。大有林冲落难后在草料场边山神庙里喝酒吃肉时的幸福感！呵呵~~</description>
     </item>
     
     <item>
@@ -1312,7 +1454,7 @@ ______________________________
       <pubDate>Fri, 17 Nov 2006 08:29:10 +0000</pubDate>
       
       <guid>http://peterz.xyz/2006/11/17/%E9%BB%8E%E6%98%8E%E5%89%8D%E7%9A%84%E9%BB%91%E6%9A%97/</guid>
-      <description></description>
+      <description>毕业已经好几个月了,大家该上班的上班,该读研的读研。只有我行踪诡秘，神龙见首不见尾，让大家担心了。现在我可以说处在黎明前的黑暗中。而我这个人又比较内敛，没有成事之前有不想多说，所以对不起大家了。最近的好事不多，比较开心的是新购进了一个dell的PDA，现在我就是用这个PDA在写日志。性能不错，或者说很好，呵呵，总之我横很满意！好就没有跟大家联系了，今天跟大家问个好，希望大家工作学习顺利！</description>
     </item>
     
     <item>
@@ -1321,7 +1463,9 @@ ______________________________
       <pubDate>Sun, 27 Aug 2006 10:56:41 +0000</pubDate>
       
       <guid>http://peterz.xyz/2006/08/27/%E9%AA%97%E5%AD%90%E6%80%BB%E8%A6%81%E9%81%AD%E6%8A%A5%E5%BA%94%E7%9A%84/</guid>
-      <description>&amp;lt;hr size=&amp;quot;2&amp;quot; /&amp;gt;&amp;lt;/font&amp;gt; </description>
+      <description>我的本本用了两年多，电池不行了，想换一块。买原装的太贵，所以想换个电芯。上周六送到友通数码港三楼一家修二手笔记本的店，今天从拿回了我的笔记本电池，花了我360块大洋。回来试了一下，结果真是气死人！充满电后待机就16分钟！这个是真正放着不碰待机16分钟！我靠，这还不如不换电芯了！！还跟我说换的都是日本进口电芯！！呸！！
+我真不知道说什么好了。网上发帖要注意语言文明，不能骂人。但我真是想骂！这种人是什么东西！！做生意一点良心没有！出门给车撞死！！
+leothronton 2006-08-27</description>
     </item>
     
     <item>
@@ -1330,7 +1474,7 @@ ______________________________
       <pubDate>Thu, 23 Mar 2006 03:50:13 +0000</pubDate>
       
       <guid>http://peterz.xyz/2006/03/23/%E5%A5%BD%E4%B9%85%E6%B2%A1%E6%9D%A5%E4%BA%86/</guid>
-      <description></description>
+      <description>好久没到这个空间里来了，今天来看看。最近一段时间说忙也忙，说不忙，也不忙。哎，还是以前的老样子，堕落啊！！！马上要毕业了，突然有了一钟失落的感觉，不知道为什么。有时候突然会感觉到自己的心里空荡荡的。怅然若失！可能是我这四年的大学生活很空虚吧，没有值得回忆的东西。我这四年没有记忆！？好恐怖！在人生的旅途中，这四年，被我丢了！</description>
     </item>
     
     <item>
@@ -1348,7 +1492,12 @@ ______________________________
       <pubDate>Mon, 02 Jan 2006 16:42:02 +0000</pubDate>
       
       <guid>http://peterz.xyz/2006/01/02/%E8%AF%BE%E8%AE%BE%E6%97%B6%E6%9C%9F%E6%97%A0%E8%81%8A%E6%97%B6%E6%9C%9F/</guid>
-      <description></description>
+      <description>3个星期前恶心的考试考完了。大学时代的最后的必修课考完了。是解脱？还是失落？我不知道。我得感觉失落远远多余解脱！我的大学就这么结束了，我还没有真正的体验的大学生活结束了。
+之后的是课程设计，毫无意义的课程设计。课设的题目多年未变，以至于学长看到我们的课设时还惊奇的叫道：“你们还做这个啊！”
+不过就算是多年未变的题目，也只有少数人在做。其他的人等他们做的差不多的时候抄一下就OK了。我当然不是什么强人，我也没指望做的怎么好，能过就行了。
+在考试之前，来了一波又一波的公司到我们学校招聘。人家说我们学校是重点大学，你们学的又是这么好的专业，还愁找不到工作么？我们无语。我们是比别的专业好找工作，我们专业现在想找工作的都有工作了。下个学期再来的公司就招不到我们专业的人了。但是我们找不到什么好的工作。相对于我们专业来讲，这些工作的待遇太低。我们专业的人就两个去出一是航空公司当地勤，二是去研究所制造企业。做地勤的工资稍高一些2000～3000。但是工作太辛苦。去研究所的工资很低，正式工资一般才1200。
+现在的感觉就是工作有，这一点应该觉得高兴。但是却找不到什么好工作。要我们的专业都是国企，现在的国企，不说大家心里都清楚，在好能好到什么程度呢？
+唉～～，真是郁闷！</description>
     </item>
     
     <item>
@@ -1357,7 +1506,10 @@ ______________________________
       <pubDate>Mon, 19 Dec 2005 04:45:09 +0000</pubDate>
       
       <guid>http://peterz.xyz/2005/12/19/%E9%9A%86%E9%87%8D%E6%8E%A8%E5%87%BA%E6%88%91%E7%9A%84%E6%96%B0%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5/</guid>
-      <description></description>
+      <description>隆重推出我的新个人主页！
+http://leothronton.tengyi.cn
+http://gorilla.rocklv.net
+欢迎访问！</description>
     </item>
     
     <item>
@@ -1366,7 +1518,7 @@ ______________________________
       <pubDate>Sat, 05 Nov 2005 08:31:19 +0000</pubDate>
       
       <guid>http://peterz.xyz/2005/11/05/%E6%89%BE%E4%BB%96%E4%BB%AC%E5%8E%BB%E5%8D%87%E7%BA%A7%E6%89%8B%E6%9C%BA%E7%9C%9F%E6%98%AF%E8%87%AA%E6%89%BE%E9%BA%BB%E7%83%A6/</guid>
-      <description></description>
+      <description>一幕一样,根本就没有升级.手机里的东西都在.电话簿图片什么的都没有丢. 问那个家伙,居然说:&amp;ldquo;程序走了大半……反正程序已经走过了.&amp;rdquo; 哪有这么不负责任的!&amp;ldquo;程序走了大半&amp;quot;傻瓜都知道升级没有成功么!程序走过了,你的工作就完成了阿?我要的是升级手机,不是你给我走一遍程序!程序没结束中途停止,会不会影响我的手机还是问题呢!我还要赶紧向上帝祈祷我的手机别给他们弄坏呢! 找他们去升级手机真是自找麻烦!</description>
     </item>
     
     <item>
@@ -1384,7 +1536,22 @@ ______________________________
       <pubDate>Mon, 12 Sep 2005 11:29:00 +0000</pubDate>
       
       <guid>http://peterz.xyz/2005/09/12/%E5%8F%B0%E9%A3%8E%E6%9D%A5%E4%B8%B4%E6%97%B6%E7%9A%84%E6%80%AA%E8%AF%9E%E4%BA%8B%E4%BB%B6/</guid>
-      <description></description>
+      <description>今天台风卡努来临，一整天都挂着好大的风。上飞机结构设计的时候突然收到一条短信：“上海银联中心提醒您：你于9月11号在苏宁电器刷卡消费4800元整，我们将于结账日给与扣除，如有疑问请咨询:021-61025684&amp;rdquo;。真是莫名其妙阿，我什么时候跑到上海苏宁电器刷卡消费了阿。而且就是昨天，那更不可能了阿！自从开学我就没有离开过南京阿，我什么时候跑到上海去了阿？！ 这个事感觉越来越不对了！ 一下课，我赶紧给那个咨询台打电话。接电话的是个女的，普通话不怎么滴。一听就知道不是上海人，我跟她说我昨天没有去过上海，更没有到什么苏宁电器刷卡消费过。她说不可能，让我把身份证号码的最后六位报给她，她帮我查一下。 等待。。。。 “您确实昨天到上海苏宁电器刷卡消费4800元整。每次消费之后我们银行的系统都会自动给您发短信的。” 啊~~~ 这回我真的傻X了。这个怎么回事啊？我赶紧跟她解释说我没有去过上海，也没有刷卡消费过。 “那有可能是别人冒用了您的身份办理了银行卡，然后刷卡消费。而且您的这张卡是9月11日当天办理，当天刷卡消费的。” 我更傻Ｘ了………… “那我该怎么办呢？我确实没有到上海消费过！” “别人冒用你的身份办理银行卡消费这个已经属于严重金融犯罪，由此发生的一切后果要您自己承担。知道吗？”
+“…………”
+“你可以给上海金融犯罪调查科打电话以受害者的身份报案，电话我给你去查一下。”
+谢天谢地………… 等待………… 靠！电话怎么断了！再打，不通。再打！终于通了。 “您好，X先生。电话怎么断了阿？这是上海金融犯罪调查科的电话，您可以打电话向他们报案。021-61027162”
+“好，谢谢你啊！” “没关系，很高兴能为你服务！”
+赶紧给那个什么犯罪调查科打电话…… “喂，你好，是上海金融犯罪调查科吗？我要报案。” “是，你把情况说一下。” “我上午收到一条短信………………。” “你是用什么卡，在那家店消费的？” “阿？这个我不太清楚” “你在打电话到银行问问清楚。” “阿？哦。”
+“喂，你好。是X先生吗？（她倒知道是我啊）” “是，我请问一下那张卡是那个银行的卡，在哪里消费的？” “是建设银行的借记卡，是可以透支的，在上海苏宁电器刷卡消费4800元。” “哦。哪一家苏宁阿？” “上海苏宁电器阿。” “上海就一家苏宁电器阿？”（不会吧） “您赶紧打电话给上海金融犯罪调查科吧。” “ 好，再见”
+“你好，我就是刚才那位。那张卡是建设银行的借记卡，到上海苏宁电器刷卡消费4800元。” “好，我们先给您备个案。请问你的姓名和身份证号码。” “…………” “我给您说，现在我们先到银行去查一下，看有没有这个事。如果有，我们会给您处理。如果你谎报的话，后果可是很严重的！” “好好，谢谢”
+到此为止，事情算告一段落。不过现在想想事情怎么总感觉不对呢！
+上网查一下！我算是个网虫，什么事都喜欢上网查一下。结果是，根本没有找到什么“上海金融犯罪调查科”！倒是找到一些利用短信诈骗的文章，跟我的情况很相似！！ faint！难道我上当了？ 仔细想想，确实疑点挺多的。 第一，既然是银行的系统自动给我发的短信，怎么是个普通的手机号码？不想其他的服务商，要么是8888，要么是6666之类的？而是13626094112！（ 经我查证这是个福建泉州的号码！） 第二，口音。咨询台一般都选声音甜美，普通话讲得好的。可是这个咨询台的那位小姐口音很重，普通话讲得很糟糕！还有就是那个“上海金融犯罪调查科”人口音和咨询台小姐的口音很像，应该都是福建的口音。肯定不是上海人！（我是苏州人，这点绝对不会听错） 第三，银行卡。既然是建设银行的借记卡，怎么能透支呢？借记卡里要留10块钱的吧！ 第四，电话号码。咨询台的电话是021-61025684；而“上海金融犯罪调查科”的电话是021-61027162。真的这么巧？“上海金融犯罪调查科”和那个咨询台在一个地方？
+第五，上海怎么会只有一个苏宁电器？南京苏州都不止一家，何况上海！
+上网查证： 1。没有“上海金融犯罪调查科”。 2。发短信的那个号码是福建泉州的号码。上海的银行怎么会用福建的号码呢！那两个接电话的人听口音倒像是福建人！ 更重要的是找到几篇文章，跟我情况类似。跟令我惊奇的是一篇文章中提到的电话号码和我见到的号码是一样的！摘录如下：“对方称为防止信用卡被盗用，需与“上海市公安局金融犯罪调查科”联系。李即按对方告知的电话号码021－6102＊＊＊＊与“调查科”一名自称姓刘的“科长”进行联系。” 文章的地址：http://news.sohu.com/20050812/n226647862.shtml http://www.findlaw.cn/lawnews/hotcase/125706972.htm
+看来我是真的上当了。啊！！我怎么把我的身份证号码和手机号码告诉他了。要是他用我的ID干了坏事我不就要倒霉了阿！faint！！
+赶紧报案，这回不管什么“上海金融犯罪调查科”了，直接打110！ 接警的女警官问清了原委以后只要我留了姓名和手机号，根本没有要身份证号码！
+同志们以后要当心啊！注意这两个号码021-61025684；021-61027162。别再上当了！
+啊~~~~ 我的身份证号码和手机号~~~~~</description>
     </item>
     
     <item>
@@ -1402,7 +1569,19 @@ ______________________________
       <pubDate>Thu, 01 Sep 2005 11:19:26 +0000</pubDate>
       
       <guid>http://peterz.xyz/2005/09/01/qq%E5%85%8D%E8%B4%B9%E6%8C%82%E6%9C%BA%E7%BD%91%E7%AB%99%E5%A4%A7%E6%90%9C%E6%8D%95/</guid>
-      <description></description>
+      <description>1、http://bbs.wyyfk.com/ 这是QQ也疯狂，大家都知道的，不多说了。 挂机方式：要下载客户端软件。
+2、http://www.qqbean.com/ 豆豆挂机，一个号只能免费挂100小时，很容易挂上，但这几天上不了，也没说什么时候收费。 挂机方式：要下载客户端软件。
+3、http://www.qq-zone.com/ zone挂机，目前免费中，我挂的最多的地方。也很稳。 挂机方式：网页上。不用下载客户端软件。
+4、http://qqjqr.3322.org:8080/hangmachine/ 机器人挂机网站，我挂了三个号，今天系统在维护，进不了，但是号没掉，奇怪。 挂机方式：网页上。不用下载客户端软件。
+5、http://www.7-qq.com/ QQ挂机王，新用户号可免费挂5天，不过很难挂上，不知是不是不免费了，曾挂上过一个号。 挂机方式：网页上。不用下载客户端软件。
+6、http://qq1.ng-angel.com/ 这是QQ天使，不用介绍了吧，大家都知道的。已开始收费了。不过新号还是可以免费挂一天，不过我试过几次，好像是二天。 挂机方式：网页上。不用下载客户端软件。
+7、http://www.agqq.com/
+8、 http://www.schoolhacker.com/qq/ 校园黑客联盟
+9 、http://www.ketle.net/qq/
+10 、http://www.cobenet.com/
+11、 http://www.focusme.cn/(有的时候上不去,但是确实存在,我经常在这里挂)
+12、.http://www.91sun.com/ (射日网挂机，网页上可以挂）
+13、.http://www.qqjoy.com/</description>
     </item>
     
     <item>
@@ -1411,7 +1590,15 @@ ______________________________
       <pubDate>Thu, 01 Sep 2005 11:18:03 +0000</pubDate>
       
       <guid>http://peterz.xyz/2005/09/01/%E5%88%A9%E7%94%A8qq%E6%BC%8F%E6%B4%9E%E5%BB%BA%E7%AB%8B4%E4%B8%AA%E4%BC%81%E4%B8%9A%E7%BA%A7qq%E7%BE%A4/</guid>
-      <description></description>
+      <description>可以加入100名成员，而且无级别限制。首先保证你的 qq版本是2005beta1 及以上的版本。 看操作。。。。我用另外一个QQ演示(55618670)。。。。在qq的主面板上有“个人帐号”图标（就 是3个硬币），单击那个图标，在打开的窗口中右击－－－属性。请记住， “clientkey＝”后面的那一传数字，（每个号码对应不同的验证码） 然后打开记事本，把这个网址 复制到记事本中进行修改 把&amp;quot;uin=&amp;quot;后面的数字改成你的qq号码，“signature＝”后面是我让你记住的 那个验证码，改完后保存，复制到地址栏，打开那个网址，在那里 就可以随 便注册了，资料可以随便填写。来看。。。。。
+11939402 10460337
+作者：[BTK]P)isT(oD 清风尐浪子 QQ:9960662
+现在！！有人发现了一个秘笈。可以使普通会员就享受到接近会员级别的服务－－建立属于自己的QQ群组！！
+第一步：进入 http://school.qq.com/
+第二步：输入你的ＱＱ号码和密码，登陆上去．
+第三步：在下面查找一个学校，条件随便
+第四步：在＂学校列表＂中选一个
+第五步：在页面中间有一个＂如果确认您的班级没有出现在以下列表中，然后点＂创建＂，马上你就开了一个会员才可以开的固定群了！！开QQ，系统会提示你加入了一个群，而且你是管理员哦！！！</description>
     </item>
     
     <item>
@@ -1420,7 +1607,7 @@ ______________________________
       <pubDate>Mon, 20 Jun 2005 08:18:27 +0000</pubDate>
       
       <guid>http://peterz.xyz/2005/06/20/%E8%80%83%E8%AF%95%E4%BA%86%E8%87%AA%E5%B7%B1%E9%A1%B6%E4%B8%80%E6%8A%8A%E5%98%BB%E5%98%BB/</guid>
-      <description></description>
+      <description>支持支持支持支持支持支持支持支持支持支持支持支持█████████支持支持 支持支持支持支持支持支持支持支持支持███████████████支持支持 支持支持支持支持支持支持支持无██████████████████支持支持 支持支持支持支持支持无████████████████支持支持支持支持支持 支持支持支持支持███████无███支持█████支持支持支持支持支持无 支持无████████████支持支持支持████支持支持支持支持支持支持 无██████████████支持支持支持████支持支持支持支持支持支持 无████████████支持支持支持无███████████支持支持支持 无████████████支持支持支持██████████████支持支持 支持██████████支持支持无██████支持无███████支持支持 支持支持支持支持████支持支持无████支持支持支持█████支持支持无 支持支持支持支持████支持支持████支持██支持无█████支持支持无 支持支持支持支持████支持支持████支持████无█████支持支持无 支持支持支持支持████支持支持████支持████无█████支持支持无 支持支持支持支持████支持支持████支持███支持█████支持支持无 支持支持支持支持████支持支持████支持███支持█████支持支持无 支持支持支持支持████支持支持████无████支持█████支持支持无 支持支持支持支持████支持支持████无████支持█████支持支持无 支持支持支持支持████支持支持████无████支持█████支持支持无 支持支持支持支持████支持支持████无████支持█████支持支持无 支持支持支持支持████支持支持███支持████支持█████支持支持无 支持██支持无█████支持支持███支持███支持无█████支持支持无 支持██████████支持支持无██支持██支持支持█████支持支持无 支持无█████████支持支持支持支持███支持支持无████支持支持无 支持支持无███████支持支持支持支持███无████支持支持支持支持无 支持支持支持██████支持支持支持无████支持█████支持支持支持无 支持支持支持支持无███支持支持支持█████支持无███████支持支持 支持支持支持支持支持支持支持支持██████支持支持无██████支持支持 支持支持支持支持支持支持支持无██████支持支持支持███████支持无 支持支持支持支持支持支持支持█████支持支持支持支持无██████支持无 支持支持支持支持支持支持无█████支持支持支持支持支持无████支持支持 支持支持支持支持支持支持███支持支持支持支持支持支持支持无███支持支持</description>
     </item>
     
     <item>
@@ -1429,16 +1616,8 @@ ______________________________
       <pubDate>Thu, 16 Jun 2005 05:08:35 +0000</pubDate>
       
       <guid>http://peterz.xyz/2005/06/16/qq%E4%B9%9F%E7%96%AF%E7%8B%82/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>惨绝人寰！看了之后终生难忘啊！</title>
-      <link>http://peterz.xyz/2005/06/10/%E6%83%A8%E7%BB%9D%E4%BA%BA%E5%AF%B0%E7%9C%8B%E4%BA%86%E4%B9%8B%E5%90%8E%E7%BB%88%E7%94%9F%E9%9A%BE%E5%BF%98%E5%95%8A/</link>
-      <pubDate>Fri, 10 Jun 2005 09:13:49 +0000</pubDate>
-      
-      <guid>http://peterz.xyz/2005/06/10/%E6%83%A8%E7%BB%9D%E4%BA%BA%E5%AF%B0%E7%9C%8B%E4%BA%86%E4%B9%8B%E5%90%8E%E7%BB%88%E7%94%9F%E9%9A%BE%E5%BF%98%E5%95%8A/</guid>
-      <description></description>
+      <description>这几天突然流行挂QQ。我也凑凑热闹，也挂上了。用QQ也疯狂挂在别人的服务器上。可以挂一天，呵呵。当然也有付费的，估计可以挂很长时间。
+听说QQ挂等级时日本人想出来的，为的是浪费你中国人的电。不知道是不是真的。</description>
     </item>
     
     <item>

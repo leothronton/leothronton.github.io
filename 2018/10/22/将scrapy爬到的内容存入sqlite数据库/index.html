@@ -84,55 +84,88 @@
         <div class="post-content">
             <p>这个方法需要手动创建数据库文件并将表建立好，否则程序运行会出错。</p>
 <p><a href="http://settings.py">settings.py</a></p>
-<pre><code># sqlite 配置
-SQLITE_DB_NAME = 'Data.db'                      #数据库名称
-SQLITE_TABLE_NAME = 'table'                     #表名称
-ITEM_PIPELINES={
-     'dirName.pipelines.Sqlite3Pipeline': 400,
-    }
-</code></pre>
-<p><a href="http://pipelines.py">pipelines.py</a></p>
-<pre><code>import sqlite3
-
-class Sqlite3Pipeline(object):
-
-    def __init__(self, sqlite_file, sqlite_table):
-        self.sqlite_file = sqlite_file
-        self.sqlite_table = sqlite_table
-        
-    @classmethod
-    def from_crawler(cls, crawler):
-        return cls(
-            sqlite_file = crawler.settings.get('SQLITE_DB_NAME'), # 从 settings.py 提取
-            sqlite_table = crawler.settings.get('SQLITE_TABLE_NAME', 'items')
-        )
-
-    def open_spider(self, spider):
-        self.conn = sqlite3.connect(self.sqlite_file)
-        self.cur = self.conn.cursor()
-
-    def close_spider(self, spider):
-        self.conn.close()
-
-    def process_item(self, item, spider):
-
-        values = (
-        item['A'],
-        item['B'],
-        item['C'],
-        item['D'],
-        item['E']
-        )
-        
-        sql = 'INSERT INTO proxy VALUES (?,?,?,?,?)'    #注意插入的数据个数
-        self.cur.execute(sql, values)
-        self.conn.commit()
-        
-        return item        
-</code></pre>
-<p> </p>
-<p> </p>
-
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic"># sqlite 配置</span>
+SQLITE_DB_NAME <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14"></span><span style="color:#d14">&#39;</span><span style="color:#d14">Data.db</span><span style="color:#d14">&#39;</span>                      <span style="color:#998;font-style:italic">#数据库名称</span>
+SQLITE_TABLE_NAME <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14"></span><span style="color:#d14">&#39;</span><span style="color:#d14">table</span><span style="color:#d14">&#39;</span>                     <span style="color:#998;font-style:italic">#表名称</span>
+ITEM_PIPELINES<span style="color:#000;font-weight:bold">=</span>{
+    <span style="color:#d14"></span><span style="color:#d14">&#39;</span><span style="color:#d14">dirName.pipelines.Sqlite3Pipeline</span><span style="color:#d14">&#39;</span>: <span style="color:#099">400</span>,
+}
+</code></pre></td></tr></table>
+</div>
+</div><p><a href="http://pipelines.py">pipelines.py</a></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">sqlite3</span>
+    <span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">Sqlite3Pipeline</span>(<span style="color:#0086b3">object</span>):
+        <span style="color:#000;font-weight:bold">def</span> __init__(<span style="color:#999">self</span>, sqlite_file, sqlite_table):
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>sqlite_file <span style="color:#000;font-weight:bold">=</span> sqlite_file
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>sqlite_table <span style="color:#000;font-weight:bold">=</span> sqlite_table
+        <span style="color:#3c5d5d;font-weight:bold">@classmethod</span>
+        <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">from_crawler</span>(<span style="color:#999">cls</span>, crawler):
+            <span style="color:#000;font-weight:bold">return</span> <span style="color:#999">cls</span>(
+                sqlite_file <span style="color:#000;font-weight:bold">=</span> crawler<span style="color:#000;font-weight:bold">.</span>settings<span style="color:#000;font-weight:bold">.</span>get(<span style="color:#d14"></span><span style="color:#d14">&#39;</span><span style="color:#d14">SQLITE_DB_NAME</span><span style="color:#d14">&#39;</span>), <span style="color:#998;font-style:italic"># 从 settings.py 提取</span>
+                sqlite_table <span style="color:#000;font-weight:bold">=</span> crawler<span style="color:#000;font-weight:bold">.</span>settings<span style="color:#000;font-weight:bold">.</span>get(<span style="color:#d14"></span><span style="color:#d14">&#39;</span><span style="color:#d14">SQLITE_TABLE_NAME</span><span style="color:#d14">&#39;</span>, <span style="color:#d14"></span><span style="color:#d14">&#39;</span><span style="color:#d14">items</span><span style="color:#d14">&#39;</span>)
+            )
+        <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">open_spider</span>(<span style="color:#999">self</span>, spider):
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>conn <span style="color:#000;font-weight:bold">=</span> sqlite3<span style="color:#000;font-weight:bold">.</span>connect(<span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>sqlite_file)
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>cur <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>conn<span style="color:#000;font-weight:bold">.</span>cursor()
+        <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">close_spider</span>(<span style="color:#999">self</span>, spider):
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>conn<span style="color:#000;font-weight:bold">.</span>close()
+        <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">process_item</span>(<span style="color:#999">self</span>, item, spider):
+            values <span style="color:#000;font-weight:bold">=</span> (
+            item[<span style="color:#d14"></span><span style="color:#d14">&#39;</span><span style="color:#d14">A</span><span style="color:#d14">&#39;</span>],
+            item[<span style="color:#d14"></span><span style="color:#d14">&#39;</span><span style="color:#d14">B</span><span style="color:#d14">&#39;</span>],
+            item[<span style="color:#d14"></span><span style="color:#d14">&#39;</span><span style="color:#d14">C</span><span style="color:#d14">&#39;</span>],
+            item[<span style="color:#d14"></span><span style="color:#d14">&#39;</span><span style="color:#d14">D</span><span style="color:#d14">&#39;</span>],
+            item[<span style="color:#d14"></span><span style="color:#d14">&#39;</span><span style="color:#d14">E</span><span style="color:#d14">&#39;</span>]
+            )
+            sql <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14"></span><span style="color:#d14">&#39;</span><span style="color:#d14">INSERT INTO proxy VALUES (?,?,?,?,?)</span><span style="color:#d14">&#39;</span>    <span style="color:#998;font-style:italic">#注意插入的数据个数</span>
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>cur<span style="color:#000;font-weight:bold">.</span>execute(sql, values)
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>conn<span style="color:#000;font-weight:bold">.</span>commit()
+            <span style="color:#000;font-weight:bold">return</span> item        
+</code></pre></td></tr></table>
+</div>
+</div>
         </div>
 
         
@@ -229,7 +262,7 @@ class Sqlite3Pipeline(object):
     
     <li><a href="http://peterz.xyz/categories/%E6%94%B6%E9%9B%86/">收集 (3)</a></li>
     
-    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (122)</a></li>
+    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (121)</a></li>
     
     <li><a href="http://peterz.xyz/categories/%E7%88%AC%E8%99%AB/">爬虫 (4)</a></li>
     

@@ -84,7 +84,7 @@
         <div class="post-content">
             <p>寻找一个最大的为两个3位数乘积的回文。</p>
 <p>回文就是正着念，反着念相同的数或单词，如 9009 = 91×99。</p>
-<p>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong></p>
+<hr>
 <div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -136,53 +136,43 @@ product<span style="color:#000;font-weight:bold">=</span><span style="color:#099
 	<span style="color:#000;font-weight:bold">if</span> flag<span style="color:#000;font-weight:bold">==</span><span style="color:#999">True</span> <span style="color:#000;font-weight:bold">or</span> palindrome<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#099">0</span>: 
 		<span style="color:#000;font-weight:bold">break</span>
 <span style="color:#000;font-weight:bold">print</span>(<span style="color:#d14"></span><span style="color:#d14">&#34;</span><span style="color:#d14">{0:5f}s</span><span style="color:#d14">&#34;</span><span style="color:#000;font-weight:bold">.</span>format(clock()<span style="color:#000;font-weight:bold">-</span>start))
-    
+
 </code></pre></td></tr></table>
 </div>
-</div><p>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_____</p>
+</div><hr>
 <p>这段代码执行结果大约需要0.057S。看了一下给出的答案，代码还可以优化一下。</p>
 <p>关键在此处：</p>
 <p>palindrome=100000*a[0]+10000*a[1]+1000*a[2]+100*a[2]+10*a[1]+a[0]</p>
 <p>palindrome=100001*a[0]+10010*a[1]+1100*a[2]</p>
 <p>palindrome=11（9091*a[0]+910*a[1]+100*a[2]）</p>
 <p>经过这个变化可以知道一个因数肯定是11的倍数。因此不需要在循环中一个一个试了。一个因数为11*j，并且j&lt;91，因为当j大于等于91时，11*j&gt;1000，不符合题目要求。</p>
-<p>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_____</p>
+<hr>
 <p>优化代码：</p>
-<pre><code>j=90
-
-
-
-while j&gt;0:
-
-
-
-    product=j*11
-
-
-
-    if palindrome/product&lt;1000 and palindrome%product==0:
-
-
-
-        print(product)
-
-
-
-        print(&amp;#8220;the answer is {0}={1}×{2}&amp;#8221;.format(palindrome,product,int(palindrome/product)))
-
-
-
-        flag=True
-
-
-
-        break
-
-
-
-    j=j-1
-</code></pre>
-<p>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_<strong>_</strong>_____</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">j<span style="color:#000;font-weight:bold">=</span><span style="color:#099">90</span>
+<span style="color:#000;font-weight:bold">while</span> j<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#099">0</span>:
+	product<span style="color:#000;font-weight:bold">=</span>j<span style="color:#000;font-weight:bold">*</span><span style="color:#099">11</span>
+	<span style="color:#000;font-weight:bold">if</span> palindrome<span style="color:#000;font-weight:bold">/</span>product<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#099">1000</span> <span style="color:#000;font-weight:bold">and</span> palindrome<span style="color:#000;font-weight:bold">%</span>product<span style="color:#000;font-weight:bold">==</span><span style="color:#099">0</span>:
+		<span style="color:#000;font-weight:bold">print</span>(product)
+		<span style="color:#000;font-weight:bold">print</span>(<span style="color:#d14"></span><span style="color:#d14">&#34;</span><span style="color:#d14">the answer is {0}={1}×{2}</span><span style="color:#d14">&#34;</span><span style="color:#000;font-weight:bold">.</span>format(palindrome,product,<span style="color:#0086b3">int</span>(palindrome<span style="color:#000;font-weight:bold">/</span>product)))
+		flag<span style="color:#000;font-weight:bold">=</span><span style="color:#999">True</span>
+		<span style="color:#000;font-weight:bold">break</span>
+	j<span style="color:#000;font-weight:bold">=</span>j<span style="color:#000;font-weight:bold">-</span><span style="color:#099">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
 <p>这段代码执行时间只需要0.0065s左右。</p>
 
         </div>
@@ -281,7 +271,7 @@ while j&gt;0:
     
     <li><a href="http://peterz.xyz/categories/%E6%94%B6%E9%9B%86/">收集 (3)</a></li>
     
-    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (122)</a></li>
+    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (121)</a></li>
     
     <li><a href="http://peterz.xyz/categories/%E7%88%AC%E8%99%AB/">爬虫 (4)</a></li>
     

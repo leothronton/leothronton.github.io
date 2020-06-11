@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>[转贴] Ubuntu下VPN翻墙 | 槑烎</title>
+    <meta property="og:title" content="[转贴] Ubuntu下VPN翻墙 - 槑烎">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2009-07-30T16:30:05&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2009-07-30T16:30:05&#43;08:00'>
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="[转贴] Ubuntu下VPN翻墙">
+        <meta name="author" content="leo_thronton">
+        
+    <meta property="og:url" content="http://peterz.xyz/2009/07/30/%E8%BD%AC%E8%B4%B4-ubuntu%E4%B8%8Bvpn%E7%BF%BB%E5%A2%99/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://peterz.xyz/">
+                        槑烎
+                    </a>
+                
+                <p class="description">1,2,∞</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://peterz.xyz/">首页</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">[转贴] Ubuntu下VPN翻墙</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2009年7月30日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a></span>
+            
+        </div>
+        
+        
+        
+        <div class="post-content">
+            <p>一直一来及埃夫达不溜真是让人头疼，把偶经常光顾的网站都封的差不多了，试了不少“梯子”，都没有成功，无奈之下一直用代理网站，不过今天终于找到了一较完美的解决方法，拿出来分享一下</p>
+<p>在众多的梯子中，VPN和SSH无疑是效率最高的。Linkideo提供的VPN不再免费后，UltraVPN无疑是一个很好的替代品。
+UltraVPN提供的VPN服务基于开源的OpenVPN，网站为Windows和Mac编译好了安装包，我们只需在UltraVPN的网站上注册一个帐号，安装好下载来的程序，无需设置，马上可以享受穿墙而过的快感。但是ultravpn并没有为linux用户提供这样的方便，linux需要自己下载OpenVPN的源码编译安装。不过Ubuntu的用户不用那么麻烦，搞掂UltraVPN只需如下几步：</p>
+<ol>
+<li>注册帐号。
+到这里输入帐号、密码，帐号立马到手。邮箱是可选项，用于找回密码。</li>
+<li>获取ca证书和帐号配置文件。这一步有二个渠道完成。
+2.1 借助Windows或Mac的机器安装好UltraVPN之后，复制软件安装路径中config目录下的ca.crt、client.ovpn和stealthy connect.ovpn三个文件。
+2.2 下载偶为大家准备的ca.crt、client.ovpn、stealthy connect.ovpn.</li>
+<li>安装OpenVPN。
+$ sudo apt-get install network-manager-openvpn4. 建立VPN连接。这一步也有两种方式完成。
+4.1 导入式。右键点击网络连
+接图标，选择“Edit
+Connections…”，切换标签到“VPN”，点“Import“，选择第2步获取的client.ovpn文件（也可以选择stealthy
+connect.ovpn文件，用于创建安全连接），在弹出的编辑界面中填好第1 步注册的用户名、密码，”CA
+Certificate”选择第2步获取的”ca.crt”文件，点”Apply”完成。
+4.2 输入式。右键点击网络连接图标，选择“Edit
+Connections…”，切换标签到“VPN”，点“Add“创建连接。在弹出的“Chose a VPN Connection
+Type”界面中选择“OpenVPN”，
+点“Create“，进入连接编辑页面。“Gateway“填“servers443.ultravpn.net”，“Type”选“Password
+“，接下来填用户名、密码、选“ca.crt“，点”Apply”完成。</li>
+<li>连接VPN。左键点击网络连接图标，在“VPN Connections“中选择第3步创建的连接，就可直通巴黎了。如果在第五步时遇到“no
+valid vpn secrets“的提示，那意味着你安装的network-manager-openvpn版本有Bug，解决方法如下：
+$ sudo gedit /etc/apt/sources.list在文件后面加入以下两行：
+deb <a href="http://ppa.launchpad.net/network-manager/ppa/ubuntu">http://ppa.launchpad.net/network-manager/ppa/ubuntu</a> &lt;你的系统版本代号&gt; main deb-src <a href="http://ppa.launchpad.net/network-manager/ppa/ubuntu">http://ppa.launchpad.net/network-manager/ppa/ubuntu</a> &lt;你的系统版本代号&gt; main然后接着执行命令：
+$ sudo apt-get update $ sudo apt-get dist-upgrade如果提示没有秘钥,执行命令：
+$ gpg –keyserver keyserver.ubuntu.com –recv-keys 248DD1EEBC8EBFE8 $ gpg –export -a 248DD1EEBC8EBFE8|sudo apt-key add –</li>
+</ol>
+
+        </div>
+
+        
+
+
+        
+
+
+        <div class="post-meta meta-tags">
+            
+            没有标签
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='//www.google.com/search' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://peterz.xyz/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://peterz.xyz/2020/01/21/frp%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" title="FRP安装记录">FRP安装记录</a>
+    </li>
+    
+    <li>
+        <a href="http://peterz.xyz/2019/05/06/typora%E4%B8%AD%E6%96%87%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" title="Typora中文主题安装记录">Typora中文主题安装记录</a>
+    </li>
+    
+    <li>
+        <a href="http://peterz.xyz/2019/05/05/vs-code-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" title="VS Code 安装记录">VS Code 安装记录</a>
+    </li>
+    
+    <li>
+        <a href="http://peterz.xyz/2019/04/09/%E5%9F%BA%E4%BA%8Eubuntu%E6%90%AD%E5%BB%BAftp%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="基于Ubuntu搭建FTP文件服务器">基于Ubuntu搭建FTP文件服务器</a>
+    </li>
+    
+    <li>
+        <a href="http://peterz.xyz/2019/03/05/%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E5%AE%B6%E9%87%8C%E7%94%B5%E8%84%91%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95/" title="远程访问家里电脑文件的方法">远程访问家里电脑文件的方法</a>
+    </li>
+    
+    <li>
+        <a href="http://peterz.xyz/2018/11/20/scrapy-shell%E5%90%AF%E5%8A%A8ipython/" title="Scrapy shell启动IPython">Scrapy shell启动IPython</a>
+    </li>
+    
+    <li>
+        <a href="http://peterz.xyz/2018/10/30/win10%E4%B8%8B%E5%AE%89%E8%A3%85splash/" title="win10下安装splash">win10下安装splash</a>
+    </li>
+    
+    <li>
+        <a href="http://peterz.xyz/2018/10/24/%E5%9C%A8scrapy%E4%BD%BF%E7%94%A8splash%E7%88%AC%E5%8F%96%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2-3/" title="在Scrapy使用splash爬取动态页面">在Scrapy使用splash爬取动态页面</a>
+    </li>
+    
+    <li>
+        <a href="http://peterz.xyz/2018/10/24/%E5%AE%89%E8%A3%85scrapy/" title="安装scrapy">安装scrapy</a>
+    </li>
+    
+    <li>
+        <a href="http://peterz.xyz/2018/10/22/%E5%B0%86scrapy%E7%88%AC%E5%88%B0%E7%9A%84%E5%86%85%E5%AE%B9%E5%AD%98%E5%85%A5sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" title="将scrapy爬到的内容存入sqlite数据库">将scrapy爬到的内容存入sqlite数据库</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://peterz.xyz/categories/project-euler/">Project Euler (2)</a></li>
+    
+    <li><a href="http://peterz.xyz/categories/ubuntu/">ubuntu (7)</a></li>
+    
+    <li><a href="http://peterz.xyz/categories/%E4%B8%9C%E6%8B%89%E8%A5%BF%E6%89%AF/">东拉西扯 (2)</a></li>
+    
+    <li><a href="http://peterz.xyz/categories/%E6%88%91%E7%9A%84/">我的 (3)</a></li>
+    
+    <li><a href="http://peterz.xyz/categories/%E6%94%B6%E9%9B%86/">收集 (3)</a></li>
+    
+    <li><a href="http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">未分类 (121)</a></li>
+    
+    <li><a href="http://peterz.xyz/categories/%E7%88%AC%E8%99%AB/">爬虫 (4)</a></li>
+    
+    <li><a href="http://peterz.xyz/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-internet/">计算机与 Internet (9)</a></li>
+    
+    <li><a href="http://peterz.xyz/categories/%E8%B4%B4%E8%B4%B4%E8%B4%B4/">贴贴贴 (1)</a></li>
+    
+    <li><a href="http://peterz.xyz/categories/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/">随便写写 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://peterz.xyz/tags/like/">like</a>
+    
+    <a href="http://peterz.xyz/tags/microsoft/">Microsoft</a>
+    
+    <a href="http://peterz.xyz/tags/system/">system</a>
+    
+    <a href="http://peterz.xyz/tags/technical/">technical</a>
+    
+    <a href="http://peterz.xyz/tags/windows/">Windows</a>
+    
+    <a href="http://peterz.xyz/tags/%E5%8F%8C%E5%88%83%E5%89%91/">双刃剑</a>
+    
+    <a href="http://peterz.xyz/tags/%E5%BE%AE%E9%80%9F%E6%91%84%E5%BD%B1/">微速摄影</a>
+    
+    <a href="http://peterz.xyz/tags/%E6%85%A2%E9%80%9F%E6%91%84%E5%BD%B1/">慢速摄影</a>
+    
+    <a href="http://peterz.xyz/tags/%E6%88%90%E5%8A%9F/">成功</a>
+    
+    <a href="http://peterz.xyz/tags/%E6%96%87%E4%BB%B6%E5%A4%B9/">文件夹</a>
+    
+    <a href="http://peterz.xyz/tags/%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1/">无线网卡</a>
+    
+    <a href="http://peterz.xyz/tags/%E7%AC%94%E8%AE%B0%E6%9C%AC/">笔记本</a>
+    
+    <a href="http://peterz.xyz/tags/%E8%A7%86%E9%A2%91/">视频</a>
+    
+    <a href="http://peterz.xyz/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">解决方法</a>
+    
+</div>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://peterz.xyz/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://peterz.xyz/">槑烎 By 槑烎</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+
+
+
+</body>
+
+</html>

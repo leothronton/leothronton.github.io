@@ -3,27 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://peterz.xyz/categories/</loc>
+    <lastmod>2020-06-11T12:24:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://peterz.xyz/2020/06/11/found_links3/</loc>
+    <lastmod>2020-06-11T12:24:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://peterz.xyz/posts/</loc>
+    <lastmod>2020-06-11T12:24:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://peterz.xyz/categories/quant/</loc>
+    <lastmod>2020-06-11T12:24:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://peterz.xyz/</loc>
+    <lastmod>2020-06-11T12:24:36+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://peterz.xyz/sample-page/</loc>
     <lastmod>2020-04-20T00:55:57+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://peterz.xyz/</loc>
-    <lastmod>2020-04-20T00:55:57+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://peterz.xyz/categories/</loc>
-    <lastmod>2020-01-21T02:01:42+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://peterz.xyz/2020/01/21/frp%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2020-01-21T02:01:42+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://peterz.xyz/posts/</loc>
     <lastmod>2020-01-21T02:01:42+00:00</lastmod>
   </url>
   

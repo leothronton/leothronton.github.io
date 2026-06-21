@@ -65,7 +65,131 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://peterz.xyz/2011/11/16/%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E%E5%AF%93%E6%84%8F%E6%B7%B1%E9%82%83-%E5%8F%B2%E8%92%82%E5%A4%AB%E4%B9%94%E5%B8%83%E6%96%AF%E7%8E%B0%E8%BA%AB%E8%AF%B4%E6%B3%95/" title="朴实无华、寓意深邃—史蒂夫·乔布斯“现身说法”留给世人的经典演讲 … …">朴实无华、寓意深邃—史蒂夫·乔布斯“现身说法”留给世人的经典演讲 … …</a>
+                <a href="http://peterz.xyz/2011/11/16/64%E4%BD%8Dmatlab-mex64%E4%BD%8D%E7%BC%96%E8%AF%91%E5%99%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="64位matlab mex64位编译器解决方案">64位matlab mex64位编译器解决方案</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2011年11月16日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://peterz.xyz/categories/%E6%94%B6%E9%9B%86'>收集</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>      &lt;p&gt;
+        The support for Microsoft Visual Studio 2008 Express Edition to create MEX files has been added in MATLAB 7.7 (R2008b). On 64-bit Windows, Visual Studio 2008 Express Edition support requires you to install some optional components as detailed below. Note that in some cases, the configuration steps described below are known to work with MATLAB 7.8 (R2009a), MATLAB 7.9 (R2009b) and MATLAB 7.10 (R2010a) as well.
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        When using 64-bit MATLAB on 64-bit Windows, you must use a 64-bit compiler to build MEX-files, MATLAB Compiler &amp; Builder components, Simulink S-functions, RTW models, etc. The full list of supported products is available at:
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        &lt;a href=&quot;http://www.mathworks.com/support/compilers/current_release/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;http://www.mathworks.com/support/compilers/current_release/&lt;/a&gt;
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        The default installation of Visual Studio 2008 Express is only capable of building 32-bit binaries, and will not work with MATLAB.
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        In order to build 64-bit binaries, the &amp;#8220;x64 Compilers and Tools&amp;#8221; and Microsoft Windows Software Development Kit (SDK) must both be installed. The x64 Compilers and Tools are not installed by default.
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        Without these packages, Visual Studio can build simple C/C++ applications as 32-bit binaries &amp;#8212; &amp;#8220;Hello World&amp;#8221; type programs compile and execute as expected. However, Visual Studio cannot build the 64-bit binaries MATLAB requires.
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        To install Visual Studio 2008 Express Edition with all required components:&lt;br /&gt; 1. Install Microsoft Visual Studio 2008 Express Edition. The main Visual Studio 2008 Express installer is available from (the C++ installer name is vcsetup.exe):
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        &lt;a href=&quot;http://www.microsoft.com/downloads/details.aspx?&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;http://www.microsoft.com/downloads/details.aspx?&lt;/a&gt;&lt;br /&gt; displaylang=en&amp;FamilyID=a22341ee-21db-43aa-8431-40be78461ee0
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        This package can be installed using the default options.
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        2. Install the Microsoft Windows SDK. The Microsoft Windows SDK is available by searching Microsoft&amp;#8217;s download site, or by going directly to:&lt;br /&gt; &lt;a href=&quot;http://msdn.microsoft.com/en-us/windowsserver/bb980924.aspx&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;http://msdn.microsoft.com/en-us/windowsserver/bb980924.aspx&lt;/a&gt;&lt;br /&gt; or&lt;br /&gt; &lt;a href=&quot;http://www.microsoft.com/downloads/details.aspx?FamilyId=F26B1AA4-741A-433A-9BE5-FA919850BDBF&amp;displaylang=en&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;http://www.microsoft.com/downloads/details.aspx?FamilyId=F26B1AA4-741A-433A-9BE5-FA919850BDBF&amp;displaylang=en&lt;/a&gt;
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        Download the Windows Server 2008 &amp; .NET 3.5 SDK. Do not install beta or &amp;#8216;Release Candidate&amp;#8217; (RC) versions. Also do NOT install &amp;#8220;Microsoft Windows SDK for Windows 7 and .NET Framework 4&amp;#8221; (version 7.1); if you want to use a 7.x version choose the &amp;#8220;Microsoft Windows SDK for Windows 7 and .NET Framework 3.5 SP1&amp;#8221;.
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        2.1. While installing the SDK, you must select &amp;#8220;x64 Compilers and Tools&amp;#8221;. For example, in the SDK installer above:&lt;br /&gt; On screen &amp;#8220;Installation Options&amp;#8221;&lt;br /&gt; Select &amp;#8220;Developer Tools&amp;#8221;-&gt;&amp;#8221;Visual C++ Compilers&amp;#8221;.&lt;br /&gt; This item has the Feature Description &amp;#8220;Install the Visual C++ 9.0 Compilers. These compilers allow you to target x86, x64, IA64 processor architectures.&amp;#8221;
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        3. To verify that you have all installed components, check that the Microsoft SDK contains the &amp;#8220;amd64&amp;#8221; version of the C/C++ compiler &amp;#8220;cl.exe&amp;#8221;. This is usually installed into
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        C:Program Files (x86)Microsoft Visual Studio 9.0VCbinamd64cl.exe&lt;br /&gt; 4. At this point you should be able to proceed and compile code as usual.
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        For example, to select the compiler and build the YPRIME.C example MEX-file,&lt;br /&gt; mex -setup % Select Visual Studio 2008 Express Edition&lt;br /&gt; copyfile(fullfile(matlabroot,&amp;#8217;extern&amp;#8217;,&amp;#8217;examples&amp;#8217;,&amp;#8217;mex&amp;#8217;,&amp;#8217;yprime.c&amp;#8217;))&lt;br /&gt; mex -v yprime.c&lt;br /&gt; yprime(1,1:4)&lt;br /&gt; The final line should execute the MEX-file, and calculate the following output:
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        ans =
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        2.0000 8.9685 4.0000 -1.0947If you are unable to select your compiler, compile the MEX-file, or execute the MEX-file, consult the Troubleshooting section below.
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        5. Troubleshooting&lt;br /&gt; If the &amp;#8220;x64 Compilers and Tools&amp;#8221; are not installed properly, MATLAB might display one of the following messages:
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        *****************************************************************************&lt;br /&gt; Error: Could not find the 64-bit compiler. This may indicate that the&lt;br /&gt; &amp;#8220;X64 Compilers and Tools&amp;#8221; or the Microsoft Windows Software&lt;br /&gt; Development Kit (SDK) is not installed. To build 64-bit MEX-files&lt;br /&gt; Microsoft Visual C++ 2008 Express Edition requires that these two&lt;br /&gt; packages are installed properly.&lt;br /&gt; *****************************************************************************&lt;br /&gt; *****************************************************************************&lt;br /&gt; Error: Could not find the Microsoft Windows Software Development Kit (SDK).&lt;br /&gt; This may indicate that the Microsoft Windows SDK or the&lt;br /&gt; &amp;#8220;X64 Compilers and Tools&amp;#8221; is not installed. To build 64-bit&lt;br /&gt; MEX-files Microsoft Visual C++ 2008 Express Edition requires that&lt;br /&gt; these two packages are installed properly.&lt;br /&gt; *****************************************************************************If you see these messages, you may not have the SDK or x64 Compilers and Tools installed properly, or MATLAB may not be able to locate them on your system. Verify that you have installed these packages as described above. For additional assistance, contact MathWorks Technical Support.
+      &lt;/p&gt;
+      
+      &lt;p&gt;
+        For information on which MathWorks products support Visual Studio 2008 Express Edition in your release, see the Supported Compiler List:&lt;br /&gt; &lt;a href=&quot;http://www.mathworks.com/support/compilers/current_release/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;http://www.mathworks.com/support/compilers/current_release/&lt;/a&gt;&lt;/div&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; 
+        
+        &lt;p&gt;
+          &lt;span&gt;Related Solutions:&lt;/span&gt;
+        &lt;/p&gt;
+        
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;span&gt;&lt;a href=&quot;http://www.mathworks.com/support/solutions/en/data/1-DLG5NF/index.html?solution=1-DLG5NF&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;How can I set up Microsoft Visual Studio 2010 Express Edition for use with MATLAB 7.11 (R2010b) on 64-bit Windows?&lt;/a&gt;&lt;/span&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+        
+        &lt;div class=&quot;PoweredByWebStory&quot; style=&quot;margin-top:15px;margin-bottom:10px;&quot;&gt;
+          &lt;a target=&quot;_blank&quot; href=&quot;http://sns.juziyue.com/webinvite.php?u=337&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;img src=&quot;http://image.juziyue.com/WebStoryLogo24.png&quot; alt=&quot;菊子曰&quot; style=&quot;border:0;&quot; /&gt;&lt;/a&gt;&amp;nbsp;我用&lt;a target=&quot;_blank&quot; href=&quot;http://sns.juziyue.com/webinvite.php?u=337&quot; rel=&quot;noopener noreferrer&quot;&gt;菊子曰&lt;/a&gt;写博客，你呢？
+        &lt;/div&gt;&lt;/div&gt;
+</code></pre>……
+        </div>
+        <p class="readmore"><a href="http://peterz.xyz/2011/11/16/64%E4%BD%8Dmatlab-mex64%E4%BD%8D%E7%BC%96%E8%AF%91%E5%99%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">阅读全文</a></p>
+    </article>
+    
+    
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://peterz.xyz/2011/11/16/%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E%E3%80%81%E5%AF%93%E6%84%8F%E6%B7%B1%E9%82%83-%E5%8F%B2%E8%92%82%E5%A4%AB%C2%B7%E4%B9%94%E5%B8%83%E6%96%AF%E7%8E%B0%E8%BA%AB%E8%AF%B4%E6%B3%95/" title="朴实无华、寓意深邃—史蒂夫·乔布斯“现身说法”留给世人的经典演讲 … …">朴实无华、寓意深邃—史蒂夫·乔布斯“现身说法”留给世人的经典演讲 … …</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -80,9 +204,37 @@
         </div>
         
         <div class="post-content">
-            ……
+            <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->……
         </div>
-        <p class="readmore"><a href="http://peterz.xyz/2011/11/16/%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E%E5%AF%93%E6%84%8F%E6%B7%B1%E9%82%83-%E5%8F%B2%E8%92%82%E5%A4%AB%E4%B9%94%E5%B8%83%E6%96%AF%E7%8E%B0%E8%BA%AB%E8%AF%B4%E6%B3%95/">阅读全文</a></p>
+        <p class="readmore"><a href="http://peterz.xyz/2011/11/16/%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E%E3%80%81%E5%AF%93%E6%84%8F%E6%B7%B1%E9%82%83-%E5%8F%B2%E8%92%82%E5%A4%AB%C2%B7%E4%B9%94%E5%B8%83%E6%96%AF%E7%8E%B0%E8%BA%AB%E8%AF%B4%E6%B3%95/">阅读全文</a></p>
     </article>
     
     
@@ -105,7 +257,25 @@
         </div>
         
         <div class="post-content">
-            &lt;p&gt;2.复习理力材力&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;3.复习英语，德语&lt;/p&gt;&lt;p&gt;4.论文&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/p&gt; ……
+            <!-- raw HTML omitted -->
+<pre><code>&lt;p&gt;
+  2.复习理力材力&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&lt;/p&gt;
+
+&lt;p&gt;
+  3.复习英语，德语
+&lt;/p&gt;
+
+&lt;p&gt;
+  4.论文
+&lt;/p&gt;
+
+&lt;p&gt;
+  &amp;nbsp;
+&lt;/p&gt;&lt;/p&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->……
         </div>
         <p class="readmore"><a href="http://peterz.xyz/2011/11/16/%E8%AE%A1%E5%88%92-bis-2012%E5%B9%B43%E6%9C%8831%E6%97%A5/">阅读全文</a></p>
     </article>
@@ -115,7 +285,7 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://peterz.xyz/2011/11/16/%E5%A4%8D%E4%B9%A0%E9%AB%98%E6%95%B0%E7%BA%BF%E4%BB%A3%E6%A6%82%E7%8E%87/" title="复习高数，线代，概率">复习高数，线代，概率</a>
+                <a href="http://peterz.xyz/2011/11/16/%E5%A4%8D%E4%B9%A0%E9%AB%98%E6%95%B0%EF%BC%8C%E7%BA%BF%E4%BB%A3%EF%BC%8C%E6%A6%82%E7%8E%87/" title="复习高数，线代，概率">复习高数，线代，概率</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -130,9 +300,31 @@
         </div>
         
         <div class="post-content">
-            &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 1）→极限存在准则 p64&amp;nbsp;&lt;font size=&quot;1&quot;&gt;2011年11月13日(复习：2011年11月14日)&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;2）→p105导数的概念&lt;span&gt;&lt;font size=&quot;2&quot;&gt;(2011-11-15)&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 3 ) →p123高阶导数&lt;font size=&quot;2&quot;&gt;（2011-11-19）&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;2.线代 &lt;font color=&quot;#FF0000&quot; size=&quot;1&quot;&gt;0%&lt;/font&gt;&lt;/p&gt;&lt;p&gt;3.概率 &lt;font color=&quot;#FF0000&quot; size=&quot;1&quot;&gt;0%&lt;/font&gt;&lt;/p&gt;&lt;/p&gt; ……
+            <!-- raw HTML omitted -->
+<pre><code>&lt;p&gt;
+  &amp;nbsp;&amp;nbsp;&amp;nbsp; 1）→极限存在准则 p64&amp;nbsp;&lt;font size=&quot;1&quot;&gt;2011年11月13日(复习：2011年11月14日)&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  &amp;nbsp; &amp;nbsp;&amp;nbsp;2）→p105导数的概念&lt;span&gt;&lt;font size=&quot;2&quot;&gt;(2011-11-15)&lt;/font&gt;&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  &lt;span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 3 ) →p123高阶导数&lt;font size=&quot;2&quot;&gt;（2011-11-19）&lt;/font&gt;&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  2.线代 &lt;font color=&quot;#FF0000&quot; size=&quot;1&quot;&gt;0%&lt;/font&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  3.概率 &lt;font color=&quot;#FF0000&quot; size=&quot;1&quot;&gt;0%&lt;/font&gt;
+&lt;/p&gt;&lt;/p&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->……
         </div>
-        <p class="readmore"><a href="http://peterz.xyz/2011/11/16/%E5%A4%8D%E4%B9%A0%E9%AB%98%E6%95%B0%E7%BA%BF%E4%BB%A3%E6%A6%82%E7%8E%87/">阅读全文</a></p>
+        <p class="readmore"><a href="http://peterz.xyz/2011/11/16/%E5%A4%8D%E4%B9%A0%E9%AB%98%E6%95%B0%EF%BC%8C%E7%BA%BF%E4%BB%A3%EF%BC%8C%E6%A6%82%E7%8E%87/">阅读全文</a></p>
     </article>
     
     
@@ -140,7 +332,7 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://peterz.xyz/2011/11/16/%E8%BD%AC%E8%BF%87%E7%8A%B9%E4%B8%8D%E5%8F%8A%E7%9A%84%E5%8B%A4%E5%A5%8B%E5%9D%A6%E8%AF%9A%E5%88%9A%E6%AD%A3%E4%BC%A0%E7%BB%9F%E7%BE%8E%E5%BE%B7/" title="【转】过犹不及的“勤奋、坦诚、刚正”传统美德——福兮祸兮、双刃剑及其它 …">【转】过犹不及的“勤奋、坦诚、刚正”传统美德——福兮祸兮、双刃剑及其它 …</a>
+                <a href="http://peterz.xyz/2011/11/16/%E3%80%90%E8%BD%AC%E3%80%91%E8%BF%87%E7%8A%B9%E4%B8%8D%E5%8F%8A%E7%9A%84%E5%8B%A4%E5%A5%8B%E3%80%81%E5%9D%A6%E8%AF%9A%E3%80%81%E5%88%9A%E6%AD%A3%E4%BC%A0%E7%BB%9F%E7%BE%8E%E5%BE%B7/" title="【转】过犹不及的“勤奋、坦诚、刚正”传统美德——福兮祸兮、双刃剑及其它 …">【转】过犹不及的“勤奋、坦诚、刚正”传统美德——福兮祸兮、双刃剑及其它 …</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -155,9 +347,12 @@
         </div>
         
         <div class="post-content">
-            【转】过犹不及的“勤奋、坦诚、刚正”传统美德——福兮祸兮、双刃剑及其它 “勤奋、坦诚、刚正”堪称美德但是不可无度。“度”是质和量的统一，是“质”（良好效果）对“量”的界限、幅度和范围。量变之于质变的根本标志就在于：事物的变化是否超出了“度”。在实践过程中，必须注意把握适“度”原则，学会审时度势、三思后行权衡为人处世分寸，一定要避免和防止“过犹不及”。 坦诚、刚正是把“双刃剑”。对于坦诚、刚正的无度释放，只能带来事与愿违的后果。在世风日下、人心不古的当今社会，传统意义的坦诚、刚正美德，已与当今世俗观念产生矛盾。务必清醒认识：我们可以改变自己（个性调整），但是很难改变外部环境（社会认知）。俗话“适者生存”，就是阐发了这样一个真理。 甲子回眸有感：其一，要勤奋，但是不能过于勤奋。过于勤奋，这是要以“生命透支”为代价的。其二，要刚正，但是不能过于刚正。过于刚正，就可能与环境不时发生冲突。其三，要坦诚，但是不能过于坦诚。过于坦诚，肯定会招致意想不到的种种祸端。以上之“过于”，就是超出了“适度”的界限：过犹则不及！……
+            <p><a href="http://hi.baidu.com/guoguo6688/blog/item/60d8eecae570035bf31fe760.html">【转】过犹不及的“勤奋、坦诚、刚正”传统美德——福兮祸兮、双刃剑及其它</a>
+“勤奋、坦诚、刚正”堪称美德但是不可无度。“度”是质和量的统一，是“质”（良好效果）对“量”的界限、幅度和范围。量变之于质变的根本标志就在于：事物的变化是否超出了“度”。在实践过程中，必须注意把握适“度”原则，学会审时度势、三思后行权衡为人处世分寸，一定要避免和防止“过犹不及”。
+坦诚、刚正是把“双刃剑”。对于坦诚、刚正的无度释放，只能带来事与愿违的后果。在世风日下、人心不古的当今社会，传统意义的坦诚、刚正美德，已与当今世俗观念产生矛盾。务必清醒认识：我们可以改变自己（个性调整），但是很难改变外部环境（社会认知）。俗话“适者生存”，就是阐发了这样一个真理。
+甲子回眸有感：其一，要勤奋，但是不能过于勤奋。过于勤奋，这是要以“生命透支”为代价的。其二，要刚正，但是不能过于刚正。过于刚正，就可能与环境不时发生冲突。其三，要坦诚，但是不能过于坦诚。过于坦诚，肯定会招致意想不到的种种祸端。以上之“过于”，就是超出了“适度”的界限：过犹则不及！</p>……
         </div>
-        <p class="readmore"><a href="http://peterz.xyz/2011/11/16/%E8%BD%AC%E8%BF%87%E7%8A%B9%E4%B8%8D%E5%8F%8A%E7%9A%84%E5%8B%A4%E5%A5%8B%E5%9D%A6%E8%AF%9A%E5%88%9A%E6%AD%A3%E4%BC%A0%E7%BB%9F%E7%BE%8E%E5%BE%B7/">阅读全文</a></p>
+        <p class="readmore"><a href="http://peterz.xyz/2011/11/16/%E3%80%90%E8%BD%AC%E3%80%91%E8%BF%87%E7%8A%B9%E4%B8%8D%E5%8F%8A%E7%9A%84%E5%8B%A4%E5%A5%8B%E3%80%81%E5%9D%A6%E8%AF%9A%E3%80%81%E5%88%9A%E6%AD%A3%E4%BC%A0%E7%BB%9F%E7%BE%8E%E5%BE%B7/">阅读全文</a></p>
     </article>
     
     
@@ -180,12 +375,26 @@
         </div>
         
         <div class="post-content">
-            最近发现还是有朋友在搜索德语词典，原来的链接都失效了，现在把我收集的德语词典都共享出来，放在了百度网盘上。下载====================================================== Mdict是个不错的词典工具，既有PC端也有PPC端。非常好用而且免费。不过它不提供词典文件。 下面是我在网络上收集到的德语词典，应该说能找到的都在这里了。
-  德汉汉德双向大辞典 下载 制作者：峰少 词条数：德汉10.7万，汉德7.3万， 词条总数：18万制作日期：2006-10-27
-  新德汉字典 下载 就是上海译文出版社发行的那本
-  朗氏德德 下载 Deutsch als Fremdsprach,这本学德语的应该都知道
-Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fundset Deutsch2Chinese(S)制作,核心作者名单:Fanschoen、andyyan、小青、Maoyuan Yu、schweinchen、ponymch、maniok、 hallo1111、bodozhang、xiangmei、perlen、 pan_wf. 欢迎大家登入我们的网站: BBS:http://www.highkast.com 获得更新的词典!5.杜登德德词典 &lt;a href=&quot;http://files.getdropbox.com/u/1167529/Duden %E5%BE%B7%E5%BE%B7%E5%A4%A7%E5%AD%97%E5%85%B8.mdx下载
-大名鼎鼎的杜登！dudeng_deu_zu_deu是德语ppc系列词典之一。在此感谢zhuzi813提供词库txt源文件！ eaglewdy经后期加工制作完成。祝愿所有学德语的兄弟姐妹学有所成，前程似锦！欢迎大家登入我们的网站: BBS:http://www.highkast.com 获得更新的词典!6– 汉德词典 – 下载本词典词库源自chdw.de汉德辞典并采用Creative Commons条款授权主编：闫 哲QQ：29924170E-mail：yanzhe2000@126.com词条数：10万 完美变元音制作日期：2006.6.6日 北京  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~原先用于存放词典的空间——Dropbox被封，无法下载。 现在更新了空间。大家再尝试一下，看看新空间能不能用。德汉汉德 &lt;a href=&quot;https://www.sugarsync.com/pf/D918919_321379_703695&quot;&gt;Part 1&lt;/a&gt; &lt;a href=&quot;https://www.sugarsync.com/pf/D918919_321379_703697&quot;&gt;Part 2&lt;/a&gt;朗氏德德 &lt;a href=&quot;https://www.sugarsync.com/pf/D918919_321379_703693&quot;&gt;Part 1&lt;/a&gt; &lt;a href=&quot;https://www.sugarsync.com/pf/D918919_321379_703605&quot;&gt;Part 2&lt;/a&gt;新德汉字典 &lt;a href=&quot;https://www.sugarsync.com/pf/D918919_321379_703699&quot;&gt;Part 1&lt;/a&gt; &lt;a href=&quot;https://www.sugarsync.com/pf/D918919_321379_703691&quot;&gt;Part 2&lt;/a&gt;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ……
+            <p>最近发现还是有朋友在搜索德语词典，原来的链接都失效了，现在把我收集的德语词典都共享出来，放在了百度网盘上。<!-- raw HTML omitted -->下载<!-- raw HTML omitted --></p>
+<p>======================================================
+Mdict是个不错的词典工具，既有PC端也有PPC端。非常好用而且免费。不过它不提供词典文件。
+下面是我在网络上收集到的德语词典，应该说能找到的都在这里了。</p>
+<ol>
+<li>
+<p>德汉汉德双向大辞典 <a href="http://files.getdropbox.com/u/1167529/%E5%BE%B7%E6%B1%89%E6%B1%89%E5%BE%B7.mdx">下载</a>
+制作者：峰少 词条数：德汉10.7万，汉德7.3万， 词条总数：18万制作日期：2006-10-27</p>
+</li>
+<li>
+<p>新德汉字典 <a href="http://files.getdropbox.com/u/1167529/%E6%96%B0%E5%BE%B7%E6%B1%89%E5%AD%97%E5%85%B8.mdx">下载</a>
+就是上海译文出版社发行的那本</p>
+</li>
+<li>
+<p>朗氏德德  <a href="http://files.getdropbox.com/u/1167529/%E6%9C%97%E6%B0%8F%E5%BE%B7%E5%BE%B7.mdx">下载</a>
+Deutsch als Fremdsprach,这本学德语的应该都知道</p>
+<!-- raw HTML omitted -->
+<p>Deutsch-Chinese Lexikon_ppc.<!-- raw HTML omitted --> <!-- raw HTML omitted -->本德汉词典由eaglewdy根据林凡顺先生的Fundset Deutsch2Chinese(S)制作,核心作者名单:Fanschoen、andyyan、小青、Maoyuan Yu、schweinchen、ponymch、maniok、 hallo1111、bodozhang、xiangmei、perlen、 pan_wf. 欢迎大家登入我们的网站: BBS:http://www.highkast.com 获得更新的词典!<!-- raw HTML omitted --></p>
+<p>5.杜登德德词典  &lt;a href=&ldquo;<a href="http://files.getdropbox.com/u/1167529/Duden">http://files.getdropbox.com/u/1167529/Duden</a> %E5%BE%B7%E5%BE%B7%E5%A4%A7%E5%AD%97%E5%85%B8.mdx下载</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->大名鼎鼎的杜登！<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>……
         </div>
         <p class="readmore"><a href="http://peterz.xyz/2010/10/31/mdict%E5%BE%B7%E8%AF%AD%E8%AF%8D%E5%85%B8%E5%A4%A7%E5%90%88%E9%9B%86/">阅读全文</a></p>
     </article>
@@ -210,7 +419,16 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
         </div>
         
         <div class="post-content">
-            &lt;p&gt;说明：&lt;/p&gt;&lt;pre style=&quot;width:596px;font:100% arial, sans-serif;word-wrap:break-word;white-space:pre-wrap;margin:0;padding:0;&quot;&gt; &lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt;最快捷的翻墙方式、最迅速的墙外体验、最符合中国网民的需求。 大陆网民上网必备。 赶快尝试吧～ 操作步骤： 1. 打开一个Chrome的tab 2. 在tab内敲入欲访问的网址，如&quot;twitter.com“ 3. 回车，chrome会尝试访问twitter.com 4. 点击&quot;一键翻墙&quot;的图标，完成翻墙 *.当您在正常浏览网页时，如果遇到打不开或打开缓慢的国外网页，也可以点击一键翻墙的图标进行翻墙浏览哦～ &lt;/span&gt; &lt;/pre&gt;&lt;pre style=&quot;width:596px;font:100% arial, sans-serif;word-wrap:break-word;white-space:pre-wrap;margin:0;padding:0;&quot;&gt; &lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt;** 您也可以通过直接访问 &lt;a style=&quot;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;color:rgb(0,0,204);&quot; href=&quot;http://x.……
+            <!-- raw HTML omitted -->
+<pre><code>&lt;p&gt;
+  说明：
+&lt;/p&gt;
+
+&lt;pre style=&quot;width:596px;font:100% arial, sans-serif;word-wrap:break-word;white-space:pre-wrap;margin:0;padding:0;&quot;&gt; &lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt;最快捷的翻墙方式、最迅速的墙外体验、最符合中国网民的需求。 大陆网民上网必备。 赶快尝试吧～   操作步骤：      1. 打开一个Chrome的tab      2. 在tab内敲入欲访问的网址，如&quot;twitter.com“      3. 回车，chrome会尝试访问twitter.com      4. 点击&quot;一键翻墙&quot;的图标，完成翻墙      *.当您在正常浏览网页时，如果遇到打不开或打开缓慢的国外网页，也可以点击一键翻墙的图标进行翻墙浏览哦～ &lt;/span&gt; &lt;/pre&gt;
+
+&lt;pre style=&quot;width:596px;font:100% arial, sans-serif;word-wrap:break-word;white-space:pre-wrap;margin:0;padding:0;&quot;&gt; &lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt;** 您也可以通过直接访问 &lt;a style=&quot;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;color:rgb(0,0,204);&quot; href=&quot;http://x.co/passing&quot;&gt;http://x.co/passing&lt;/a&gt; 来使用我们的web代理服务。  ** 提示： 由于众所周知的原因，我们的这项服务有时候会出现短暂的无法访问，请多试几次，或稍等片刻再进行尝试。如果我们的服务在很长的时间内都无法访问，请电邮与我们联系。  ** 注意，本翻墙服务有两大不支持：      1.由于是免费服务，成本有限，我们暂不支持youtube等大流量网站，请谅解。如果您的确需要相当大的流量，请邮件联系有偿服务。谢谢理解。      2.不支持在不和谐的网站发表言论(浏览没有任何限制)。请在使用时保持和谐，大家都是聪明人，为我们省心，也为您自己省心。非常感谢。  如有任何建议，请联系mars1021@gmail.com&lt;/span&gt; &lt;/pre&gt;
+</code></pre>
+<!-- raw HTML omitted -->……
         </div>
         <p class="readmore"><a href="http://peterz.xyz/2010/10/27/chrome-%E4%B8%80%E9%94%AE%E7%BF%BB%E5%A2%99/">阅读全文</a></p>
     </article>
@@ -220,7 +438,7 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://peterz.xyz/2010/10/27/chrome-ssh%E7%BF%BB%E5%A2%99%E6%89%A9%E5%B1%95-proxy-switchy/" title="chrome SSH翻墙扩展： Proxy Switchy!">chrome SSH翻墙扩展： Proxy Switchy!</a>
+                <a href="http://peterz.xyz/2010/10/27/chrome-ssh%E7%BF%BB%E5%A2%99%E6%89%A9%E5%B1%95%EF%BC%9A-proxy-switchy/" title="chrome SSH翻墙扩展： Proxy Switchy!">chrome SSH翻墙扩展： Proxy Switchy!</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -235,9 +453,38 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
         </div>
         
         <div class="post-content">
-            &lt;p style=&quot;line-height:20px;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;margin:0 0 15px;padding:0;&quot;&gt;&lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;Proxy Switchy支持自动代理，设置方式也极其简单。以下是几个小步骤：&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;&lt;ol style=&quot;list-style-position:inside;list-style-type:decimal;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;margin:0 0 15px 20px;padding:0;&quot;&gt;&lt;li style=&quot;line-height:20px;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;margin:0;padding:0;&quot;&gt;&lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;确保你的chrome是dev版本，或者是支持扩展的。&lt;/font&gt;&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;line-height:20px;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!……
+            <!-- raw HTML omitted -->
+<pre><code>&lt;p style=&quot;line-height:20px;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;margin:0 0 15px;padding:0;&quot;&gt;
+  &lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;Proxy Switchy支持自动代理，设置方式也极其简单。以下是几个小步骤：&lt;/font&gt;&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;ol style=&quot;list-style-position:inside;list-style-type:decimal;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;margin:0 0 15px 20px;padding:0;&quot;&gt;
+  &lt;li style=&quot;line-height:20px;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;margin:0;padding:0;&quot;&gt;
+    &lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;确保你的chrome是dev版本，或者是支持扩展的。&lt;/font&gt;&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li style=&quot;line-height:20px;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;margin:0;padding:0;&quot;&gt;
+    &lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;安装完chrome之后，到chrome的官方扩展找这款插件。可以点击&lt;/font&gt;&lt;a style=&quot;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;color:rgb(0,68,170);text-decoration:none;&quot; href=&quot;https://chrome.google.com/extensions/detail/caehdcpeofiiigpdhbabniblemipncjj&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;此处&lt;/font&gt;&lt;/a&gt;&lt;font face=&quot;微软雅黑&quot;&gt;进入。&lt;/font&gt;&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li style=&quot;line-height:20px;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;margin:0;padding:0;&quot;&gt;
+    &lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;安装该插件，接着按照如图设置：&lt;/font&gt;&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p style=&quot;line-height:20px;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;margin:0;padding:0;&quot;&gt;
+  &lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt;  &lt;img border=&quot;0&quot; src=&quot;http://farm2.static.flickr.com/1159/5120479269_db3b0e5cdc_z.jpg&quot; /&gt;&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p style=&quot;line-height:20px;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;margin:0;padding:0;&quot;&gt;
+  &lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt; &lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p style=&quot;line-height:20px;font-family:'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif!important;margin:0;padding:0;&quot;&gt;
+  &lt;span style=&quot;text-transform:none;text-indent:0;border-collapse:separate;font:medium 'WenQuanYi Micro Hei Mono', 'WenQuanYi Micro Hei', 'Microsoft Yahei Mono', 'Microsoft Yahei', sans-serif;white-space:normal;letter-spacing:normal;color:rgb(0,0,0);word-spacing:0;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;完成之后就可以试试翻墙了。&lt;/font&gt;&lt;/span&gt;
+&lt;/p&gt;
+</code></pre>
+<!-- raw HTML omitted -->……
         </div>
-        <p class="readmore"><a href="http://peterz.xyz/2010/10/27/chrome-ssh%E7%BF%BB%E5%A2%99%E6%89%A9%E5%B1%95-proxy-switchy/">阅读全文</a></p>
+        <p class="readmore"><a href="http://peterz.xyz/2010/10/27/chrome-ssh%E7%BF%BB%E5%A2%99%E6%89%A9%E5%B1%95%EF%BC%9A-proxy-switchy/">阅读全文</a></p>
     </article>
     
     
@@ -245,7 +492,7 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://peterz.xyz/2010/07/13/%E8%BD%AC%E4%B8%AD%E5%9B%BD%E6%97%A9%E6%9C%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A0%94%E5%88%B6%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B-%E7%88%B6%E4%BA%B2%E7%9A%84%E5%8A%9E%E5%85%AC/" title="【转】中国早期计算机研制中的小故事 父亲的办公楼 ——萨苏">【转】中国早期计算机研制中的小故事 父亲的办公楼 ——萨苏</a>
+                <a href="http://peterz.xyz/2010/07/13/%E3%80%90%E8%BD%AC%E3%80%91%E4%B8%AD%E5%9B%BD%E6%97%A9%E6%9C%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A0%94%E5%88%B6%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B-%E7%88%B6%E4%BA%B2%E7%9A%84%E5%8A%9E%E5%85%AC/" title="【转】中国早期计算机研制中的小故事 父亲的办公楼 ——萨苏">【转】中国早期计算机研制中的小故事 父亲的办公楼 ——萨苏</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -260,9 +507,65 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
         </div>
         
         <div class="post-content">
-            &lt;p&gt;小时候,不知何时何地,听说哥曾经,也经常的去父亲的办公楼写作业。以前一贯的佩服我哥的学习成绩&lt;span style=&quot;color:blue;&quot;&gt;[萨评：一句话说得俺无地自容]&lt;/span&gt;，所以哭喊着也要去，而且，美其名曰：那环境，有学习气氛。&lt;/p&gt;&lt;p&gt;父亲工作的楼是面南背北的大板楼，非常纯粹的中国50-60年代的科研部门楼，如果有研究的朋友们可以调查一下，那种楼通常楼面宽宽，大概得有上百米。共 6层，最上面是天台，每一层楼层都很高，至少当时觉得两个我叠一块儿也摸不到顶。宽大的大门立在又长又宽的台阶上，上去后正对的是大楼梯，很缓的那种，缓就比较长，每一节台阶都宽宽的，上去分左右两道相对小的楼梯，然后到了每一层又合二为一，比现在最豪华的写字楼的都宽，踩着舒服，很符合科研人员的习惯，拉得开步儿。&lt;/p&gt;&lt;p&gt;父亲的办公室，记得是四楼，412，不大，3张办公桌，说不上豪华，可是很宽敞，靠门边是一大排的文件柜，分别写着同室的名字，迎面大窗户，没有落地，可是亮堂堂，和对面站岗的数学所总部遥遥相望。旁边是413，好像是个套间，特别的是，开门就有一股淡淡的香烟的香，不是杨YAO WU 叔叔就是张SHOU YUN叔叔，反正有那么个抽烟的，并不是在这间办公室，却是爱来串门的。窗台上摆着几盆花草，最记得的是文竹，父亲告诉我用香烟头泡过的水可以治蚜虫。&lt;/p&gt;&lt;p&gt;413还有一个东西是那个时代特别稀有的，就是一部电话，全黑的，转盘是金属的，亮亮的，透下去看，每个数字都又大，又黑白分明，很是好看，拿起话筒，胶木的感觉，温柔的很。现在人看我这样写电话肯定觉得不可思议，但七十年代有电话的家庭不是部长司长就是学部委员。。。&lt;/p&gt;&lt;p&gt;而且，话筒上一点奇怪的味道都没有，不象现在办公室自己专用的电话底下都得垫一袋諾顿红茶，看来那时代的科学家们都没有口臭的。最奢侈的是拨117，听见里面“叮咚“，然后是动听的女声：“刚才的时间是北京时间19点21分”之类。&lt;/p&gt;&lt;p&gt;别的不敢拨，小时候很听话，老实，父亲也不让拨，说117是免费的，其他都要收费，这是公家的电话，不能随便用的。所以奢侈在于能拨，而且，能够拨两个”1“，手指头进去，从几乎是最左边将转盘拨到最右边，松手，然后可以听见很长时间的”哗啦啦“，看着转盘有节奏的跟着返回来。&lt;/p&gt;&lt;p&gt;一般来说呢，我是不太有机会坐413的，因为那里新鲜的东西太多，太有可能。。。 哦，其实现在想来，尽管我在父母的眼里是相当的听话，不过父亲还是怕我干出偷偷拨打公家的电话这类事情，在他的眼里，能让我去办公的地方写作业那就已经是很出格的事了。&lt;/p&gt;&lt;p&gt;晚上的计算所大楼是安静的，到了夏天，无论多热，只要打开窗户，阵阵柔风，尽管没有做什么正经的作业，可是心里一点也不烦躁。每每夜深离去的时候，总愿意在楼下侧目，看看还有那么多的窗户里面的灯光。。。&lt;/p&gt;&lt;p&gt;时有带黑框眼镜的张NONG BING阿姨，到现在也乡音未改的杨LI ZHI阿姨来办公室加班，看着她们宁静的脚步，觉得科学家也有这么美的人吗&lt;span style=&quot;color:blue;&quot;&gt;[萨评：叹气，这个评价一点儿都没有离谱，《人到中年》走红的时候，很多次在大街上都有人把杨LIZHI认成了潘虹]&lt;/span&gt;？后来，有了帅气逼人的陈钢，上得了《电影》杂志的潘YANG KE阿姨，那就更是内心中的美女，帅哥儿了。&lt;/p&gt;&lt;p&gt;六楼是个平台，又叫天台，做一会作业就央告老爸带去休息，因为那里高，那时的人，都已经久经锻炼，或者全心做学问，想不到什么，所以没有象现在考试没得 100分，工作压得心理抑郁跳楼的，所以不必象清华主楼似的，四周围满铁丝网。一眼望去，天也是蓝的，星星点点，闪闪。那时的中关村没有什么高楼大厦，这六层的办公楼顶已经可以似乎了望到最远的科学院小院宿舍。&lt;/p&gt;&lt;p&gt;看着父亲打打太极拳，自己就围着天台四处跑，努力数着每一盏灯亮的地方。站在那里，感觉自己已经融化在大地，星空还有着淡淡的香烟的味道。&lt;/p&gt;&lt;p&gt;[完]&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;div&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://sns.juziyue.com/webinvite.php?u=337&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;img src=&quot;http://image.webstory.my/WebStoryLogo32.png&quot; /&gt;&lt;/a&gt; 本文用&lt;a target=&quot;_blank&quot; href=&quot;http://sns.juziyue.com/webinvite.php?u=337&quot; rel=&quot;noopener noreferrer&quot;&gt;菊子曰&lt;/a&gt;发布&lt;/div&gt; ……
+            <!-- raw HTML omitted -->
+<pre><code>&lt;p&gt;
+  小时候,不知何时何地,听说哥曾经,也经常的去父亲的办公楼写作业。以前一贯的佩服我哥的学习成绩&lt;span style=&quot;color:blue;&quot;&gt;[萨评：一句话说得俺无地自容]&lt;/span&gt;，所以哭喊着也要去，而且，美其名曰：那环境，有学习气氛。
+&lt;/p&gt;
+
+&lt;p&gt;
+  父亲工作的楼是面南背北的大板楼，非常纯粹的中国50-60年代的科研部门楼，如果有研究的朋友们可以调查一下，那种楼通常楼面宽宽，大概得有上百米。共 6层，最上面是天台，每一层楼层都很高，至少当时觉得两个我叠一块儿也摸不到顶。宽大的大门立在又长又宽的台阶上，上去后正对的是大楼梯，很缓的那种，缓就比较长，每一节台阶都宽宽的，上去分左右两道相对小的楼梯，然后到了每一层又合二为一，比现在最豪华的写字楼的都宽，踩着舒服，很符合科研人员的习惯，拉得开步儿。
+&lt;/p&gt;
+
+&lt;p&gt;
+  父亲的办公室，记得是四楼，412，不大，3张办公桌，说不上豪华，可是很宽敞，靠门边是一大排的文件柜，分别写着同室的名字，迎面大窗户，没有落地，可是亮堂堂，和对面站岗的数学所总部遥遥相望。旁边是413，好像是个套间，特别的是，开门就有一股淡淡的香烟的香，不是杨YAO WU 叔叔就是张SHOU YUN叔叔，反正有那么个抽烟的，并不是在这间办公室，却是爱来串门的。窗台上摆着几盆花草，最记得的是文竹，父亲告诉我用香烟头泡过的水可以治蚜虫。
+&lt;/p&gt;
+
+&lt;p&gt;
+  413还有一个东西是那个时代特别稀有的，就是一部电话，全黑的，转盘是金属的，亮亮的，透下去看，每个数字都又大，又黑白分明，很是好看，拿起话筒，胶木的感觉，温柔的很。现在人看我这样写电话肯定觉得不可思议，但七十年代有电话的家庭不是部长司长就是学部委员。。。
+&lt;/p&gt;
+
+&lt;p&gt;
+  而且，话筒上一点奇怪的味道都没有，不象现在办公室自己专用的电话底下都得垫一袋諾顿红茶，看来那时代的科学家们都没有口臭的。最奢侈的是拨117，听见里面“叮咚“，然后是动听的女声：“刚才的时间是北京时间19点21分”之类。
+&lt;/p&gt;
+
+&lt;p&gt;
+  别的不敢拨，小时候很听话，老实，父亲也不让拨，说117是免费的，其他都要收费，这是公家的电话，不能随便用的。所以奢侈在于能拨，而且，能够拨两个”1“，手指头进去，从几乎是最左边将转盘拨到最右边，松手，然后可以听见很长时间的”哗啦啦“，看着转盘有节奏的跟着返回来。
+&lt;/p&gt;
+
+&lt;p&gt;
+  一般来说呢，我是不太有机会坐413的，因为那里新鲜的东西太多，太有可能。。。 哦，其实现在想来，尽管我在父母的眼里是相当的听话，不过父亲还是怕我干出偷偷拨打公家的电话这类事情，在他的眼里，能让我去办公的地方写作业那就已经是很出格的事了。
+&lt;/p&gt;
+
+&lt;p&gt;
+  晚上的计算所大楼是安静的，到了夏天，无论多热，只要打开窗户，阵阵柔风，尽管没有做什么正经的作业，可是心里一点也不烦躁。每每夜深离去的时候，总愿意在楼下侧目，看看还有那么多的窗户里面的灯光。。。
+&lt;/p&gt;
+
+&lt;p&gt;
+  时有带黑框眼镜的张NONG BING阿姨，到现在也乡音未改的杨LI ZHI阿姨来办公室加班，看着她们宁静的脚步，觉得科学家也有这么美的人吗&lt;span style=&quot;color:blue;&quot;&gt;[萨评：叹气，这个评价一点儿都没有离谱，《人到中年》走红的时候，很多次在大街上都有人把杨LIZHI认成了潘虹]&lt;/span&gt;？后来，有了帅气逼人的陈钢，上得了《电影》杂志的潘YANG KE阿姨，那就更是内心中的美女，帅哥儿了。
+&lt;/p&gt;
+
+&lt;p&gt;
+  六楼是个平台，又叫天台，做一会作业就央告老爸带去休息，因为那里高，那时的人，都已经久经锻炼，或者全心做学问，想不到什么，所以没有象现在考试没得 100分，工作压得心理抑郁跳楼的，所以不必象清华主楼似的，四周围满铁丝网。一眼望去，天也是蓝的，星星点点，闪闪。那时的中关村没有什么高楼大厦，这六层的办公楼顶已经可以似乎了望到最远的科学院小院宿舍。
+&lt;/p&gt;
+
+&lt;p&gt;
+  看着父亲打打太极拳，自己就围着天台四处跑，努力数着每一盏灯亮的地方。站在那里，感觉自己已经融化在大地，星空还有着淡淡的香烟的味道。
+&lt;/p&gt;
+
+&lt;p&gt;
+  [完]
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;a target=&quot;_blank&quot; href=&quot;http://sns.juziyue.com/webinvite.php?u=337&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;img src=&quot;http://image.webstory.my/WebStoryLogo32.png&quot; /&gt;&lt;/a&gt; 本文用&lt;a target=&quot;_blank&quot; href=&quot;http://sns.juziyue.com/webinvite.php?u=337&quot; rel=&quot;noopener noreferrer&quot;&gt;菊子曰&lt;/a&gt;发布
+&lt;/div&gt;
+</code></pre>
+<!-- raw HTML omitted -->……
         </div>
-        <p class="readmore"><a href="http://peterz.xyz/2010/07/13/%E8%BD%AC%E4%B8%AD%E5%9B%BD%E6%97%A9%E6%9C%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A0%94%E5%88%B6%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B-%E7%88%B6%E4%BA%B2%E7%9A%84%E5%8A%9E%E5%85%AC/">阅读全文</a></p>
+        <p class="readmore"><a href="http://peterz.xyz/2010/07/13/%E3%80%90%E8%BD%AC%E3%80%91%E4%B8%AD%E5%9B%BD%E6%97%A9%E6%9C%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A0%94%E5%88%B6%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B-%E7%88%B6%E4%BA%B2%E7%9A%84%E5%8A%9E%E5%85%AC/">阅读全文</a></p>
     </article>
     
     
@@ -270,7 +573,7 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="http://peterz.xyz/2010/07/13/%E8%BD%AC%E4%B8%AD%E5%9B%BD%E6%97%A9%E6%9C%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A0%94%E5%88%B6%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B-%E5%A4%96%E4%B8%80%E7%AF%87-%E7%AC%AC%E4%B8%80/" title="【转】中国早期计算机研制中的小故事 外一篇 第一个女程序员——萨苏">【转】中国早期计算机研制中的小故事 外一篇 第一个女程序员——萨苏</a>
+                <a href="http://peterz.xyz/2010/07/13/%E3%80%90%E8%BD%AC%E3%80%91%E4%B8%AD%E5%9B%BD%E6%97%A9%E6%9C%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A0%94%E5%88%B6%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B-%E5%A4%96%E4%B8%80%E7%AF%87-%E7%AC%AC%E4%B8%80/" title="【转】中国早期计算机研制中的小故事 外一篇 第一个女程序员——萨苏">【转】中国早期计算机研制中的小故事 外一篇 第一个女程序员——萨苏</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -285,49 +588,203 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
         </div>
         
         <div class="post-content">
-            &lt;p align=&quot;center&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://farm5.static.flickr.com/4138/4789895835_86a2ed1223.jpg&quot; /&gt;&lt;/p&gt;&lt;p&gt;烫发的那位，应该是夏培肃，而中间戴眼镜的，虽然过了五十年依然面熟，如果我没认错的话，今天她仍经常在计算所大院里出入，是母亲晨练时候的伙伴。在父亲的告别仪式上，她曾扶住母亲，热泪难抑。但我却无法说出她完整的名字，最后一个字我不能确认。&lt;/p&gt;&lt;p&gt;这真是件惭愧的事情，但我又无可奈何。&lt;/p&gt;&lt;p&gt;一直叫她张阿姨，叫习惯了。&lt;/p&gt;&lt;p&gt;但她的名字我说不出来。科学院人有个坏毛病，说话力图简练，往往把人家三个字的名字说成两个字，比如陆启铿先生，大家只说“陆启”，金翠柏研究员，大家只说“金翠”。他们自己人都明白，当面也这样叫。&lt;/p&gt;&lt;p&gt;不过也不是都这样叫，项可风先生就是项可风，张广厚先生就是张广厚，不会被叫成“项可”或者“张广”。&lt;/p&gt;&lt;p&gt;我推测这可能和发音好听不好听有关，因为凡是被简化成两个字的，听起来都显得铿锵有力，不过这个可没有确证。&lt;/p&gt;&lt;p&gt;他们是简单了，问题是我们这些小辈就经常乱套，至少我很长时间一直以为陆启铿先生就叫“陆启”。&lt;/p&gt;&lt;p&gt;我也一直弄不清这位张阿姨的名字最后一个字是哪个字，记得还问过一次，知道了她名字中间的那个字，是“绮”，“绮罗”的“绮”，可最后一个字，因为不常用，还是忘掉了。&lt;/p&gt;&lt;p&gt;据我所知，她是北京人，1958年来到的科学院，随即到计算所，入程序设计室，一直在科学院工作到退休。&lt;/p&gt;&lt;p&gt;为了写这篇文章，我在各种网页上拼命搜寻以“张绮”开头的名字，最终无功而返。&lt;/p&gt;&lt;p&gt;她的名字找不到，但我们这些曾经以编程序为生的，都该来对她表达一份敬意。&lt;/p&gt;&lt;p&gt;因为，她是我国第一代程序员中唯一的女性，苏联专家什米格列夫斯基最优秀的弟子之一。我国第一颗人造卫星的地面跟踪，主要程序就是出自她的手笔。&lt;/p&gt;&lt;p&gt;现在有一种说法，认为女性不适合作编程。这不知道是从何而起，据说世界上第一个程序员就是女的。“女性不适合编程”这是不是传说暂且不论，至少她是这个传说的绝对颠覆者。&lt;/p&gt;&lt;p&gt;父亲回忆当年的工作时讲过，“张绮霞（天，写到此处忽然灵光一闪，这个名字一下就冒了出来，虽然最后那个字是不是这个霞有待存疑，但肯定是这个音）编的程序，一次就过。”&lt;/p&gt;&lt;p&gt;这份本领，当时几个男的程序员都比不了。&lt;/p&gt;&lt;p&gt;编过程序的人，大体能够感到其中的厉害 – 至少我编程从来不敢说一次就过，要反复修改，才能剔除其中的Bug。&lt;/p&gt;&lt;p&gt;当然，我知道自己的朋友中，能够编程不出错，一次就过的也会有，也很了不起。&lt;/p&gt;&lt;p&gt;慢。。。&lt;/p&gt;&lt;p&gt;请记住时间背景 – 那是五十年代的编程阿。&lt;/p&gt;&lt;p&gt;什么是五十年代的编程呢？这意味着没有Basic,没有汇编，没有Colbol。。。 这种编程不是今天那样的“写”程序，而是用机器语言来编！也就是说，编出的程序根本不是写在纸上的，而是在纸带上打出的不规则小孔（修改程序就是给纸带打补丁），程序员需要先把给计算机的指令换算成二进制数字，然后把二进制数字转成这些小孔，每一个小孔代表了给计算机的一个信号，上百个小孔驱使计算机作一个动作，成千个小孔形成一条指令！&lt;/p&gt;&lt;p&gt;那根本不是人能看懂的东西。&lt;/p&gt;&lt;p&gt;让我用成千个小孔向计算机下达指令。。。&lt;/p&gt;&lt;p&gt;别说作这样的程序了，就看懂它，也足以令人恐怖。&lt;/p&gt;&lt;p&gt;而张绮霞编的程序“一次就过”！&lt;/p&gt;&lt;p&gt;这种本领，就太。。。&lt;/p&gt;&lt;p&gt;空调可能坏了，后背一阵发冷。&lt;/p&gt;&lt;p&gt;弄明白这件事后，当时我见到她常常会多看两眼，而且根本不敢跟她提自己也是个编程序的。。。&lt;/p&gt;&lt;p&gt;早年曾对这些带点儿“非人”的描述有所疑惑，但真正见识了几次，心里又有点儿怯惧，只是找不到表述那种感觉的方法。直到看了冯骥才先生的“刷子李”。&lt;/p&gt;&lt;p&gt;“刷子李”是冯骥才《俗世奇人》中的一位粉刷师傅，据说是这样的 &amp;#8212; &lt;span style=&quot;color:blue;&quot;&gt;“他要是给您刷好一间屋子，屋里任嘛甭放，单坐着，就赛升天一般美。最叫绝的是，他刷浆时必穿一身黑，干完活，身上绝没有一个白点。别不信！他还给自己立下一个规矩，只要身上有白点，白刷不要钱。”&lt;/span&gt;&lt;/p&gt;&lt;p&gt;这简直不是人的本事。&lt;/p&gt;&lt;p&gt;刷子李收了个徒弟曹小三，曹小三不大信师傅有这个本事，老想看出破绽来。&lt;/p&gt;&lt;p&gt;于是，第一次跟着师傅刷房子，就出现了这样一个场面 &amp;#8212;&lt;br /&gt; &lt;span style=&quot;color:blue;&quot;&gt;“当刷子李刷完最后一面墙，坐下来，曹小三给他点烟时，竟然瞧见刷子李裤子上出现一个白点，黄豆大小。黑中白，比白中黑更扎眼。完了！师傅露馅了，他不是神仙，往日传说中那如山般的形象轰然倒去。但他怕师父难堪，不敢说，也不敢看，可妨不住还要扫一眼。&lt;/p&gt; &lt;p&gt;这时候，刷子李忽然朝他说话：“小三，你瞧见我裤子上的白点了吧。你以为师傅的能耐有假，名气有诈，是吧。傻小子，你再细瞧瞧吧——”&lt;/p&gt;&lt;p&gt;说着，刷子李手指捏着裤子轻轻往上一提，那白点即刻没了，再一松手，白点又出现，奇了！他凑上脸用神再瞧，那白点原是一个小洞！刚才抽烟时不小心烧的。里边的白衬裤打小洞透出来，看上去就跟粉浆落上去的白点一模一样！&lt;/p&gt;&lt;p&gt;刷子李看着曹小三发怔发傻的模样，笑道：&lt;strong&gt;“你以为人家的名气全是虚的？那你在骗自己。好好学本事吧！”&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;看到这句话的时候，有一种想拿砖头砸冯先生的冲动。&lt;/p&gt;&lt;p&gt;没说的，这句话值得记一辈子。&lt;/p&gt;&lt;p&gt;不过，我见到张绮霞先生更多的时候，是在她退休以后。那时，她常来找父亲帮忙 – 多半是相机玩不转了。还有的时候是微机玩不转了 – 这有什么奇怪的？今天的计算机和当年简直没有相似的地方，整个一个家用电器。这些作研究的，多半是对着二进制口若悬河，自家的电视有几个功能永远搞不清楚。计算机成了家用电器他们玩不转，恐怕一点儿也不奇怪。&lt;/p&gt;&lt;p&gt;后来她曾经说过，这些搞计算机的老人儿，应该自己成立一个组织，相互通气，交流技术。&lt;/p&gt;&lt;p&gt;估计是觉得跟小辈儿们请教Windows里面打印机在哪儿设置这类事情多少有点儿伤自尊吧。&lt;/p&gt;&lt;p&gt;再看这张照片，目光清澈犀利的张绮霞女研究员，和计算所食堂前面清晨举着把剑锻炼身体的张阿姨。。。 无法分明的感觉。&lt;/p&gt;&lt;p&gt;大巧若拙，是不是就是这个意思？&lt;/p&gt;&lt;p&gt;[待续]&lt;/p&gt;&lt;p&gt;写到中间，因为心里打鼓，给一个出身计算所的朋友写了个邮件确认，他的回信让我放了心 – 张绮霞，的确是这位我国第一位女程序员的名字。他还说了一件事 – 1960年，陈赓大将来所里，看了张绮霞编的程序，听人家说明白这是干什么的，大为钦佩，一个劲儿地敲自己脑袋。&lt;/p&gt;&lt;p&gt;能让陈赓大将敲自己脑袋的，能有几个？&lt;/p&gt;&lt;p&gt;蒋介石，肯定是做不到。。。&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;div&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://sns.……
+            <!-- raw HTML omitted -->
+<pre><code>&lt;p align=&quot;center&quot;&gt;
+  &lt;img border=&quot;0&quot; src=&quot;http://farm5.static.flickr.com/4138/4789895835_86a2ed1223.jpg&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  烫发的那位，应该是夏培肃，而中间戴眼镜的，虽然过了五十年依然面熟，如果我没认错的话，今天她仍经常在计算所大院里出入，是母亲晨练时候的伙伴。在父亲的告别仪式上，她曾扶住母亲，热泪难抑。但我却无法说出她完整的名字，最后一个字我不能确认。
+&lt;/p&gt;
+
+&lt;p&gt;
+  这真是件惭愧的事情，但我又无可奈何。
+&lt;/p&gt;
+
+&lt;p&gt;
+  一直叫她张阿姨，叫习惯了。
+&lt;/p&gt;
+
+&lt;p&gt;
+  但她的名字我说不出来。科学院人有个坏毛病，说话力图简练，往往把人家三个字的名字说成两个字，比如陆启铿先生，大家只说“陆启”，金翠柏研究员，大家只说“金翠”。他们自己人都明白，当面也这样叫。
+&lt;/p&gt;
+
+&lt;p&gt;
+  不过也不是都这样叫，项可风先生就是项可风，张广厚先生就是张广厚，不会被叫成“项可”或者“张广”。
+&lt;/p&gt;
+
+&lt;p&gt;
+  我推测这可能和发音好听不好听有关，因为凡是被简化成两个字的，听起来都显得铿锵有力，不过这个可没有确证。
+&lt;/p&gt;
+
+&lt;p&gt;
+  他们是简单了，问题是我们这些小辈就经常乱套，至少我很长时间一直以为陆启铿先生就叫“陆启”。
+&lt;/p&gt;
+
+&lt;p&gt;
+  我也一直弄不清这位张阿姨的名字最后一个字是哪个字，记得还问过一次，知道了她名字中间的那个字，是“绮”，“绮罗”的“绮”，可最后一个字，因为不常用，还是忘掉了。
+&lt;/p&gt;
+
+&lt;p&gt;
+  据我所知，她是北京人，1958年来到的科学院，随即到计算所，入程序设计室，一直在科学院工作到退休。
+&lt;/p&gt;
+
+&lt;p&gt;
+  为了写这篇文章，我在各种网页上拼命搜寻以“张绮”开头的名字，最终无功而返。
+&lt;/p&gt;
+
+&lt;p&gt;
+  她的名字找不到，但我们这些曾经以编程序为生的，都该来对她表达一份敬意。
+&lt;/p&gt;
+
+&lt;p&gt;
+  因为，她是我国第一代程序员中唯一的女性，苏联专家什米格列夫斯基最优秀的弟子之一。我国第一颗人造卫星的地面跟踪，主要程序就是出自她的手笔。
+&lt;/p&gt;
+
+&lt;p&gt;
+  现在有一种说法，认为女性不适合作编程。这不知道是从何而起，据说世界上第一个程序员就是女的。“女性不适合编程”这是不是传说暂且不论，至少她是这个传说的绝对颠覆者。
+&lt;/p&gt;
+
+&lt;p&gt;
+  父亲回忆当年的工作时讲过，“张绮霞（天，写到此处忽然灵光一闪，这个名字一下就冒了出来，虽然最后那个字是不是这个霞有待存疑，但肯定是这个音）编的程序，一次就过。”
+&lt;/p&gt;
+
+&lt;p&gt;
+  这份本领，当时几个男的程序员都比不了。
+&lt;/p&gt;
+
+&lt;p&gt;
+  编过程序的人，大体能够感到其中的厉害 – 至少我编程从来不敢说一次就过，要反复修改，才能剔除其中的Bug。
+&lt;/p&gt;
+
+&lt;p&gt;
+  当然，我知道自己的朋友中，能够编程不出错，一次就过的也会有，也很了不起。
+&lt;/p&gt;
+
+&lt;p&gt;
+  慢。。。
+&lt;/p&gt;
+
+&lt;p&gt;
+  请记住时间背景 – 那是五十年代的编程阿。
+&lt;/p&gt;
+
+&lt;p&gt;
+  什么是五十年代的编程呢？这意味着没有Basic,没有汇编，没有Colbol。。。 这种编程不是今天那样的“写”程序，而是用机器语言来编！也就是说，编出的程序根本不是写在纸上的，而是在纸带上打出的不规则小孔（修改程序就是给纸带打补丁），程序员需要先把给计算机的指令换算成二进制数字，然后把二进制数字转成这些小孔，每一个小孔代表了给计算机的一个信号，上百个小孔驱使计算机作一个动作，成千个小孔形成一条指令！
+&lt;/p&gt;
+
+&lt;p&gt;
+  那根本不是人能看懂的东西。
+&lt;/p&gt;
+
+&lt;p&gt;
+  让我用成千个小孔向计算机下达指令。。。
+&lt;/p&gt;
+
+&lt;p&gt;
+  别说作这样的程序了，就看懂它，也足以令人恐怖。
+&lt;/p&gt;
+
+&lt;p&gt;
+  而张绮霞编的程序“一次就过”！
+&lt;/p&gt;
+
+&lt;p&gt;
+  这种本领，就太。。。
+&lt;/p&gt;
+
+&lt;p&gt;
+  空调可能坏了，后背一阵发冷。
+&lt;/p&gt;
+
+&lt;p&gt;
+  弄明白这件事后，当时我见到她常常会多看两眼，而且根本不敢跟她提自己也是个编程序的。。。
+&lt;/p&gt;
+
+&lt;p&gt;
+  早年曾对这些带点儿“非人”的描述有所疑惑，但真正见识了几次，心里又有点儿怯惧，只是找不到表述那种感觉的方法。直到看了冯骥才先生的“刷子李”。
+&lt;/p&gt;
+
+&lt;p&gt;
+  “刷子李”是冯骥才《俗世奇人》中的一位粉刷师傅，据说是这样的 &amp;#8212; &lt;span style=&quot;color:blue;&quot;&gt;“他要是给您刷好一间屋子，屋里任嘛甭放，单坐着，就赛升天一般美。最叫绝的是，他刷浆时必穿一身黑，干完活，身上绝没有一个白点。别不信！他还给自己立下一个规矩，只要身上有白点，白刷不要钱。”&lt;/span&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  这简直不是人的本事。
+&lt;/p&gt;
+
+&lt;p&gt;
+  刷子李收了个徒弟曹小三，曹小三不大信师傅有这个本事，老想看出破绽来。
+&lt;/p&gt;
+
+&lt;p&gt;
+  于是，第一次跟着师傅刷房子，就出现了这样一个场面 &amp;#8212;&lt;br /&gt; &lt;span style=&quot;color:blue;&quot;&gt;“当刷子李刷完最后一面墙，坐下来，曹小三给他点烟时，竟然瞧见刷子李裤子上出现一个白点，黄豆大小。黑中白，比白中黑更扎眼。完了！师傅露馅了，他不是神仙，往日传说中那如山般的形象轰然倒去。但他怕师父难堪，不敢说，也不敢看，可妨不住还要扫一眼。&lt;/p&gt; 
+  
+  &lt;p&gt;
+    这时候，刷子李忽然朝他说话：“小三，你瞧见我裤子上的白点了吧。你以为师傅的能耐有假，名气有诈，是吧。傻小子，你再细瞧瞧吧——”
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    说着，刷子李手指捏着裤子轻轻往上一提，那白点即刻没了，再一松手，白点又出现，奇了！他凑上脸用神再瞧，那白点原是一个小洞！刚才抽烟时不小心烧的。里边的白衬裤打小洞透出来，看上去就跟粉浆落上去的白点一模一样！
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    刷子李看着曹小三发怔发傻的模样，笑道：&lt;strong&gt;“你以为人家的名气全是虚的？那你在骗自己。好好学本事吧！”&lt;/strong&gt;&lt;/span&gt;
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    看到这句话的时候，有一种想拿砖头砸冯先生的冲动。
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    没说的，这句话值得记一辈子。
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    不过，我见到张绮霞先生更多的时候，是在她退休以后。那时，她常来找父亲帮忙 – 多半是相机玩不转了。还有的时候是微机玩不转了 – 这有什么奇怪的？今天的计算机和当年简直没有相似的地方，整个一个家用电器。这些作研究的，多半是对着二进制口若悬河，自家的电视有几个功能永远搞不清楚。计算机成了家用电器他们玩不转，恐怕一点儿也不奇怪。
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    后来她曾经说过，这些搞计算机的老人儿，应该自己成立一个组织，相互通气，交流技术。
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    估计是觉得跟小辈儿们请教Windows里面打印机在哪儿设置这类事情多少有点儿伤自尊吧。
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    再看这张照片，目光清澈犀利的张绮霞女研究员，和计算所食堂前面清晨举着把剑锻炼身体的张阿姨。。。 无法分明的感觉。
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    大巧若拙，是不是就是这个意思？
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    [待续]
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    写到中间，因为心里打鼓，给一个出身计算所的朋友写了个邮件确认，他的回信让我放了心 – 张绮霞，的确是这位我国第一位女程序员的名字。他还说了一件事 – 1960年，陈赓大将来所里，看了张绮霞编的程序，听人家说明白这是干什么的，大为钦佩，一个劲儿地敲自己脑袋。
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    能让陈赓大将敲自己脑袋的，能有几个？
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+    蒋介石，肯定是做不到。。。
+  &lt;/p&gt;
+  
+  &lt;p&gt;
+  &lt;/p&gt;
+  
+  &lt;div&gt;
+    &lt;a target=&quot;_blank&quot; href=&quot;http://sns.juziyue.com/webinvite.php?u=337&quot; rel=&quot;noopener noreferrer&quot;&gt;&lt;img src=&quot;http://image.webstory.my/WebStoryLogo32.png&quot; /&gt;&lt;/a&gt; 本文用&lt;a target=&quot;_blank&quot; href=&quot;http://sns.juziyue.com/webinvite.php?u=337&quot; rel=&quot;noopener noreferrer&quot;&gt;菊子曰&lt;/a&gt;发布
+  &lt;/div&gt;&lt;/div&gt; &lt;/div&gt;
+</code></pre>……
         </div>
-        <p class="readmore"><a href="http://peterz.xyz/2010/07/13/%E8%BD%AC%E4%B8%AD%E5%9B%BD%E6%97%A9%E6%9C%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A0%94%E5%88%B6%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B-%E5%A4%96%E4%B8%80%E7%AF%87-%E7%AC%AC%E4%B8%80/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://peterz.xyz/2010/07/13/%E8%BD%AC%E4%B8%AD%E5%9B%BD%E6%97%A9%E6%9C%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A0%94%E5%88%B6%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B-%E6%88%91%E4%B8%8D%E7%9C%8B%E5%8C%97%E4%BA%AC%E4%BA%BA%E5%9C%A8%E7%BA%BD%E7%BA%A6/" title="【转】中国早期计算机研制中的小故事 我不看北京人在纽约——萨苏">【转】中国早期计算机研制中的小故事 我不看北京人在纽约——萨苏</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2010年7月13日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://peterz.xyz/categories/%E6%9C%AA%E5%88%86%E7%B1%BB'>未分类</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            分析ROM指令能让人癫掉看来不是科学院的特殊现象，我写完夏启胜先生带队分析奥里窝地机的一段后，有位朋友发出了如下的感叹 当年我也干过类似的事情，要比较一段x86的汇编翻译+运行时间优化以后变成的另外一种机器的汇编。每天盯着模拟器反汇编出来16进制数字。 后来有天下班的时候坐在车里，从车窗望出去，看到旁边一辆车的牌号，脑子里就直接把那个号当成16进制数据了，先给扩展成二进制的，然后开始想：这是哪个指令呢？ 这段描述外人看了会笑，了解内情的人看了会想哭。 反正，攻关长城201（奥里窝地机的仿制品）的时候，中关村的大街上如果看到一些两眼发直的人在游荡，有的人还拿着饭盆或者书这类的东西却浑然不觉，那很可能就是父亲他们那个研究室的。
-奇怪的是父亲每天要骑车从东四到中关村，还要从中关村回到东四，那段时间居然安然无恙，只能说当时北京的交通管理得太好了。
-不过这样的脑力劳动一直进行下去，的确是让人吃不消的。有位长辈提到工作中有一次王G权先生（上一张照片中最右面的那一位）忽然晕倒了，把大家吓了一跳。知识分子对这种事情没有什么经验，好几个同事赶紧过来把他扶到一边躺下，有人大声叫他的名字，有人去准备冷毛巾，当然也有人去叫王太太项X燕女士。
-冷水和呼唤似乎没有起到作用，这时候，王太太来了。
-王太太皮肤白皙戴一副无边眼镜，文质彬彬的也是科学院的，不过她在生产部门，所以做事雷厉风行，与这些搞研究的完全两个风格。看到老公晕倒，一副奄奄一息的样子，王太太走上前去对着王先生脸上一阵拍打。这个治法让在场的研究员副研究员们脑袋集体宕机。
-嗯，好像效果不错，王先生慢慢睁开眼睛，但眼神似乎有点儿没焦距（可能还在某个语句和某个电子管的插脚之间挣扎呢）。
-王太太指指自己，问他 – “我是谁？”
-王先生定睛看看，吃力地回答道：“你不是小项么？”
-王太太点点头，拍拍老公的头笑道：“行，还认得我就好办。”于是把王先生扶出来，坐到自行车后座上，自己镇定自若地骑上车，告诉王先生一声 – “抓牢我阿！”蹬起来就飞快地朝医院去了。
-看着王太太一骑绝尘，王先生的众位同事们或咿呀，或咋舌，若当时有韩剧的话估计王太太“野蛮女友”的招牌是跑不了的 — 当然没人敢当面说。
-唏嘘完毕之后大家回去，接着跟计算机较劲。
-其实，王先生在同事中是身体很好的，他冬天依然冷水浴，每年都参加北京市马拉松长跑比赛，是前几名的有力竞争者，直到2008年奥运会还是代表科学院的火炬手呢！长城201的研制把他都折腾成这个样子，其他的人可想而知。
-写下了“外人看了会笑，了解内情的人看了会想哭”这句话，忽然想到一个无关的话题。
-偶然在网上看到的中关村老照片（14楼前），很容易让人想起童年的日子 我一直不看《北京人在纽约》，哪怕它最红火的时候也没有看过。 在数学所平房住的时候，正和我家对门的，也是一家有两个孩子的人家（原来是于树祥先生住，81年于先生搬走了），那家的父亲姓王，个子不高，戴一副黑色眼镜，从来不曾高声说话，他的孩子们也是同样温文尔雅的性格。在院子里的人们中间，因为这种文气，这一家人几乎被大家忽略了。 他家的条件比我家稍好，有一间半房（因为有一间实在太小，只好叫做半间），红砖砌成，顶上是水泥瓦的那种，门口有自家垒的一个小煤棚，放冬天烧的蜂窝煤。今天看来仿佛民工的简易房，八十年代科学院知识分子们住的就是这样的房子，大家有这样的房子住，已经很感激。他家左邻，是数学所所长龙瑞麟先生，右舍，是密码专家章照旨先生，大家的房子，都是一样。 每一天大家过的日子都很相似，包括厨房里飘出的炒白菜的香味都是一样的。有时候院里遇到王叔叔，他不管你是大人小孩儿，一样温和地一笑，就算打了招呼。 再后来，王先生被邀请去美国讲学。这可是好事情，那时候哪怕你是“国际知名学者”也罢，作为中国的知识分子，出去吃些天方便面，攒几个大件回来让妻子能够不用搓板洗衣服，孩子们有彩色电视看，或许是他们心底对生活最深切的一点愿望。 可是王先生这一去，再也没有回来。 在纽约的一次学术会议之后，朋友开车送大家回去，不料途中出了事故，王先生坐在后排中间的位置，那里正好没有安全带。也是这辆车唯一没有安全带的座位。。。 几个同车的都比他年轻，我几乎可以想象王先生那时一贯的温和，让每一个人先上，自己上车的时候，就只剩了最后一个座位。 他自然是不会有什么怨言的。 王先生，大名王启明，正研究员，中国科学院数学所负责研究生工作的副所长。
-我一直不看《北京人在纽约》，理由很简单，只因为它的男主角叫做王启明。
-[待续]……
-        </div>
-        <p class="readmore"><a href="http://peterz.xyz/2010/07/13/%E8%BD%AC%E4%B8%AD%E5%9B%BD%E6%97%A9%E6%9C%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A0%94%E5%88%B6%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B-%E6%88%91%E4%B8%8D%E7%9C%8B%E5%8C%97%E4%BA%AC%E4%BA%BA%E5%9C%A8%E7%BA%BD%E7%BA%A6/">阅读全文</a></p>
+        <p class="readmore"><a href="http://peterz.xyz/2010/07/13/%E3%80%90%E8%BD%AC%E3%80%91%E4%B8%AD%E5%9B%BD%E6%97%A9%E6%9C%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A0%94%E5%88%B6%E4%B8%AD%E7%9A%84%E5%B0%8F%E6%95%85%E4%BA%8B-%E5%A4%96%E4%B8%80%E7%AF%87-%E7%AC%AC%E4%B8%80/">阅读全文</a></p>
     </article>
     
     
@@ -444,7 +901,11 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
 <ul class="widget-list">
     
     <li>
-        <a href="http://peterz.xyz/2020/06/11/found_links3/" title="Found_links3">Found_links3</a>
+        <a href="http://peterz.xyz/2026/06/21/oil-gold-correlation/" title="国际油价与黄金价格相关性研究——正常时期特征与2026年霍尔木兹危机后的变化">国际油价与黄金价格相关性研究——正常时期特征与2026年霍尔木兹危机后的变化</a>
+    </li>
+    
+    <li>
+        <a href="http://peterz.xyz/2020/06/11/Found_links3/" title="Found_links3">Found_links3</a>
     </li>
     
     <li>
@@ -479,10 +940,6 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
         <a href="http://peterz.xyz/2018/10/24/%E5%9C%A8scrapy%E4%BD%BF%E7%94%A8splash%E7%88%AC%E5%8F%96%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2-3/" title="在Scrapy使用splash爬取动态页面">在Scrapy使用splash爬取动态页面</a>
     </li>
     
-    <li>
-        <a href="http://peterz.xyz/2018/10/24/%E5%AE%89%E8%A3%85scrapy/" title="安装scrapy">安装scrapy</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -496,7 +953,7 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
     
     <li><a href="http://peterz.xyz/categories/quant/">Quant (1)</a></li>
     
-    <li><a href="http://peterz.xyz/categories/ubuntu/">ubuntu (7)</a></li>
+    <li><a href="http://peterz.xyz/categories/ubuntu/">Ubuntu (7)</a></li>
     
     <li><a href="http://peterz.xyz/categories/%E4%B8%9C%E6%8B%89%E8%A5%BF%E6%89%AF/">东拉西扯 (2)</a></li>
     
@@ -508,9 +965,13 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
     
     <li><a href="http://peterz.xyz/categories/%E7%88%AC%E8%99%AB/">爬虫 (4)</a></li>
     
+    <li><a href="http://peterz.xyz/categories/%E7%A0%94%E7%A9%B6/">研究 (1)</a></li>
+    
     <li><a href="http://peterz.xyz/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-internet/">计算机与 Internet (9)</a></li>
     
     <li><a href="http://peterz.xyz/categories/%E8%B4%B4%E8%B4%B4%E8%B4%B4/">贴贴贴 (1)</a></li>
+    
+    <li><a href="http://peterz.xyz/categories/%E9%87%91%E8%9E%8D/">金融 (1)</a></li>
     
     <li><a href="http://peterz.xyz/categories/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/">随便写写 (1)</a></li>
     
@@ -521,17 +982,21 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://peterz.xyz/tags/like/">like</a>
+    <a href="http://peterz.xyz/tags/like/">Like</a>
     
     <a href="http://peterz.xyz/tags/microsoft/">Microsoft</a>
     
-    <a href="http://peterz.xyz/tags/system/">system</a>
+    <a href="http://peterz.xyz/tags/system/">System</a>
     
-    <a href="http://peterz.xyz/tags/technical/">technical</a>
+    <a href="http://peterz.xyz/tags/technical/">Technical</a>
     
     <a href="http://peterz.xyz/tags/windows/">Windows</a>
     
     <a href="http://peterz.xyz/tags/%E5%8F%8C%E5%88%83%E5%89%91/">双刃剑</a>
+    
+    <a href="http://peterz.xyz/tags/%E5%9C%B0%E7%BC%98%E6%94%BF%E6%B2%BB/">地缘政治</a>
+    
+    <a href="http://peterz.xyz/tags/%E5%A4%A7%E5%AE%97%E5%95%86%E5%93%81/">大宗商品</a>
     
     <a href="http://peterz.xyz/tags/%E5%BE%AE%E9%80%9F%E6%91%84%E5%BD%B1/">微速摄影</a>
     
@@ -543,11 +1008,17 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
     
     <a href="http://peterz.xyz/tags/%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1/">无线网卡</a>
     
+    <a href="http://peterz.xyz/tags/%E6%B2%B9%E4%BB%B7/">油价</a>
+    
     <a href="http://peterz.xyz/tags/%E7%AC%94%E8%AE%B0%E6%9C%AC/">笔记本</a>
     
     <a href="http://peterz.xyz/tags/%E8%A7%86%E9%A2%91/">视频</a>
     
     <a href="http://peterz.xyz/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">解决方法</a>
+    
+    <a href="http://peterz.xyz/tags/%E9%9C%8D%E5%B0%94%E6%9C%A8%E5%85%B9/">霍尔木兹</a>
+    
+    <a href="http://peterz.xyz/tags/%E9%BB%84%E9%87%91/">黄金</a>
     
 </div>
     </section>
@@ -566,7 +1037,7 @@ Deutsch-Chinese Lexikon_ppc.本德汉词典由eaglewdy根据林凡顺先生的Fu
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="http://peterz.xyz/">槑烎 By 槑烎</a>.
+        &copy; 2026 <a href="http://peterz.xyz/">槑烎 By 槑烎</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         

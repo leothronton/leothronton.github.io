@@ -87,18 +87,27 @@
         </div>
         
         <div class="post-content">
-            安装DOCKER Docker for windows 仅支持win10专业版，并且电脑需支持虚拟化技术。
-其他版本的需安装Docker Toolbox
-国内可以使用阿里云镜像来下载。
-下载完成之后直接点击安装。
-启动Docker 双击Docker QuickStart启动Docker Toolbox终端。
-启动后出现错误，卡在了Finalize这一步……
-打开安装目录下start.sh文件，将84行的clear注释掉（clear-&gt;#clear)。再次启动Docker QuickStart。
-安装Splash 执行命令：
-$ docker pull scrapinghub/splash
-启动Splash $ sudo docker run -p 8050:8050 -p 5023:5023 scrapinghub/splash
-验证 在浏览器输入：192.168.100:8050
-显示splash页面……
+            <h1 id="安装docker">安装DOCKER</h1>
+<p><a href="https://docs.docker.com/docker-for-windows/install/">Docker for windows</a> 仅支持win10专业版，并且电脑需支持虚拟化技术。</p>
+<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/Snipaste_2019-12-08_23-45-30.png" alt="任务管理器"></p>
+<p>其他版本的需安装<a href="https://docs.docker.com/toolbox/toolbox_install_windows/">Docker Toolbox</a></p>
+<p>国内可以使用阿里云镜像来<a href="http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/">下载</a>。</p>
+<p>下载完成之后直接点击安装。</p>
+<h2 id="启动docker">启动Docker</h2>
+<p>双击Docker QuickStart启动Docker Toolbox终端。</p>
+<p>启动后出现错误，卡在了Finalize这一步……</p>
+<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/Snipaste_2019-12-08_23-46-01.png" alt="错误信息"></p>
+<p>打开安装目录下start.sh文件，将84行的clear注释掉（clear-&gt;#clear)。再次启动Docker QuickStart。</p>
+<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/Snipaste_2019-12-08_23-46-11.png" alt="启动正常"></p>
+<h2 id="安装splash">安装Splash</h2>
+<p>执行命令：</p>
+<p><code>$ docker pull scrapinghub/splash</code></p>
+<h2 id="启动splash">启动Splash</h2>
+<p><code>$ sudo docker run -p 8050:8050 -p 5023:5023 scrapinghub/splash</code></p>
+<h2 id="验证">验证</h2>
+<p>在浏览器输入：192.168.100:8050</p>
+<p>显示splash页面</p>
+<p><img src="https://raw.githubusercontent.com/leothronton/markPic/master/img/Snipaste_2019-12-08_23-46-19.png" alt="splash页面"></p>……
             <p class="readmore"><a href="http://peterz.xyz/2018/10/30/win10%E4%B8%8B%E5%AE%89%E8%A3%85splash/">阅读全文</a></p>
         </div>
     </article>
@@ -121,12 +130,49 @@ $ docker pull scrapinghub/splash
         </div>
         
         <div class="post-content">
-            在windwos中启动Docker Quickstart Terminal后运行splash：
-docker run -p 8050:8050 -p 8051:8051 scrapinghub/splash表示:Splash现在在端口8050（http）和5023（telnet）上的192.168.99.100处可用。
-启动后在浏览器中输入192.168.99.100：8050 验证是否启动成功。
- 在scrapy项目文件settings.py中添加：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  SPLASH_URL = &#39;http://192.168.99.100:8050/&#39;# 开启Splash的两个下载中间件并调整HttpCompressionMiddleware的次序 DOWNLOADER_MIDDLEWARES = {&#39;scrapy_splash.SplashCookiesMiddleware&#39;: 723,&#39;scrapy_splash.SplashMiddleware&#39;: 725,&#39;scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware&#39;: 810,}# 设置去重过滤器 DUPEFILTER_CLASS = &#39;scrapy_splash.SplashAwareDupeFilter&#39;# 用来支持cache_args（可选） SPIDER_MIDDLEWARES = {&#39;scrapy_splash.SplashDeduplicateArgsMiddleware&#39;: 100,}  在爬虫文件pider.py中添加
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25  def start_requests(self):script = &#39;&#39;&#39;function main(splash)splash:set_viewport_size(1028, 10000)splash:go(splash.……
+            <p>在windwos中启动Docker Quickstart Terminal后运行splash：</p>
+<pre tabindex="0"><code>docker run -p 8050:8050 -p 8051:8051 scrapinghub/splash
+</code></pre><p>表示:Splash现在在端口8050（http）和5023（telnet）上的192.168.99.100处可用。</p>
+<p>启动后在浏览器中输入192.168.99.100：8050 验证是否启动成功。</p>
+<hr>
+<p>在scrapy项目文件settings.py中添加：</p>
+<div class="highlight"><div style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>SPLASH_URL <span style="color:#0550ae">=</span> <span style="color:#0a3069">&#39;http://192.168.99.100:8050/&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 开启Splash的两个下载中间件并调整HttpCompressionMiddleware的次序</span>
+</span></span><span style="display:flex;"><span>DOWNLOADER_MIDDLEWARES <span style="color:#0550ae">=</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#0a3069">&#39;scrapy_splash.SplashCookiesMiddleware&#39;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">723</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#0a3069">&#39;scrapy_splash.SplashMiddleware&#39;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">725</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#0a3069">&#39;scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware&#39;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">810</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 设置去重过滤器</span>
+</span></span><span style="display:flex;"><span>DUPEFILTER_CLASS <span style="color:#0550ae">=</span> <span style="color:#0a3069">&#39;scrapy_splash.SplashAwareDupeFilter&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 用来支持cache_args（可选）</span>
+</span></span><span style="display:flex;"><span>SPIDER_MIDDLEWARES <span style="color:#0550ae">=</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#0a3069">&#39;scrapy_splash.SplashDeduplicateArgsMiddleware&#39;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">100</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在爬虫文件pider.py中添加</p>……
             <p class="readmore"><a href="http://peterz.xyz/2018/10/24/%E5%9C%A8scrapy%E4%BD%BF%E7%94%A8splash%E7%88%AC%E5%8F%96%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2-3/">阅读全文</a></p>
         </div>
     </article>
@@ -149,13 +195,17 @@ docker run -p 8050:8050 -p 8051:8051 scrapinghub/splash表示:Splash现在在�
         </div>
         
         <div class="post-content">
-            环境 winpython3.6 pip install scrapy
-发现在安装依赖twisted时出错，需要vc++14.0. 网上搜索发现需要下载安装visual studio等，太麻烦了。于是乎google到了Twisted-18.7.0-cp36-cp36m-win_amd64.whl。
-pip install Twisted-18.7.0-cp36-cp36m-win_amd64
-完成后继续
-pip install scrapy
-安装成功后，验证：
-In[1]:import scrapyIn[2]:scrapy.version_infoOut[2]: (1, 5, 1)……
+            <h3 id="环境-winpython36">环境 winpython3.6</h3>
+<p><code>pip install scrapy</code></p>
+<p>发现在安装依赖twisted时出错，需要vc++14.0. 网上搜索发现需要下载安装visual studio等，太麻烦了。于是乎google到了Twisted-18.7.0-cp36-cp36m-win_amd64.whl。</p>
+<p><code>pip install Twisted-18.7.0-cp36-cp36m-win_amd64</code></p>
+<p>完成后继续</p>
+<p><code>pip install scrapy</code></p>
+<p>安装成功后，验证：</p>
+<pre tabindex="0"><code>In[1]:import scrapy
+In[2]:scrapy.version_info
+Out[2]: (1, 5, 1)
+</code></pre>……
             <p class="readmore"><a href="http://peterz.xyz/2018/10/24/%E5%AE%89%E8%A3%85scrapy/">阅读全文</a></p>
         </div>
     </article>
@@ -178,10 +228,90 @@ In[1]:import scrapyIn[2]:scrapy.version_infoOut[2]: (1, 5, 1)……
         </div>
         
         <div class="post-content">
-            这个方法需要手动创建数据库文件并将表建立好，否则程序运行会出错。
-settings.py
-1 2 3 4 5 6  # sqlite 配置 SQLITE_DB_NAME = &#39;Data.db&#39; #数据库名称 SQLITE_TABLE_NAME = &#39;table&#39; #表名称 ITEM_PIPELINES={&#39;dirName.pipelines.Sqlite3Pipeline&#39;: 400,}  pipelines.py
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  import sqlite3class Sqlite3Pipeline(object):def __init__(self, sqlite_file, sqlite_table):self.sqlite_file = sqlite_fileself.……
+            <p>这个方法需要手动创建数据库文件并将表建立好，否则程序运行会出错。</p>
+<p><a href="http://settings.py">settings.py</a></p>
+<div class="highlight"><div style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#57606a"># sqlite 配置</span>
+</span></span><span style="display:flex;"><span>SQLITE_DB_NAME <span style="color:#0550ae">=</span> <span style="color:#0a3069">&#39;Data.db&#39;</span>                      <span style="color:#57606a">#数据库名称</span>
+</span></span><span style="display:flex;"><span>SQLITE_TABLE_NAME <span style="color:#0550ae">=</span> <span style="color:#0a3069">&#39;table&#39;</span>                     <span style="color:#57606a">#表名称</span>
+</span></span><span style="display:flex;"><span>ITEM_PIPELINES<span style="color:#0550ae">=</span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0a3069">&#39;dirName.pipelines.Sqlite3Pipeline&#39;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">400</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="http://pipelines.py">pipelines.py</a></p>
+<div class="highlight"><div style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cf222e">import</span> <span style="color:#24292e">sqlite3</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">class</span> <span style="color:#1f2328">Sqlite3Pipeline</span><span style="color:#1f2328">(</span><span style="color:#6639ba">object</span><span style="color:#1f2328">):</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cf222e">def</span> <span style="color:#6639ba">__init__</span><span style="color:#1f2328">(</span><span style="color:#6a737d">self</span><span style="color:#1f2328">,</span> sqlite_file<span style="color:#1f2328">,</span> sqlite_table<span style="color:#1f2328">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>sqlite_file <span style="color:#0550ae">=</span> sqlite_file
+</span></span><span style="display:flex;"><span>            <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>sqlite_table <span style="color:#0550ae">=</span> sqlite_table
+</span></span><span style="display:flex;"><span>        <span style="color:#0550ae">@classmethod</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cf222e">def</span> <span style="color:#6639ba">from_crawler</span><span style="color:#1f2328">(</span><span style="color:#6a737d">cls</span><span style="color:#1f2328">,</span> crawler<span style="color:#1f2328">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cf222e">return</span> <span style="color:#6a737d">cls</span><span style="color:#1f2328">(</span>
+</span></span><span style="display:flex;"><span>                sqlite_file <span style="color:#0550ae">=</span> crawler<span style="color:#0550ae">.</span>settings<span style="color:#0550ae">.</span>get<span style="color:#1f2328">(</span><span style="color:#0a3069">&#39;SQLITE_DB_NAME&#39;</span><span style="color:#1f2328">),</span> <span style="color:#57606a"># 从 settings.py 提取</span>
+</span></span><span style="display:flex;"><span>                sqlite_table <span style="color:#0550ae">=</span> crawler<span style="color:#0550ae">.</span>settings<span style="color:#0550ae">.</span>get<span style="color:#1f2328">(</span><span style="color:#0a3069">&#39;SQLITE_TABLE_NAME&#39;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#39;items&#39;</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cf222e">def</span> <span style="color:#6639ba">open_spider</span><span style="color:#1f2328">(</span><span style="color:#6a737d">self</span><span style="color:#1f2328">,</span> spider<span style="color:#1f2328">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>conn <span style="color:#0550ae">=</span> sqlite3<span style="color:#0550ae">.</span>connect<span style="color:#1f2328">(</span><span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>sqlite_file<span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>cur <span style="color:#0550ae">=</span> <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>conn<span style="color:#0550ae">.</span>cursor<span style="color:#1f2328">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cf222e">def</span> <span style="color:#6639ba">close_spider</span><span style="color:#1f2328">(</span><span style="color:#6a737d">self</span><span style="color:#1f2328">,</span> spider<span style="color:#1f2328">):</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>conn<span style="color:#0550ae">.</span>close<span style="color:#1f2328">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cf222e">def</span> <span style="color:#6639ba">process_item</span><span style="color:#1f2328">(</span><span style="color:#6a737d">self</span><span style="color:#1f2328">,</span> item<span style="color:#1f2328">,</span> spider<span style="color:#1f2328">):</span>
+</span></span><span style="display:flex;"><span>            values <span style="color:#0550ae">=</span> <span style="color:#1f2328">(</span>
+</span></span><span style="display:flex;"><span>            item<span style="color:#1f2328">[</span><span style="color:#0a3069">&#39;A&#39;</span><span style="color:#1f2328">],</span>
+</span></span><span style="display:flex;"><span>            item<span style="color:#1f2328">[</span><span style="color:#0a3069">&#39;B&#39;</span><span style="color:#1f2328">],</span>
+</span></span><span style="display:flex;"><span>            item<span style="color:#1f2328">[</span><span style="color:#0a3069">&#39;C&#39;</span><span style="color:#1f2328">],</span>
+</span></span><span style="display:flex;"><span>            item<span style="color:#1f2328">[</span><span style="color:#0a3069">&#39;D&#39;</span><span style="color:#1f2328">],</span>
+</span></span><span style="display:flex;"><span>            item<span style="color:#1f2328">[</span><span style="color:#0a3069">&#39;E&#39;</span><span style="color:#1f2328">]</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>            sql <span style="color:#0550ae">=</span> <span style="color:#0a3069">&#39;INSERT INTO proxy VALUES (?,?,?,?,?)&#39;</span>    <span style="color:#57606a">#注意插入的数据个数</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>cur<span style="color:#0550ae">.</span>execute<span style="color:#1f2328">(</span>sql<span style="color:#1f2328">,</span> values<span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6a737d">self</span><span style="color:#0550ae">.</span>conn<span style="color:#0550ae">.</span>commit<span style="color:#1f2328">()</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cf222e">return</span> item        
+</span></span></code></pre></td></tr></table>
+</div>
+</div>……
             <p class="readmore"><a href="http://peterz.xyz/2018/10/22/%E5%B0%86scrapy%E7%88%AC%E5%88%B0%E7%9A%84%E5%86%85%E5%AE%B9%E5%AD%98%E5%85%A5sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/">阅读全文</a></p>
         </div>
     </article>
@@ -212,7 +342,11 @@ settings.py
 <ul class="widget-list">
     
     <li>
-        <a href="http://peterz.xyz/2020/06/11/found_links3/" title="Found_links3">Found_links3</a>
+        <a href="http://peterz.xyz/2026/06/21/oil-gold-correlation/" title="国际油价与黄金价格相关性研究——正常时期特征与2026年霍尔木兹危机后的变化">国际油价与黄金价格相关性研究——正常时期特征与2026年霍尔木兹危机后的变化</a>
+    </li>
+    
+    <li>
+        <a href="http://peterz.xyz/2020/06/11/Found_links3/" title="Found_links3">Found_links3</a>
     </li>
     
     <li>
@@ -247,10 +381,6 @@ settings.py
         <a href="http://peterz.xyz/2018/10/24/%E5%9C%A8scrapy%E4%BD%BF%E7%94%A8splash%E7%88%AC%E5%8F%96%E5%8A%A8%E6%80%81%E9%A1%B5%E9%9D%A2-3/" title="在Scrapy使用splash爬取动态页面">在Scrapy使用splash爬取动态页面</a>
     </li>
     
-    <li>
-        <a href="http://peterz.xyz/2018/10/24/%E5%AE%89%E8%A3%85scrapy/" title="安装scrapy">安装scrapy</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -264,7 +394,7 @@ settings.py
     
     <li><a href="http://peterz.xyz/categories/quant/">Quant (1)</a></li>
     
-    <li><a href="http://peterz.xyz/categories/ubuntu/">ubuntu (7)</a></li>
+    <li><a href="http://peterz.xyz/categories/ubuntu/">Ubuntu (7)</a></li>
     
     <li><a href="http://peterz.xyz/categories/%E4%B8%9C%E6%8B%89%E8%A5%BF%E6%89%AF/">东拉西扯 (2)</a></li>
     
@@ -276,9 +406,13 @@ settings.py
     
     <li><a href="http://peterz.xyz/categories/%E7%88%AC%E8%99%AB/">爬虫 (4)</a></li>
     
+    <li><a href="http://peterz.xyz/categories/%E7%A0%94%E7%A9%B6/">研究 (1)</a></li>
+    
     <li><a href="http://peterz.xyz/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%8E-internet/">计算机与 Internet (9)</a></li>
     
     <li><a href="http://peterz.xyz/categories/%E8%B4%B4%E8%B4%B4%E8%B4%B4/">贴贴贴 (1)</a></li>
+    
+    <li><a href="http://peterz.xyz/categories/%E9%87%91%E8%9E%8D/">金融 (1)</a></li>
     
     <li><a href="http://peterz.xyz/categories/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/">随便写写 (1)</a></li>
     
@@ -289,17 +423,21 @@ settings.py
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://peterz.xyz/tags/like/">like</a>
+    <a href="http://peterz.xyz/tags/like/">Like</a>
     
     <a href="http://peterz.xyz/tags/microsoft/">Microsoft</a>
     
-    <a href="http://peterz.xyz/tags/system/">system</a>
+    <a href="http://peterz.xyz/tags/system/">System</a>
     
-    <a href="http://peterz.xyz/tags/technical/">technical</a>
+    <a href="http://peterz.xyz/tags/technical/">Technical</a>
     
     <a href="http://peterz.xyz/tags/windows/">Windows</a>
     
     <a href="http://peterz.xyz/tags/%E5%8F%8C%E5%88%83%E5%89%91/">双刃剑</a>
+    
+    <a href="http://peterz.xyz/tags/%E5%9C%B0%E7%BC%98%E6%94%BF%E6%B2%BB/">地缘政治</a>
+    
+    <a href="http://peterz.xyz/tags/%E5%A4%A7%E5%AE%97%E5%95%86%E5%93%81/">大宗商品</a>
     
     <a href="http://peterz.xyz/tags/%E5%BE%AE%E9%80%9F%E6%91%84%E5%BD%B1/">微速摄影</a>
     
@@ -311,11 +449,17 @@ settings.py
     
     <a href="http://peterz.xyz/tags/%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1/">无线网卡</a>
     
+    <a href="http://peterz.xyz/tags/%E6%B2%B9%E4%BB%B7/">油价</a>
+    
     <a href="http://peterz.xyz/tags/%E7%AC%94%E8%AE%B0%E6%9C%AC/">笔记本</a>
     
     <a href="http://peterz.xyz/tags/%E8%A7%86%E9%A2%91/">视频</a>
     
     <a href="http://peterz.xyz/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">解决方法</a>
+    
+    <a href="http://peterz.xyz/tags/%E9%9C%8D%E5%B0%94%E6%9C%A8%E5%85%B9/">霍尔木兹</a>
+    
+    <a href="http://peterz.xyz/tags/%E9%BB%84%E9%87%91/">黄金</a>
     
 </div>
     </section>
@@ -334,7 +478,7 @@ settings.py
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="http://peterz.xyz/">槑烎 By 槑烎</a>.
+        &copy; 2026 <a href="http://peterz.xyz/">槑烎 By 槑烎</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         
